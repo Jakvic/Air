@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirControl", "AirControl\AirControl.csproj", "{206A2BBB-ED75-4016-854D-0B2F07147B2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Air", "Air\Air.csproj", "{1E70AE6D-285A-498E-87FC-C5E1D31501ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{206A2BBB-ED75-4016-854D-0B2F07147B2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{206A2BBB-ED75-4016-854D-0B2F07147B2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{206A2BBB-ED75-4016-854D-0B2F07147B2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{206A2BBB-ED75-4016-854D-0B2F07147B2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E70AE6D-285A-498E-87FC-C5E1D31501ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E70AE6D-285A-498E-87FC-C5E1D31501ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E70AE6D-285A-498E-87FC-C5E1D31501ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E70AE6D-285A-498E-87FC-C5E1D31501ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
