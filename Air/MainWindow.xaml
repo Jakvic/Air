@@ -7,10 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <AirButton Content="Hello" Type="Main" FontSize="16" IsEnabled="False"/>
-            <AirButton Content="There" Type="Default" FontSize="16" Margin="0 10 0 10" IsEnabled="False" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <AirPanel Grid.Column="1" Space="10" 
+                  VerticalAlignment="Center" HorizontalAlignment="Center">
+            <AirButton Content="Hello" Type="Main" FontSize="16" />
+            <!-- <AirButton Content="Hello" Type="Main" FontSize="16" IsEnabled="False" /> -->
+            <AirButton Content="There" Type="Default" FontSize="16"/>
+            <!-- <AirButton Content="There" Type="Default" FontSize="16" IsEnabled="False" /> -->
             <Button Content="Jakvic" FontSize="16" />
-        </StackPanel>
+        </AirPanel>
     </Grid>
 </Window>
