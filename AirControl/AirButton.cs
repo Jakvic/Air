@@ -8,7 +8,7 @@ namespace AirControl
         Main,
         Default
     }
-    
+
     public class AirButton : Button
     {
         static AirButton()
@@ -21,11 +21,11 @@ namespace AirControl
 
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             "CornerRadius", typeof(CornerRadius), typeof(AirButton), new PropertyMetadata(default(CornerRadius)));
-        
+
         public CornerRadius CornerRadius
         {
-            get { return (CornerRadius) GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
+            get => (CornerRadius) GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
         }
 
         public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
@@ -33,9 +33,8 @@ namespace AirControl
 
         public AirButtonType Type
         {
-            get { return (AirButtonType) GetValue(TypeProperty); }
-            set { SetValue(TypeProperty, value); }
+            get => (AirButtonType) GetValue(TypeProperty);
+            set => SetValue(TypeProperty, value);
         }
-        
     }
 }

@@ -5,7 +5,7 @@
     <SolidColorBrush x:Key="MainBackgroundClicked" Color="#E12D89EF" />
     <SolidColorBrush x:Key="MainDisableBackground" Color="#A12D89E1" />
     <SolidColorBrush x:Key="MainForeground" Color="#FFFFFF" />
-    
+
     <SolidColorBrush x:Key="DefaultBackground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="DefaultBackgroundHover" Color="#FAFAFA" />
     <SolidColorBrush x:Key="DefaultBackgroundClicked" Color="#F5F5F5" />

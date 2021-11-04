@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Air"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -11,11 +10,11 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <AirPanel Grid.Column="1" Space="10" 
+        <AirPanel Grid.Column="1" Space="20" Margin="0 0 10 0" Type="Horizontal"
                   VerticalAlignment="Center" HorizontalAlignment="Center">
             <AirButton Content="Hello" Type="Main" FontSize="16" />
             <!-- <AirButton Content="Hello" Type="Main" FontSize="16" IsEnabled="False" /> -->
-            <AirButton Content="There" Type="Default" FontSize="16"/>
+            <AirButton Content="There" Type="Default" FontSize="16" />
             <!-- <AirButton Content="There" Type="Default" FontSize="16" IsEnabled="False" /> -->
             <Button Content="Jakvic" FontSize="16" />
         </AirPanel>
