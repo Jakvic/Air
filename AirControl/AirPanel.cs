@@ -20,7 +20,7 @@ namespace AirControl
 
         public PanelType Type
         {
-            get => (PanelType) GetValue(TypeProperty);
+            get => (PanelType)GetValue(TypeProperty);
             set => SetValue(TypeProperty, value);
         }
 
@@ -31,7 +31,7 @@ namespace AirControl
 
         public double Space
         {
-            get => (double) GetValue(SpaceProperty);
+            get => (double)GetValue(SpaceProperty);
             set => SetValue(SpaceProperty, value);
         }
 
@@ -83,6 +83,10 @@ namespace AirControl
                 {
                     result.Height = Math.Max(result.Height, child.DesiredSize.Height);
                 }
+                else
+                {
+                    result.Height = child.DesiredSize.Height;
+                }
             }
 
             if (result.Width > 0)
@@ -123,6 +127,10 @@ namespace AirControl
                 if (isInfinity)
                 {
                     result.Width = Math.Max(result.Width, child.DesiredSize.Width);
+                }
+                else
+                {
+                    result.Width = child.DesiredSize.Width;
                 }
             }
 
