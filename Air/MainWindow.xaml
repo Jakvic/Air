@@ -10,14 +10,13 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <AirPanel Grid.Column="0" Space="20" Margin="10 0 10 0" Type="Vertical" Background="LightCoral"
-                  VerticalAlignment="Center"  HorizontalAlignment="Center">
+        <AirPanel Grid.Column="0" Space="20" Margin="10 0 10 0" Type="Vertical" Background="LightCoral">
             <AirButton Content="Hello" Type="Main" FontSize="16" Margin="10 10 10 0"/>
             <AirButton Content="There" Type="Default" FontSize="16" />
             <Button Content="Jakvic" FontSize="16" Margin="10 0 10 10" Padding="8" />
         </AirPanel>
         <AirPanel Grid.Column="1" Space="20" Margin="0 0 10 0" Type="Horizontal" 
-                  Background="LightCyan" HorizontalAlignment="Center" VerticalAlignment="Center">
+                  Background="LightCyan" VerticalAlignment="Center">
             <AirButton Content="Hello" Type="Main" FontSize="16" />
             <AirButton Content="There" Type="Default" FontSize="16" />
             <Button Content="Jakvic" FontSize="16" />

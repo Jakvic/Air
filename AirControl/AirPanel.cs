@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -61,6 +63,7 @@ namespace AirControl
             var result = default(Size);
             var isInfinity = double.IsInfinity(size.Height);
             result.Height = isInfinity ? 0 : size.Height;
+            var heightList = new List<double>();
             foreach (UIElement child in InternalChildren)
             {
                 if (child is Popup || child.Visibility is Visibility.Collapsed)
@@ -87,6 +90,9 @@ namespace AirControl
                 {
                     result.Height = child.DesiredSize.Height;
                 }
+
+                
+                heightList.Add(result.Height);
             }
 
             if (result.Width > 0)
@@ -95,8 +101,7 @@ namespace AirControl
             }
 
             result.Width = Math.Max(0, result.Width);
-            result.Height = Math.Max(0, result.Height);
-
+            result.Height = heightList.Max();
             return result;
         }
 
@@ -105,7 +110,7 @@ namespace AirControl
             var result = default(Size);
             var isInfinity = double.IsInfinity(size.Width);
             result.Width = isInfinity ? 0 : size.Width;
-
+            var maxWidth = size.Width;
             foreach (UIElement child in InternalChildren)
             {
                 if (child is Popup || child.Visibility is Visibility.Collapsed)
@@ -132,6 +137,11 @@ namespace AirControl
                 {
                     result.Width = child.DesiredSize.Width;
                 }
+
+                if (result.Width > maxWidth)
+                {
+                    maxWidth = result.Width;
+                }
             }
 
             if (result.Height > 0)
@@ -139,7 +149,7 @@ namespace AirControl
                 result.Height -= Space;
             }
 
-            result.Width = Math.Max(0, result.Width);
+            result.Width = maxWidth;
             result.Height = Math.Max(0, result.Height);
 
             return result;
