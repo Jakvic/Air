@@ -5,23 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <AirPanel Grid.Column="0" Space="20" Margin="10 0 10 0" Type="Vertical" Background="LightCoral">
-            <AirButton Content="Hello" Type="Main" FontSize="16" Margin="10 10 10 0"/>
-            <AirButton Content="There" Type="Default" FontSize="16" />
-            <Button Content="Jakvic" FontSize="16" Margin="10 0 10 10" Padding="8" />
-        </AirPanel>
-        <AirPanel Grid.Column="1" Space="20" Margin="0 0 10 0" Type="Horizontal" 
-                  Background="LightCyan" VerticalAlignment="Center">
-            <AirButton Content="Hello" Type="Main" FontSize="16" />
-            <AirButton Content="There" Type="Default" FontSize="16" />
-            <Button Content="Jakvic" FontSize="16" />
-        </AirPanel>
+        <StackPanel Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="10 0 10 0" Orientation="Vertical">
+                    <AirButton Content="Hello" Type="Main" HorizontalAlignment="Center"
+                           FontSize="16" Margin="10" />
+                    <AirButton Content="There" HorizontalAlignment="Center"
+                           Margin="10" Type="Default" FontSize="16" />
+                </StackPanel>
+                <AirButton Content="Jakic" VerticalAlignment="Center" FontSize="18" />
+            </StackPanel>
+            <StackPanel Margin="10 0 10 0" Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                <AirButton Content="Hello" Type="Main" Margin="10"
+                           FontSize="16" />
+                <AirButton Content="There" Type="Default"
+                           Margin="10" FontSize="16" />
+                <Button Content="Jakvic" FontSize="16" Padding="6"
+                        VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
 
+                <TextBox Text="Pick Up!"  Margin="10 0 0 0" FontSize="18" Padding="4"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" />
 
+                <AirTextBox Text="Fuck" FontSize="18" Margin="10"
+                            Width="150"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+
+        </Grid>
     </Grid>
 </Window>

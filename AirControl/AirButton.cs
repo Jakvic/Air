@@ -11,6 +11,12 @@ namespace AirControl
 
     public class AirButton : Button
     {
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
+            "CornerRadius", typeof(CornerRadius), typeof(AirButton), new PropertyMetadata(default(CornerRadius)));
+
+        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
+            "Type", typeof(AirButtonType), typeof(AirButton), new PropertyMetadata(default(AirButtonType)));
+
         static AirButton()
         {
             // see https://stackoverflow.com/questions/1228875/what-is-so-special-about-generic-xaml
@@ -19,17 +25,11 @@ namespace AirControl
                 new FrameworkPropertyMetadata(typeof(AirButton)));
         }
 
-        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-            "CornerRadius", typeof(CornerRadius), typeof(AirButton), new PropertyMetadata(default(CornerRadius)));
-
         public CornerRadius CornerRadius
         {
             get => (CornerRadius) GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
-
-        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
-            "Type", typeof(AirButtonType), typeof(AirButton), new PropertyMetadata(default(AirButtonType)));
 
         public AirButtonType Type
         {

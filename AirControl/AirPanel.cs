@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -20,20 +18,20 @@ namespace AirControl
         public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
             "Type", typeof(PanelType), typeof(AirPanel), new PropertyMetadata(default(PanelType)));
 
-        public PanelType Type
-        {
-            get => (PanelType)GetValue(TypeProperty);
-            set => SetValue(TypeProperty, value);
-        }
-
         public static readonly DependencyProperty SpaceProperty = DependencyProperty.Register(
             "Space", typeof(double), typeof(AirPanel),
             new FrameworkPropertyMetadata(0d,
                 FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        public PanelType Type
+        {
+            get => (PanelType) GetValue(TypeProperty);
+            set => SetValue(TypeProperty, value);
+        }
+
         public double Space
         {
-            get => (double)GetValue(SpaceProperty);
+            get => (double) GetValue(SpaceProperty);
             set => SetValue(SpaceProperty, value);
         }
 
@@ -91,7 +89,7 @@ namespace AirControl
                     result.Height = child.DesiredSize.Height;
                 }
 
-                
+
                 heightList.Add(result.Height);
             }
 
