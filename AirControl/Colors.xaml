@@ -12,6 +12,6 @@
     <SolidColorBrush x:Key="DefaultDisableBorderBrush" Color="#E1E1E1" />
     <SolidColorBrush x:Key="DefaultDisableForeground" Color="#9F9F9F" />
     <SolidColorBrush x:Key="DefaultForeground" Color="#000000" />
-    
+    <SolidColorBrush x:Key="DefaultBorderBrush" Color="#ABADB3" />
 
 </ResourceDictionary>

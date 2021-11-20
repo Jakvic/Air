@@ -19,7 +19,8 @@
                     <AirButton Content="There" HorizontalAlignment="Center"
                            Margin="10" Type="Default" FontSize="16" />
                 </StackPanel>
-                <AirButton Content="Jakic" VerticalAlignment="Center" FontSize="18" />
+                <AirButton IsEnabled="False" Content="Jakic" 
+                           VerticalAlignment="Center" FontSize="18" />
             </StackPanel>
             <StackPanel Margin="10 0 10 0" Orientation="Horizontal"
                         VerticalAlignment="Center">
@@ -30,12 +31,20 @@
                 <Button Content="Jakvic" FontSize="16" Padding="6"
                         VerticalAlignment="Center" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <WrapPanel>
 
                 <TextBox Text="Pick Up!"  Margin="10 0 0 0" FontSize="18" Padding="4"
                      HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-                <AirTextBox Text="Fuck" FontSize="18" Margin="10"
+                <AirTextBox IsEnabled="False" Text="Fuck" FontSize="18" Margin="10"
+                            Width="150"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+
+            </WrapPanel>
+
+            <StackPanel Orientation="Vertical">
+                <AirTextBox HelpText="Write..." FontSize="18" Margin="10"
                             Width="150"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"/>

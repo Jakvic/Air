@@ -8,7 +8,7 @@
 
     <Style TargetType="{x:Type local:AirTextBox}">
         <Setter Property="CornerRadius" Value="5" />
-        <Setter Property="BorderBrush" Value="{StaticResource DefaultDisableBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Background" Value="White" />
         <Setter Property="Padding" Value="3" />
@@ -21,10 +21,20 @@
                             CornerRadius="{TemplateBinding CornerRadius}"
                             Padding="{TemplateBinding Padding}"
                             SnapsToDevicePixels="True">
-                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
-                                      HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
+                                          HorizontalScrollBarVisibility="Hidden" 
+                                          VerticalScrollBarVisibility="Hidden" >
+                            </ScrollViewer>
+                            <TextBlock x:Name="HelpTextBox" VerticalAlignment="Center" Margin="5 0 0 0"
+                                       Opacity="0.18" FontSize="{TemplateBinding FontSize}"
+                                       Text="{TemplateBinding HelpText}" Focusable="False"/>
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Content,ElementName=PART_ContentHost}" Value="{x:Null}">
+                            <Setter Property="Background" Value="Red" />
+                        </DataTrigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56" />
                         </Trigger>
