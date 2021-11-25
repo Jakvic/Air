@@ -33,7 +33,8 @@
             </StackPanel>
             <WrapPanel>
 
-                <TextBox Text="Pick Up!"  Margin="10 0 0 0" FontSize="18" Padding="4"
+                <TextBox Text="{Binding ElementName=AirTextBox,Path=templateChild.Visibility}"  
+                         Margin="10 0 0 0" FontSize="18" Padding="4" MinWidth="80"
                      HorizontalAlignment="Center" VerticalAlignment="Center" />
 
                 <AirTextBox IsEnabled="False" Text="Fuck" FontSize="18" Margin="10"
@@ -45,7 +46,7 @@
 
             <StackPanel Orientation="Vertical">
                 <AirTextBox HelpText="Write..." FontSize="18" Margin="10"
-                            Width="150"
+                            Width="150" x:Name="AirTextBox"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"/>
             </StackPanel>

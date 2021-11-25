@@ -33,15 +33,14 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="Text" Value="{x:Null}">
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                                <Condition Property="IsFocused" Value="False"/>
+                            </MultiTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible" TargetName="HelpTextBox" />
-                            <Setter Property="Opacity" Value="0.2" TargetName="HelpTextBox" />
-                        </Trigger>
-
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Visibility" Value="Visible" TargetName="HelpTextBox" />
-                            <Setter Property="Opacity" Value="0.2" TargetName="HelpTextBox" />
-                        </Trigger>
+                            <Setter Property="Opacity" Value="0.26" TargetName="HelpTextBox" />
+                        </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56" />
                         </Trigger>
