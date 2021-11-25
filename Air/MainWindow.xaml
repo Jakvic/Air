@@ -33,7 +33,7 @@
             </StackPanel>
             <WrapPanel>
 
-                <TextBox Text="{Binding ElementName=AirTextBox,Path=templateChild.Visibility}"  
+                <TextBox Text="{Binding ElementName=AirTextBox,Path=Background}"  
                          Margin="10 0 0 0" FontSize="18" Padding="4" MinWidth="80"
                      HorizontalAlignment="Center" VerticalAlignment="Center" />
 

@@ -28,7 +28,7 @@
                                           HorizontalScrollBarVisibility="Hidden"
                                           VerticalScrollBarVisibility="Hidden" />
                             <TextBlock x:Name="HelpTextBox" VerticalAlignment="Center" Margin="5 0 0 0"
-                                       FontSize="{TemplateBinding FontSize}" Visibility="Hidden"
+                                       FontSize="{TemplateBinding FontSize}" Opacity="0.26"
                                        Text="{TemplateBinding HelpText}" Focusable="False" />
                         </Grid>
                     </Border>
@@ -38,9 +38,26 @@
                                 <Condition Property="Text" Value=""/>
                                 <Condition Property="IsFocused" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Visibility" Value="Visible" TargetName="HelpTextBox" />
-                            <Setter Property="Opacity" Value="0.26" TargetName="HelpTextBox" />
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetProperty="Opacity"  
+                                                     Storyboard.TargetName="HelpTextBox" From="0" To="0.26" 
+                                                     AutoReverse="False" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetProperty="Opacity"  
+                                                         Storyboard.TargetName="HelpTextBox" From="0.26" To="0" 
+                                                         AutoReverse="False" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
                         </MultiTrigger>
+                        
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.56" />
                         </Trigger>
