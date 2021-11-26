@@ -4,22 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
+        <StackPanel Grid.Column="0" Background="#FAFAFA">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="10 0 10 0" Orientation="Vertical">
                     <AirButton Content="Hello" Type="Main" HorizontalAlignment="Center"
-                           FontSize="16" Margin="10" />
+                               FontSize="16" Margin="10" />
                     <AirButton Content="There" HorizontalAlignment="Center"
-                           Margin="10" Type="Default" FontSize="16" />
+                               Margin="10" Type="Default" FontSize="16" />
                 </StackPanel>
-                <AirButton IsEnabled="False" Content="Jakic" 
+                <AirButton IsEnabled="False" Content="Jakic"
                            VerticalAlignment="Center" FontSize="18" />
             </StackPanel>
             <StackPanel Margin="10 0 10 0" Orientation="Horizontal"
@@ -31,29 +31,45 @@
                 <Button Content="Jakvic" FontSize="16" Padding="6"
                         VerticalAlignment="Center" />
             </StackPanel>
-            <WrapPanel>
 
-                <TextBox Text="{Binding ElementName=AirTextBox,Path=Background}"  
-                         Margin="10 0 0 0" FontSize="18" Padding="4" MinWidth="80"
-                     HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <GroupBox Header="TextBox" HorizontalAlignment="Center" Padding="10">
+                <StackPanel Orientation="Vertical">
+                    <WrapPanel>
+                        <TextBox Text="{Binding ElementName=AirTextBox,Path=Background}"
+                         FontSize="18" Padding="4" MinWidth="80" MaxWidth="80"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-                <AirTextBox IsEnabled="False" Text="Fuck" FontSize="18" Margin="10"
-                            Width="150"
+                        <AirTextBox IsEnabled="False" Text="Fuck" FontSize="18" Margin="10"
+                            Width="60"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center"/>
+                            VerticalAlignment="Center" />
 
-            </WrapPanel>
+                    </WrapPanel>
 
-            <StackPanel Orientation="Vertical">
-                <AirTextBox HelpText="Write..." FontSize="18" Margin="10"
+                    <StackPanel Orientation="Vertical">
+                        <AirTextBox HelpText="Write..." FontSize="18" Margin="0"
                             Width="150" x:Name="AirTextBox"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center"/>
-            </StackPanel>
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            
+            <GroupBox  Header="ProgressBar" Margin="10 20 10 0"
+                       HorizontalAlignment="Center" Padding="10">
+                <StackPanel Orientation="Vertical">
+                    <ProgressBar Value="30" IsEnabled="False" Width="200" Height="20"
+                    HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" />
+
+                    <ProgressBar Value="70" Margin="0 10 0 0 " 
+                             Width="200" Height="20"
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" />
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
 
-        <Grid Grid.Column="1">
-
-        </Grid>
+        <Grid Grid.Column="1" />
     </Grid>
 </Window>

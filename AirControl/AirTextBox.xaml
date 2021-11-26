@@ -28,7 +28,8 @@
                                           HorizontalScrollBarVisibility="Hidden"
                                           VerticalScrollBarVisibility="Hidden" />
                             <TextBlock x:Name="HelpTextBox" VerticalAlignment="Center" Margin="5 0 0 0"
-                                       FontSize="{TemplateBinding FontSize}" Opacity="0.26"
+                                       FontSize="{TemplateBinding FontSize}" Opacity="0.26" 
+                                       IsHitTestVisible="False"
                                        Text="{TemplateBinding HelpText}" Focusable="False" />
                         </Grid>
                     </Border>
