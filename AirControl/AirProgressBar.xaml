@@ -1,47 +1,79 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
-    <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
-    <SolidColorBrush x:Key="ProgressBar.Border" Color="#FFBCBCBC"/>
-    <Style TargetType="{x:Type AirProgressBar}">
-        <Setter Property="Foreground" Value="{StaticResource ProgressBar.Progress}"/>
-        <Setter Property="Background" Value="{StaticResource ProgressBar.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ProgressBar.Border}"/>
-        <Setter Property="BorderThickness" Value="1"/>
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:AirControl"
+                    xmlns:convertors="clr-namespace:AirControl.Convertors">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type local:AirProgressBar}">
+        <Setter Property="Foreground" Value="{StaticResource MainBackground}" />
+        <Setter Property="Background" Value="{StaticResource MainForeground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type AirProgressBar}">
+                <ControlTemplate TargetType="{x:Type local:AirProgressBar}">
                     <Grid x:Name="TemplateRoot">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Determinate"/>
+                                <VisualState x:Name="Determinate" />
                                 <VisualState x:Name="Indeterminate">
                                     <Storyboard RepeatBehavior="Forever">
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Animation" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.25"/>
-                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.25"/>
-                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.25"/>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Animation"
+                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.25" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <PointAnimationUsingKeyFrames Storyboard.TargetName="Animation" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)">
-                                            <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5"/>
-                                            <EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5"/>
-                                            <EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5"/>
+                                        <PointAnimationUsingKeyFrames Storyboard.TargetName="Animation"
+                                                                      Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)">
+                                            <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5" />
+                                            <EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5" />
+                                            <EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5" />
                                         </PointAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
-                        <Rectangle x:Name="PART_Track"/>
-                        <Grid x:Name="PART_Indicator" ClipToBounds="true" HorizontalAlignment="Left">
-                            <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"/>
-                            <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
+                        <Border x:Name="Border"
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}" />
+
+                        <Rectangle x:Name="PART_Track" />
+
+                        <Grid x:Name="PART_Indicator" ClipToBounds="True" 
+                              HorizontalAlignment="Left">
+                            <Grid.Clip>
+                                <RectangleGeometry RadiusX="{Binding ElementName=Border,Path=CornerRadius.BottomLeft}"
+                                                   RadiusY="{Binding Path=RadiusX, 
+                                                   RelativeSource={RelativeSource Self}}">
+                                    <RectangleGeometry.Rect>
+                                        <MultiBinding Converter="{convertors:WidthHeight2RectConvertor}">
+                                            <Binding Path="ActualWidth"  ElementName="PART_Indicator" />
+                                            <Binding Path="ActualHeight" ElementName="PART_Indicator"/>
+                                        </MultiBinding>
+                                    </RectangleGeometry.Rect>
+                                </RectangleGeometry>
+                            </Grid.Clip>
+                            <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"
+                                       RadiusX="{Binding ElementName=Border,Path=CornerRadius.TopLeft}"
+                                       RadiusY="{Binding ElementName=Border,Path=CornerRadius.TopRight}" />
+
+                            <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}"
+                                       RadiusX="{Binding ElementName=Border,Path=CornerRadius.TopLeft}"
+                                       RadiusY="{Binding ElementName=Border,Path=CornerRadius.TopRight}"
+                                       RenderTransformOrigin="0.5,0.5">
                                 <Rectangle.RenderTransform>
                                     <TransformGroup>
-                                        <ScaleTransform/>
-                                        <SkewTransform/>
-                                        <RotateTransform/>
-                                        <TranslateTransform/>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
                                     </TransformGroup>
                                 </Rectangle.RenderTransform>
                             </Rectangle>
@@ -51,12 +83,12 @@
                         <Trigger Property="Orientation" Value="Vertical">
                             <Setter Property="LayoutTransform" TargetName="TemplateRoot">
                                 <Setter.Value>
-                                    <RotateTransform Angle="-90"/>
+                                    <RotateTransform Angle="-90" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsIndeterminate" Value="true">
-                            <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
