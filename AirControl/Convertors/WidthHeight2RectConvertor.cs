@@ -12,7 +12,7 @@ namespace AirControl.Convertors
         {
             if (values[0] == DependencyProperty.UnsetValue)
             {
-                return null;
+               return DependencyProperty.UnsetValue;
             }
             return new Rect(0, 0, (double) values[0], (double) values[1]);
         }

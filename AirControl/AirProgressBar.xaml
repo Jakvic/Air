@@ -12,7 +12,6 @@
         <Setter Property="Background" Value="{StaticResource MainForeground}" />
         <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AirProgressBar}">
@@ -39,44 +38,43 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Border x:Name="Border"
-                                Background="{TemplateBinding Background}" 
+                                Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}" />
 
                         <Rectangle x:Name="PART_Track" />
 
-                        <Grid x:Name="PART_Indicator" ClipToBounds="True" 
+                        <Grid x:Name="PART_Indicator" ClipToBounds="True"
                               HorizontalAlignment="Left">
                             <Grid.Clip>
                                 <RectangleGeometry RadiusX="{Binding ElementName=Border,Path=CornerRadius.BottomLeft}"
-                                                   RadiusY="{Binding Path=RadiusX, 
-                                                   RelativeSource={RelativeSource Self}}">
+                                                   RadiusY="{Binding Path=RadiusX,RelativeSource={RelativeSource Self}}">
                                     <RectangleGeometry.Rect>
                                         <MultiBinding Converter="{convertors:WidthHeight2RectConvertor}">
-                                            <Binding Path="ActualWidth"  ElementName="PART_Indicator" />
-                                            <Binding Path="ActualHeight" ElementName="PART_Indicator"/>
+                                            <Binding Path="ActualWidth" ElementName="PART_Indicator" />
+                                            <Binding Path="ActualHeight" ElementName="PART_Indicator" />
                                         </MultiBinding>
                                     </RectangleGeometry.Rect>
                                 </RectangleGeometry>
                             </Grid.Clip>
                             <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"
-                                       RadiusX="{Binding ElementName=Border,Path=CornerRadius.TopLeft}"
-                                       RadiusY="{Binding ElementName=Border,Path=CornerRadius.TopRight}" />
+                                       RadiusX="{Binding ElementName=Border,Path=CornerRadius.BottomLeft}"
+                                       RadiusY="{Binding Path=RadiusX,RelativeSource={RelativeSource Self}}" />
 
-                            <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}"
-                                       RadiusX="{Binding ElementName=Border,Path=CornerRadius.TopLeft}"
-                                       RadiusY="{Binding ElementName=Border,Path=CornerRadius.TopRight}"
-                                       RenderTransformOrigin="0.5,0.5">
-                                <Rectangle.RenderTransform>
+                            <Border x:Name="Animation" RenderTransformOrigin=".5 .5">
+                                <Border.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform />
                                         <SkewTransform />
                                         <RotateTransform />
                                         <TranslateTransform />
                                     </TransformGroup>
-                                </Rectangle.RenderTransform>
-                            </Rectangle>
+                                </Border.RenderTransform>
+                                <Border Background="{TemplateBinding Foreground}"
+                                    CornerRadius="{TemplateBinding CornerRadius}">
+                                </Border>
+                            </Border>
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
