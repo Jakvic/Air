@@ -3,93 +3,107 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:convertors="clr-namespace:AirControl.Convertors;assembly=AirControl"
         mc:Ignorable="d"
         Title="MainWindow">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Column="1">
             <StackPanel Background="#FAFAFA">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="10 0 10 0" Orientation="Vertical">
                         <AirButton Content="Hello" Type="Main" HorizontalAlignment="Center"
-                               FontSize="16" Margin="10" />
+                                   FontSize="16" Margin="10" />
                         <AirButton Content="There" HorizontalAlignment="Center"
-                               Margin="10" Type="Default" FontSize="16" />
+                                   Margin="10" Type="Default" FontSize="16" />
                     </StackPanel>
                     <AirButton IsEnabled="False" Content="Jakic"
-                           VerticalAlignment="Center" FontSize="18" />
+                               VerticalAlignment="Center" FontSize="18" />
                 </StackPanel>
                 <StackPanel Margin="10 0 10 0" Orientation="Horizontal"
-                        VerticalAlignment="Center">
+                            VerticalAlignment="Center">
                     <AirButton Content="Hello" Type="Main" Margin="10"
-                           FontSize="16" />
+                               FontSize="16" />
                     <AirButton Content="There" Type="Default"
-                           Margin="10" FontSize="16" />
+                               Margin="10" FontSize="16" />
                     <Button Content="Jakvic" FontSize="16" Padding="6"
-                        VerticalAlignment="Center" Click="Button_Click"/>
+                            VerticalAlignment="Center" Click="Button_Click" />
                 </StackPanel>
 
                 <GroupBox Header="TextBox" HorizontalAlignment="Center" Padding="10">
                     <StackPanel Orientation="Vertical">
                         <WrapPanel>
                             <TextBox Text="{Binding ElementName=AirTextBox,Path=Background}"
-                         FontSize="18" Padding="4" MinWidth="80" MaxWidth="80"
-                         HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                     FontSize="18" Padding="4" MinWidth="80" MaxWidth="80"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center" />
 
                             <AirTextBox IsEnabled="False" Text="Fuck" FontSize="18" Margin="10"
-                            Width="60"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
+                                        Width="60"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" />
 
                         </WrapPanel>
 
                         <StackPanel Orientation="Vertical">
                             <AirTextBox HelpText="Write..." FontSize="18" Margin="0"
-                            Width="150" x:Name="AirTextBox"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
+                                        Width="150" x:Name="AirTextBox"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" />
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox  Header="ProgressBar" Margin="10 20 10 0"
-                       HorizontalAlignment="Center" Padding="10">
+                <GroupBox Header="ProgressBar" Margin="10 20 10 0"
+                          HorizontalAlignment="Center" Padding="10">
                     <StackPanel Orientation="Vertical">
                         <AirProgressBar Value="30" IsEnabled="False" Width="200" Height="20"
-                    HorizontalAlignment="Center" 
-                             VerticalAlignment="Center" />
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" />
 
                         <AirProgressBar Value="40" CornerRadius="8"
-                                    Margin="0 10 0 0 " 
-                                    BorderBrush="Transparent"
-                                    Width="200" Height="16"
-                                    IsIndeterminate="True"
-                                    HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center" />
+                                        Margin="0 10 0 0 "
+                                        BorderBrush="Transparent"
+                                        Width="200" Height="16"
+                                        IsIndeterminate="True"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" />
 
                         <AirProgressBar Value="30" CornerRadius="10"
-                                    Margin="0 10 0 0 " 
-                                    IsIndeterminate="False"
-                                    Width="200" Height="20"
-                                    HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center" />
+                                        Margin="0 10 0 0 "
+                                        IsIndeterminate="False"
+                                        Width="200" Height="20"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" />
                         <ProgressBar Value="40" Margin="0 10 0 0" Width="200" VerticalAlignment="Center"
-                                 Height="20" IsIndeterminate="True" HorizontalAlignment="Center"/>
+                                     Height="20" IsIndeterminate="True" HorizontalAlignment="Center" />
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Header="Animation" Margin="10 20 10 0" 
-                          Padding="10"  HorizontalAlignment="Center">
-                    <Border x:Name="border" CornerRadius="10" 
+                <GroupBox Header="Animation" Margin="10 20 10 0"
+                          Padding="10" HorizontalAlignment="Center">
+                    <Border x:Name="border" CornerRadius="10" Width="240"
                             BorderBrush="LightGray" BorderThickness="1">
-                        <Rectangle x:Name="rect" Fill="#67AA45" Margin="2 2 100 2" 
-                                   RadiusX="{Binding RelativeSource={RelativeSource AncestorType=Border,Mode=FindAncestor,AncestorLevel=1}, Path=CornerRadius.BottomLeft}"
+                        <Border.Clip>
+                            <RectangleGeometry RadiusX="{Binding ElementName=border,Path=CornerRadius.BottomLeft}"
+                                               RadiusY="{Binding Path=RadiusX,RelativeSource={RelativeSource Self}}">
+                                <RectangleGeometry.Rect>
+                                    <MultiBinding Converter="{convertors:WidthHeight2RectConvertor}">
+                                        <Binding Path="ActualWidth" ElementName="border" />
+                                        <Binding Path="ActualHeight" ElementName="border" />
+                                    </MultiBinding>
+                                </RectangleGeometry.Rect>
+                                </RectangleGeometry>
+                         
+                        </Border.Clip>
+                        <Rectangle x:Name="rect" Fill="#67AA45" Margin="2 2 100 2"
+                                   RadiusX="{Binding RelativeSource={RelativeSource AncestorType=Border,Mode=FindAncestor,AncestorLevel=1}, 
+                                   Path=CornerRadius.BottomLeft}"
                                    RadiusY="{Binding RelativeSource={RelativeSource Self},Path=RadiusX}"
-                                   Height="30" Width="40" HorizontalAlignment="Left"/>
+                                   Height="30" Width="40" HorizontalAlignment="Left" />
                     </Border>
                 </GroupBox>
             </StackPanel>
