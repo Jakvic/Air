@@ -12,69 +12,38 @@
         <Setter Property="Background" Value="{StaticResource MainForeground}" />
         <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AirProgressBar}">
                     <Grid x:Name="TemplateRoot">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Determinate" />
-                                <VisualState x:Name="Indeterminate">
-                                    <Storyboard RepeatBehavior="Forever">
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Animation"
-                                                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.25" />
-                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.25" />
-                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.25" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <PointAnimationUsingKeyFrames Storyboard.TargetName="Animation"
-                                                                      Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)">
-                                            <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5" />
-                                            <EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5" />
-                                            <EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5" />
-                                        </PointAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Border"
-                                Background="{TemplateBinding Background}"
+                        <Border x:Name="PART_Border"
+                                Background="{TemplateBinding Background}" 
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}" />
 
                         <Rectangle x:Name="PART_Track" />
-
-                        <Grid x:Name="PART_Indicator" ClipToBounds="True"
-                              HorizontalAlignment="Left">
+                        <Grid x:Name="PART_Indicator" ClipToBounds="True">
                             <Grid.Clip>
-                                <RectangleGeometry RadiusX="{Binding ElementName=Border,Path=CornerRadius.BottomLeft}"
-                                                   RadiusY="{Binding Path=RadiusX,RelativeSource={RelativeSource Self}}">
+                                <RectangleGeometry RadiusX="{Binding ElementName=PART_Border,Path=CornerRadius.BottomLeft}"
+                                                   RadiusY="{Binding ElementName=PART_Border,Path=CornerRadius.BottomRight}">
                                     <RectangleGeometry.Rect>
                                         <MultiBinding Converter="{convertors:WidthHeight2RectConvertor}">
-                                            <Binding Path="ActualWidth" ElementName="PART_Indicator" />
-                                            <Binding Path="ActualHeight" ElementName="PART_Indicator" />
+                                            <Binding ElementName="PART_Indicator" Path="ActualWidth"/>
+                                            <Binding ElementName="PART_Indicator" Path="ActualHeight"/>
                                         </MultiBinding>
                                     </RectangleGeometry.Rect>
                                 </RectangleGeometry>
                             </Grid.Clip>
                             <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"
-                                       RadiusX="{Binding ElementName=Border,Path=CornerRadius.BottomLeft}"
-                                       RadiusY="{Binding Path=RadiusX,RelativeSource={RelativeSource Self}}" />
+                                       RadiusX="{Binding CornerRadius.TopLeft, ElementName=PART_Border}"
+                                       RadiusY="{Binding CornerRadius.TopRight, ElementName=PART_Border}" />
 
-                            <Border x:Name="Animation" RenderTransformOrigin=".5 .5">
-                                <Border.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform />
-                                        <SkewTransform />
-                                        <RotateTransform />
-                                        <TranslateTransform />
-                                    </TransformGroup>
-                                </Border.RenderTransform>
-                                <Border Background="{TemplateBinding Foreground}"
-                                    CornerRadius="{TemplateBinding CornerRadius}">
-                                </Border>
-                            </Border>
+                            <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}"
+                                       RadiusX="8" RadiusY="8"/>
+                                       <!-- RadiusX="{Binding CornerRadius.TopLeft, ElementName=PART_Border}" -->
+                                       <!-- RadiusY="{Binding CornerRadius.TopRight, ElementName=PART_Border}"/> -->
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
