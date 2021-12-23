@@ -103,7 +103,7 @@
                                    RadiusX="{Binding RelativeSource={RelativeSource AncestorType=Border,Mode=FindAncestor,AncestorLevel=1}, 
                                    Path=CornerRadius.BottomLeft}"
                                    RadiusY="{Binding RelativeSource={RelativeSource Self},Path=RadiusX}"
-                                   Height="30" Width="40" HorizontalAlignment="Left" />
+                                   Height="30" Width="80" HorizontalAlignment="Left" />
                     </Border>
                 </GroupBox>
             </StackPanel>

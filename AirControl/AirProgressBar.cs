@@ -1,6 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
@@ -14,14 +16,22 @@ namespace AirControl
                 new PropertyMetadata(default(CornerRadius)));
 
         public new static readonly DependencyProperty IsIndeterminateProperty = DependencyProperty.Register(
-            "IsIndeterminate", typeof(bool), typeof(AirProgressBar), new PropertyMetadata(default(bool),PropertyChangedCallback));
+            "IsIndeterminate", typeof(bool), typeof(AirProgressBar),
+            new PropertyMetadata(default(bool), PropertyChangedCallback));
 
-        public new bool IsIndeterminate
+        public new static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
+            "Value", typeof(double), typeof(AirProgressBar),
+            new PropertyMetadata(default(double), ProgressValueChanged));
+
+        private static void ProgressValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            get => (bool) GetValue(IsIndeterminateProperty);
-            set => SetValue(IsIndeterminateProperty, value);
+            var airProgressBar = d as AirProgressBar;
         }
-        
+
+        private Border border;
+        private Thickness rawRectMargin;
+        private Border indicator;
+
         static AirProgressBar()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AirProgressBar),
@@ -33,34 +43,61 @@ namespace AirControl
             SizeChanged += (sender, args) =>
             {
                 DoAnimation();
+                CalcWidth();
             };
         }
-        private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+
+        public double Value
         {
-            var airProgressBar = d as AirProgressBar;
-            airProgressBar?.DoAnimation();
+            get => (double) GetValue(ValueProperty);
+            set => SetValue(ValueProperty, value);
         }
 
-        /// <summary>
-        ///     THe `Indicator` & `Animation` Rectangle's RadiusX binding CornerRadius.TopLeft
-        ///     RadiusY binding CornerRadius.TopRight
-        /// </summary>
+        public new bool IsIndeterminate
+        {
+            get => (bool) GetValue(IsIndeterminateProperty);
+            set => SetValue(IsIndeterminateProperty, value);
+        }
+
         public CornerRadius CornerRadius
         {
             get => (CornerRadius) GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 
-        private Border border;
-        private Rectangle rect;
-        private Thickness rawRectMargin;
+        private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var airProgressBar = d as AirProgressBar;
+            airProgressBar?.DoAnimation();
+            airProgressBar?.CalcWidth();
+        }
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             border = (GetTemplateChild("PART_Border") as Border)!;
-            rect = (GetTemplateChild("Animation") as Rectangle)!;
-            rawRectMargin = rect.Margin;
-            rawRectMargin.Left -= rect.Width;
+            indicator = (GetTemplateChild("PART_Indicator") as Border)!;
+        }
+
+        private void CalcWidth()
+        {
+            if (IsIndeterminate)
+            {
+                return;
+            }
+
+            if (border is null)
+            {
+                return;
+            }
+
+            Value = Math.Max(0d, Value);
+            var percentage = Value / 100;
+            indicator.Width = ActualWidth * percentage;
+            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+ indicator.Width);
+            //
+            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+" "  + "Border.Height: " + border.ActualHeight);
+            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+" "  + "Indicator.Width: " + indicator.ActualHeight);
         }
 
         private void DoAnimation()
@@ -74,19 +111,24 @@ namespace AirControl
             {
                 return;
             }
-            
-            rect.Width = border.ActualWidth / 4;
-            Storyboard sb = new(){RepeatBehavior = RepeatBehavior.Forever};
+
+            indicator.Width = ActualWidth / 4;
+            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+ indicator.Width);
+            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+" "  + "Border.Height: " + border.ActualHeight);
+            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+" "  + "Indicator.Width: " + indicator.ActualHeight);
+            Storyboard sb = new() {RepeatBehavior = RepeatBehavior.Forever};
             var thicknessAnimation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromMilliseconds(2000)),
-                From = rawRectMargin,
-                To = new Thickness(border.Width, rect.Margin.Top,
-                    -rect.Width, rect.Margin.Bottom)
+                From = new Thickness(-indicator.Width, indicator.Margin.Top,
+                    indicator.Margin.Right, indicator.Margin.Bottom),
+                To = new Thickness(Width, indicator.Margin.Top,
+                    -indicator.Width, indicator.Margin.Bottom)
             };
             Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath("Margin"));
             sb.Children.Add(thicknessAnimation);
-            sb.Begin(rect);
+            sb.Begin(indicator);
+            
         }
     }
 }

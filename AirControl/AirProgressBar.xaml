@@ -16,46 +16,35 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AirProgressBar}">
-                    <Grid x:Name="TemplateRoot">
-                        <Border x:Name="PART_Border"
-                                Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}" />
-
-                        <Rectangle x:Name="PART_Track" />
-                        <Grid x:Name="PART_Indicator" ClipToBounds="True">
-                            <Grid.Clip>
-                                <RectangleGeometry RadiusX="{Binding ElementName=PART_Border,Path=CornerRadius.BottomLeft}"
-                                                   RadiusY="{Binding ElementName=PART_Border,Path=CornerRadius.BottomRight}">
-                                    <RectangleGeometry.Rect>
-                                        <MultiBinding Converter="{convertors:WidthHeight2RectConvertor}">
-                                            <Binding ElementName="PART_Indicator" Path="ActualWidth"/>
-                                            <Binding ElementName="PART_Indicator" Path="ActualHeight"/>
-                                        </MultiBinding>
-                                    </RectangleGeometry.Rect>
-                                </RectangleGeometry>
-                            </Grid.Clip>
-                            <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"
-                                       RadiusX="{Binding CornerRadius.TopLeft, ElementName=PART_Border}"
-                                       RadiusY="{Binding CornerRadius.TopRight, ElementName=PART_Border}" />
-
-                            <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}"
-                                       RadiusX="8" RadiusY="8"/>
-                                       <!-- RadiusX="{Binding CornerRadius.TopLeft, ElementName=PART_Border}" -->
-                                       <!-- RadiusY="{Binding CornerRadius.TopRight, ElementName=PART_Border}"/> -->
-                        </Grid>
-                    </Grid>
+                    <Border x:Name="PART_Border"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border.Clip>
+                            <RectangleGeometry RadiusX="{Binding ElementName=PART_Border,Path=CornerRadius.BottomLeft}"
+                                               RadiusY="{Binding RadiusX ,RelativeSource={RelativeSource Self}}">
+                                <RectangleGeometry.Rect>
+                                    <MultiBinding Converter="{convertors:WidthHeight2RectConvertor}">
+                                        <Binding Path="ActualWidth" ElementName="PART_Border"></Binding>
+                                        <Binding Path="ActualHeight" ElementName="PART_Border"></Binding>
+                                    </MultiBinding>
+                                </RectangleGeometry.Rect>
+                            </RectangleGeometry>
+                        </Border.Clip>
+                        <Border x:Name="PART_Indicator"
+                                HorizontalAlignment="Left"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Background="{TemplateBinding Foreground}">
+                        </Border>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Orientation" Value="Vertical">
-                            <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                            <Setter Property="LayoutTransform" TargetName="PART_Border">
                                 <Setter.Value>
                                     <RotateTransform Angle="-90" />
                                 </Setter.Value>
                             </Setter>
-                        </Trigger>
-                        <Trigger Property="IsIndeterminate" Value="true">
-                            <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
