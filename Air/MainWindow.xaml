@@ -60,7 +60,26 @@
                 <GroupBox Header="ProgressBar" Margin="10 20 10 0"
                           HorizontalAlignment="Center" Padding="10">
                     <StackPanel Orientation="Vertical">
-                        <AirProgressBar Value="30" IsEnabled="False" Width="200" Height="20"
+                        <Rectangle RadiusX="10" RadiusY="10" 
+                                   Width="240" Height="60"
+                                   Fill="LightGreen" Stroke="Red" StrokeThickness="2"/>
+
+                        <Border x:Name="bd" Margin="0 20 0 0" Width="240" 
+                                BorderThickness="2" CornerRadius="10"
+                                Background="#E1E1E1" BorderBrush="Red" Height="60">
+                            <Border.Clip>
+                                <RectangleGeometry RadiusX="11" RadiusY="11">
+                                    <RectangleGeometry.Rect>
+                                        <Rect Width="240"
+                                              Height="60"/>
+                                    </RectangleGeometry.Rect>
+                                </RectangleGeometry>
+                            </Border.Clip>
+                            <Border Width="250" Height="70" Background="LightGreen"/>
+                        </Border>
+                        <AirProgressBar Value="100" IsEnabled="False" 
+                                        Margin="0 20 0 0"
+                                        Width="80" Height="20"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center" />
 
@@ -85,26 +104,33 @@
 
                 <GroupBox Header="Animation" Margin="10 20 10 0"
                           Padding="10" HorizontalAlignment="Center">
-                    <Border x:Name="border" CornerRadius="10" Width="240"
+                    <StackPanel Orientation="Vertical">
+                        <AirBorder Width="200" Height="40" CornerRadius="8"
+                                   BorderThickness="2" BorderBrush="DarkRed" Opacity="0.6">
+                            <Border Width="210" Height="50" Background="LightBlue"/>
+                        </AirBorder>
+                        <Border x:Name="border" CornerRadius="10" Width="240"
+                                Margin="0 20 0 0"
                             BorderBrush="LightGray" BorderThickness="1">
-                        <Border.Clip>
-                            <RectangleGeometry RadiusX="{Binding ElementName=border,Path=CornerRadius.BottomLeft}"
+                            <Border.Clip>
+                                <RectangleGeometry RadiusX="{Binding ElementName=border,Path=CornerRadius.BottomLeft}"
                                                RadiusY="{Binding Path=RadiusX,RelativeSource={RelativeSource Self}}">
-                                <RectangleGeometry.Rect>
-                                    <MultiBinding Converter="{convertors:WidthHeight2RectConvertor}">
-                                        <Binding Path="ActualWidth" ElementName="border" />
-                                        <Binding Path="ActualHeight" ElementName="border" />
-                                    </MultiBinding>
-                                </RectangleGeometry.Rect>
+                                    <RectangleGeometry.Rect>
+                                        <MultiBinding Converter="{BorderClipConverter}">
+                                            <Binding Path="ActualWidth" ElementName="border" />
+                                            <Binding Path="ActualHeight" ElementName="border" />
+                                        </MultiBinding>
+                                    </RectangleGeometry.Rect>
                                 </RectangleGeometry>
-                         
-                        </Border.Clip>
-                        <Rectangle x:Name="rect" Fill="#67AA45" Margin="2 2 100 2"
+
+                            </Border.Clip>
+                            <Rectangle x:Name="rect" Fill="#67AA45" Margin="2 2 100 2"
                                    RadiusX="{Binding RelativeSource={RelativeSource AncestorType=Border,Mode=FindAncestor,AncestorLevel=1}, 
                                    Path=CornerRadius.BottomLeft}"
                                    RadiusY="{Binding RelativeSource={RelativeSource Self},Path=RadiusX}"
                                    Height="30" Width="80" HorizontalAlignment="Left" />
-                    </Border>
+                        </Border>
+                    </StackPanel>
                 </GroupBox>
             </StackPanel>
         </ScrollViewer>

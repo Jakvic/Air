@@ -6,3 +6,4 @@ using System.Windows.Markup;
 // for example: old time -> `controls:AirButton`, now: AirButton
 // very nice :)
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "AirControl")]
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "AirControl.Convertors")]

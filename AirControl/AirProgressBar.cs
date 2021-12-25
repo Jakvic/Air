@@ -29,7 +29,6 @@ namespace AirControl
         }
 
         private Border border;
-        private Thickness rawRectMargin;
         private Border indicator;
 
         static AirProgressBar()
@@ -49,19 +48,19 @@ namespace AirControl
 
         public double Value
         {
-            get => (double) GetValue(ValueProperty);
+            get => (double)GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
         }
 
         public new bool IsIndeterminate
         {
-            get => (bool) GetValue(IsIndeterminateProperty);
+            get => (bool)GetValue(IsIndeterminateProperty);
             set => SetValue(IsIndeterminateProperty, value);
         }
 
         public CornerRadius CornerRadius
         {
-            get => (CornerRadius) GetValue(CornerRadiusProperty);
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 
@@ -94,10 +93,6 @@ namespace AirControl
             Value = Math.Max(0d, Value);
             var percentage = Value / 100;
             indicator.Width = ActualWidth * percentage;
-            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+ indicator.Width);
-            //
-            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+" "  + "Border.Height: " + border.ActualHeight);
-            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+" "  + "Indicator.Width: " + indicator.ActualHeight);
         }
 
         private void DoAnimation()
@@ -113,13 +108,10 @@ namespace AirControl
             }
 
             indicator.Width = ActualWidth / 4;
-            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+ indicator.Width);
-            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+" "  + "Border.Height: " + border.ActualHeight);
-            // Debug.WriteLine(MethodBase.GetCurrentMethod().Name+" "  + "Indicator.Width: " + indicator.ActualHeight);
-            Storyboard sb = new() {RepeatBehavior = RepeatBehavior.Forever};
+            Storyboard sb = new() { RepeatBehavior = RepeatBehavior.Forever };
             var thicknessAnimation = new ThicknessAnimation
             {
-                Duration = new Duration(TimeSpan.FromMilliseconds(2000)),
+                Duration = new Duration(TimeSpan.FromMilliseconds(6000)),
                 From = new Thickness(-indicator.Width, indicator.Margin.Top,
                     indicator.Margin.Right, indicator.Margin.Bottom),
                 To = new Thickness(Width, indicator.Margin.Top,
@@ -128,7 +120,7 @@ namespace AirControl
             Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath("Margin"));
             sb.Children.Add(thicknessAnimation);
             sb.Begin(indicator);
-            
+
         }
     }
 }
