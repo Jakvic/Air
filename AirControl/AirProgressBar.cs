@@ -26,9 +26,10 @@ namespace AirControl
         private static void ProgressValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var airProgressBar = d as AirProgressBar;
+            airProgressBar.CalcWidth();
         }
 
-        private Border border;
+        private AirBorder border;
         private Border indicator;
 
         static AirProgressBar()
@@ -43,6 +44,7 @@ namespace AirControl
             {
                 DoAnimation();
                 CalcWidth();
+                indicator.Height = border.ActualHeight - border.BorderThickness.Top - border.BorderThickness.Bottom;
             };
         }
 
@@ -74,8 +76,12 @@ namespace AirControl
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            border = (GetTemplateChild("PART_Border") as Border)!;
+            border = (GetTemplateChild("PART_Border") as AirBorder)!;
             indicator = (GetTemplateChild("PART_Indicator") as Border)!;
+            if (border.CornerRadius is { } radius && radius.TopLeft >= 1)
+            {
+                indicator.CornerRadius = new CornerRadius(border.CornerRadius.TopLeft - 1, border.CornerRadius.TopRight - 1, border.CornerRadius.BottomRight - 1, border.CornerRadius.BottomLeft - 1);
+            }
         }
 
         private void CalcWidth()
@@ -92,7 +98,7 @@ namespace AirControl
 
             Value = Math.Max(0d, Value);
             var percentage = Value / 100;
-            indicator.Width = ActualWidth * percentage;
+            indicator.Width = (border.ActualWidth - border.BorderThickness.Left - border.BorderThickness.Right) * percentage;
         }
 
         private void DoAnimation()
