@@ -5,5 +5,8 @@
     <Page Update="AirProgressBar.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="AirTabControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>
