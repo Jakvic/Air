@@ -29,7 +29,7 @@ namespace AirControl
             airProgressBar.CalcWidth();
         }
 
-        private AirBorder border;
+        private Border border;
         private Border indicator;
 
         static AirProgressBar()
@@ -44,7 +44,6 @@ namespace AirControl
             {
                 DoAnimation();
                 CalcWidth();
-                indicator.Height = border.ActualHeight - border.BorderThickness.Top - border.BorderThickness.Bottom;
             };
         }
 
@@ -76,11 +75,12 @@ namespace AirControl
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            border = (GetTemplateChild("PART_Border") as AirBorder)!;
+            border = (GetTemplateChild("PART_Border") as Border)!;
             indicator = (GetTemplateChild("PART_Indicator") as Border)!;
             if (border.CornerRadius is { } radius && radius.TopLeft >= 1)
             {
-                indicator.CornerRadius = new CornerRadius(border.CornerRadius.TopLeft - 1, border.CornerRadius.TopRight - 1, border.CornerRadius.BottomRight - 1, border.CornerRadius.BottomLeft - 1);
+                indicator.CornerRadius = new CornerRadius(CornerRadius.TopLeft - BorderThickness.Left, CornerRadius.TopRight - BorderThickness.Top,
+                    CornerRadius.BottomRight - BorderThickness.Right, CornerRadius.BottomLeft - BorderThickness.Bottom);
             }
         }
 
@@ -98,7 +98,7 @@ namespace AirControl
 
             Value = Math.Max(0d, Value);
             var percentage = Value / 100;
-            indicator.Width = (border.ActualWidth - border.BorderThickness.Left - border.BorderThickness.Right) * percentage;
+            indicator.Width = border.ActualWidth * percentage;
         }
 
         private void DoAnimation()
@@ -117,7 +117,7 @@ namespace AirControl
             Storyboard sb = new() { RepeatBehavior = RepeatBehavior.Forever };
             var thicknessAnimation = new ThicknessAnimation
             {
-                Duration = new Duration(TimeSpan.FromMilliseconds(6000)),
+                Duration = new Duration(TimeSpan.FromMilliseconds(2000)),
                 From = new Thickness(-indicator.Width, indicator.Margin.Top,
                     indicator.Margin.Right, indicator.Margin.Bottom),
                 To = new Thickness(Width, indicator.Margin.Top,
@@ -126,7 +126,6 @@ namespace AirControl
             Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath("Margin"));
             sb.Children.Add(thicknessAnimation);
             sb.Begin(indicator);
-
         }
     }
 }

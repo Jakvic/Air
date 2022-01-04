@@ -1,63 +1,56 @@
-//-----------------------------------------------------------------------
-// <copyright file="ClippingBorder.cs" company="Microsoft Corporation copyright 2008.">
-// (c) 2008 Microsoft Corporation. All rights reserved.
-// This source is subject to the Microsoft Public License.
-// See http://www.microsoft.com/resources/sharedsource/licensingbasics/sharedsourcelicenses.mspx.
-// </copyright>
-// <date>07-Oct-2008</date>
-// <author>Martin Grayson</author>
-// <summary>A border that clips its contents.</summary>
-//-----------------------------------------------------------------------
-
-using System;
-using System.ComponentModel;
+﻿using System;
+using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Markup;
 using System.Windows.Media;
 
-namespace AirControl
+namespace AirControl.Convertors
 {
-    /// <summary>
-    ///     A border that clips its contents.
-    /// </summary>
-    public class AirBorder : Border
+    public class ClipConverter : MarkupExtension, IMultiValueConverter
     {
-        public AirBorder()
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            SizeChanged += OnSizeChanged;
-            DependencyPropertyDescriptor.FromProperty(CornerRadiusProperty, typeof(AirBorder))
-                .AddValueChanged(this, OnCornerRadiusChanged);
-        }
-
-        private void OnCornerRadiusChanged(object? sender, EventArgs e)
-        {
-            DoClip();
-        }
-
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            DoClip();
-        }
-
-        private void DoClip()
-        {
-            if (Child is null)
+            if (values.Length > 1 && values[0] is double width && values[1] is double height)
             {
-                return;
+                if (width < 1.0 || height < 1.0)
+                {
+                    return Geometry.Empty;
+                }
+
+                CornerRadius cornerRadius = default;
+                Thickness borderThickness = default;
+                if (values.Length > 2 && values[2] is CornerRadius radius)
+                {
+                    cornerRadius = radius;
+                    if (values.Length > 3 && values[3] is Thickness thickness)
+                    {
+                        borderThickness = thickness;
+                    }
+                }
+
+                // var geometry = GetRoundRectangle(new Rect(0, 0, width, height), borderThickness, cornerRadius);
+                // geometry.Freeze();
+                var radii = new Radii(cornerRadius,borderThickness,true);
+                var streamGeometry = new StreamGeometry();
+                using var streamGeometryContext = streamGeometry.Open();
+                GenerateGeometry(streamGeometryContext,new Rect(0,0,width,height),radii);
+                streamGeometry.Freeze();
+                return streamGeometry;
             }
 
-            Child.Clip ??= new StreamGeometry();
-            var geometry = Child.Clip as StreamGeometry;
-            if (geometry is not null)
-            {
-                var radii = new Radii(CornerRadius, BorderThickness, true);
-                using var streamGeometryContext = geometry.Open();
-                GenerateGeometry(streamGeometryContext, new Rect(Child.RenderSize), radii);
-                geometry.Freeze();
-            }
-
+            return DependencyProperty.UnsetValue;
         }
 
+        public object[]? ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return default;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
 
         const double DBL_EPSILON = 2.2204460492503131e-016;
 
@@ -259,6 +252,5 @@ namespace AirControl
                 ctx.ArcTo(topLeft, new Size(radiusX, radiusY), 0, false, SweepDirection.Clockwise, true, false);
             }
         }
-
     }
 }
