@@ -16,7 +16,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AirProgressBar}">
-                    <Grid x:Name="PART_Grid">
+                    <Grid>
                         <Grid.Clip>
                             <MultiBinding Converter="{convertors:ClipConverter}">
                                 <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />

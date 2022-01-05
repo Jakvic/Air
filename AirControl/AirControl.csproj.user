@@ -8,5 +8,8 @@
     <Page Update="AirTabControl.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="AirScrollBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

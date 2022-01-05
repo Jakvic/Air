@@ -3,28 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:convertors="clr-namespace:AirControl.Convertors;assembly=AirControl"
         mc:Ignorable="d" 
         Title="MainWindow">
-
+  
     <Window.Resources>
         <Style x:Key="{x:Type TabItem}" TargetType="{x:Type TabItem}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="TabItem">
+                    <ControlTemplate TargetType="{x:Type TabItem}">
                         <Grid x:Name="grid">
                             <ContentPresenter x:Name="ContentPresenter"
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Center"
-                                              ContentSource="Header">
-                            </ContentPresenter>
+                                              ContentSource="Header"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="grid" Property="Background" Value="LightSkyBlue"></Setter>
+                                <Setter TargetName="grid" Property="Background" Value="LightSkyBlue"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="False">
-                                <Setter TargetName="grid" Property="Background" Value="White"></Setter>
+                                <Setter TargetName="grid" Property="Background" Value="White"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -38,29 +36,29 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <TabControl Margin="20" Background="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Background}">
+            <TabControl Margin="20" Background="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
                 <TabControl.Resources>
-                    <Style TargetType="TabItem">
-                        <Setter Property="FontSize" Value="16" />
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="FontSize" Value="20" />
+                        <Setter Property="FontFamily" Value="Weight" />
                         <Setter Property="Template">
                             <Setter.Value>
-                                <ControlTemplate TargetType="TabItem">
+                                <ControlTemplate TargetType="{x:Type TabItem}">
                                     <Border x:Name="border" Background="{TemplateBinding Background}">
                                         <ContentPresenter x:Name="ContentPresenter"
                                                           VerticalAlignment="Center"
                                                           HorizontalAlignment="Center"
-                                                          Margin="10 2 "
-                                                          ContentSource="Header">
-                                        </ContentPresenter>
+                                                          Margin="10 2 " 
+                                                          ContentSource="Header"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
                                             <!-- <Setter TargetName="border" Property="Background" Value="LightSkyBlue"/> -->
-                                            <Setter TargetName="border" Property="BorderThickness" Value="0 0 0 1"></Setter>
+                                            <Setter TargetName="border" Property="BorderThickness" Value="0 0 0 1"/>
                                             <Setter TargetName="border" Property="BorderBrush" Value="LightSkyBlue" />
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="False">
-                                            <Setter TargetName="border" Property="Background" Value="White"></Setter>
+                                            <Setter TargetName="border" Property="Background" Value="White"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -68,28 +66,18 @@
                         </Setter>
                     </Style>
                 </TabControl.Resources>
-                <TabItem Header="switzerland">
-                    <Grid>
-
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Border x:Name="out"  CornerRadius="8" Opacity=".5" 
-                                    BorderThickness="4"  BorderBrush="CadetBlue" Background="LightBlue">
-                                <Border x:Name="In" BorderThickness="4" CornerRadius="4"
-                                        BorderBrush="DarkRed" Background="LightGray">
-                                    <TextBlock FontSize="14" Text="Yann Sommer" Margin="40"/>
-                                </Border>
-                            </Border>
-
-                        </StackPanel>
-                    </Grid>
-
+                <TabItem Header="Switzerland">
+                    <ContentPresenter Content="Shaqiri"/>
                 </TabItem>
                 <TabItem Margin="0 0 0 0">
                     <TabItem.Header>
-                        <TextBlock Text="France"></TextBlock>
+                        <TextBlock Text="France"/>
                     </TabItem.Header>
+                    <ContentPresenter Content="LLoris"/>
                 </TabItem>
-                <TabItem Margin="0 0 0 0" Header="Argentina" />
+                <TabItem Margin="0 0 0 0" Header="Argentina">
+                    <ContentPresenter Content="Di Maria"/>
+                </TabItem>
             </TabControl>
         </Grid>
         <ScrollViewer Grid.Column="1">
@@ -117,7 +105,7 @@
                 <GroupBox Header="TextBox" HorizontalAlignment="Center" Padding="10">
                     <StackPanel Orientation="Vertical">
                         <WrapPanel>
-                            <TextBox Text="{Binding ElementName=AirTextBox,Path=Background}"
+                            <TextBox Text="{Binding Background, ElementName=AirTextBox}"
                                      FontSize="18" Padding="4" MinWidth="80" MaxWidth="80"
                                      HorizontalAlignment="Center" VerticalAlignment="Center" />
 
@@ -175,5 +163,6 @@
             </StackPanel>
         </ScrollViewer>
         <Grid Grid.Column="1" />
+
     </Grid>
 </Window>
