@@ -5,7 +5,7 @@
                     xmlns:convertors="clr-namespace:AirControl.Convertors">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="AirControl;component/AirScrollBar.xaml" />
+        <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type local:AirTextBox}">
