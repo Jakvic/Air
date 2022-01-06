@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Reflection;
 using System.Windows;
-using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace AirControl
 {
@@ -22,12 +18,6 @@ namespace AirControl
         public new static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
             "Value", typeof(double), typeof(AirProgressBar),
             new PropertyMetadata(default(double), ProgressValueChanged));
-
-        private static void ProgressValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var airProgressBar = d as AirProgressBar;
-            airProgressBar.CalcWidth();
-        }
 
         private Border border;
         private Border indicator;
@@ -49,20 +39,26 @@ namespace AirControl
 
         public double Value
         {
-            get => (double)GetValue(ValueProperty);
+            get => (double) GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
         }
 
         public new bool IsIndeterminate
         {
-            get => (bool)GetValue(IsIndeterminateProperty);
+            get => (bool) GetValue(IsIndeterminateProperty);
             set => SetValue(IsIndeterminateProperty, value);
         }
 
         public CornerRadius CornerRadius
         {
-            get => (CornerRadius)GetValue(CornerRadiusProperty);
+            get => (CornerRadius) GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
+        }
+
+        private static void ProgressValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var airProgressBar = d as AirProgressBar;
+            airProgressBar.CalcWidth();
         }
 
         private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -79,7 +75,8 @@ namespace AirControl
             indicator = (GetTemplateChild("PART_Indicator") as Border)!;
             if (border.CornerRadius is { } radius && radius.TopLeft >= 1)
             {
-                indicator.CornerRadius = new CornerRadius(CornerRadius.TopLeft - BorderThickness.Left, CornerRadius.TopRight - BorderThickness.Top,
+                indicator.CornerRadius = new CornerRadius(CornerRadius.TopLeft - BorderThickness.Left,
+                    CornerRadius.TopRight - BorderThickness.Top,
                     CornerRadius.BottomRight - BorderThickness.Right, CornerRadius.BottomLeft - BorderThickness.Bottom);
             }
         }
@@ -114,7 +111,7 @@ namespace AirControl
             }
 
             indicator.Width = ActualWidth / 4;
-            Storyboard sb = new() { RepeatBehavior = RepeatBehavior.Forever };
+            Storyboard sb = new() {RepeatBehavior = RepeatBehavior.Forever};
             var thicknessAnimation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromMilliseconds(2000)),

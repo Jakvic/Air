@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 
 namespace Air
 {
@@ -9,16 +7,16 @@ namespace Air
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Thickness rect_raw_margin;
+
         public MainWindow()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
         }
 
-        private Thickness rect_raw_margin;
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void StartAnimation()

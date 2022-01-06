@@ -22,17 +22,15 @@
                                 <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
                                 <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}" />
                                 <Binding Path="CornerRadius" ElementName="PART_Border" />
-                                <Binding Path="BorderThickness" ElementName="PART_Border"/>
+                                <Binding Path="BorderThickness" ElementName="PART_Border" />
                             </MultiBinding>
                         </Grid.Clip>
 
                         <Border x:Name="PART_Border"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-
-                        </Border>
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" />
                         <Border x:Name="PART_Indicator"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Left"
