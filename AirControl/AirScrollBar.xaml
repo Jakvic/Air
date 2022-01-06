@@ -57,20 +57,6 @@
                     </Grid>
                     <ControlTemplate.Triggers>
 
-                        <Trigger SourceName="Thumb" Property="IsMouseOver" Value="True">
-                            <Setter Value="#6A6A6A" TargetName="Thumb" Property="Background" />
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                         Storyboard.TargetName="PART_Track"
-                                                         To="10" AutoReverse="True"
-                                                         Duration="0:0:0.1" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                        </Trigger>
-
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
                         </Trigger>
@@ -96,7 +82,7 @@
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="Orientation" Value="Horizontal" />
-                                <Condition SourceName="Thumb" Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.Setters>
                                 <Setter Value="#6A6A6A" TargetName="Thumb" Property="Background" />
@@ -105,8 +91,8 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                         Storyboard.TargetName="PART_Track"
-                                                         From="7" To="10" AutoReverse="True"
+                                                         Storyboard.TargetName="GridRoot"
+                                                         To="10" AutoReverse="True"
                                                          Duration="0:0:0.1" />
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -116,7 +102,7 @@
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="Orientation" Value="Vertical" />
-                                <Condition SourceName="Thumb" Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.Setters>
                                 <Setter Value="#6A6A6A" TargetName="Thumb" Property="Background" />
@@ -125,8 +111,8 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                         Storyboard.TargetName="PART_Track"
-                                                         From="7" To="10" AutoReverse="True"
+                                                         Storyboard.TargetName="GridRoot"
+                                                         To="10" AutoReverse="True"
                                                          Duration="0:0:0.1" />
                                     </Storyboard>
                                 </BeginStoryboard>
