@@ -7,7 +7,7 @@ namespace AirControl
     {
         static AirScrollBar()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirScrollBar), new PropertyMetadata(typeof(AirScrollBar)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirScrollBar), new FrameworkPropertyMetadata(typeof(AirScrollBar)));
         }
     }
 }

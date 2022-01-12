@@ -4,5 +4,6 @@
         <ResourceDictionary Source="AirControl;component/AirTextBox.xaml" />
         <ResourceDictionary Source="AirControl;component/AirProgressBar.xaml" />
         <ResourceDictionary Source="AirControl;component/AirScrollBar.xaml" />
+        <ResourceDictionary Source="AirControl;component/AirScrollViewer.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -8,7 +8,7 @@ namespace AirControl
         static AirScrollViewer()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AirScrollViewer),
-                new PropertyMetadata(typeof(AirScrollViewer)));
+                new FrameworkPropertyMetadata(typeof(AirScrollViewer)));
         }
     }
 }
