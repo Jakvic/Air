@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:AirControl">
-    <!-- Scrollbar thumbs -->
     <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
         <Setter Property="Template">
             <Setter.Value>
@@ -92,11 +91,21 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Height"
                                                          Storyboard.TargetName="GridRoot"
-                                                         To="10" AutoReverse="True"
+                                                         From="5" To="10"
                                                          Duration="0:0:0.1" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                             Storyboard.TargetName="GridRoot"
+                                                             From="10" To="5" 
+                                                             Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
                         </MultiTrigger>
 
                         <MultiTrigger>
@@ -112,11 +121,21 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Width"
                                                          Storyboard.TargetName="GridRoot"
-                                                         To="10" AutoReverse="True"
+                                                         From="5" To="10" 
                                                          Duration="0:0:0.1" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                         Storyboard.TargetName="GridRoot"
+                                                         From="10" To="5" 
+                                                         Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
