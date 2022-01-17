@@ -2,15 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <SolidColorBrush x:Key="MainColorBrush" Color="#005EFF" />
     <SolidColorBrush x:Key="MainSelectedColorBrush" Color="#E4EBFF" />
-    
+
     <SolidColorBrush x:Key="LightMainColorBrush" Color="#A7BEFF" />
-    
+
     <SolidColorBrush x:Key="OkFullColorBrush" Color="#70E38F" />
     <SolidColorBrush x:Key="WarningFullColorBrush" Color="#FFD380" />
-    
+
     <SolidColorBrush x:Key="OkBorderThicknessColorBrush" Color="#5FE082" />
     <SolidColorBrush x:Key="OkBorderBackgroundColorBrush" Color="#E2F9E9" />
-    
+
     <SolidColorBrush x:Key="ErrorBorderThicknessColorBrush" Color="#FC6D6D" />
     <SolidColorBrush x:Key="ErrorBorderBackgroundColorBrush" Color="#FEE5E5" />
 </ResourceDictionary>
