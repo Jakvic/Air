@@ -163,12 +163,15 @@
                                 BorderThickness="0,1,1,1">
                             <ScrollContentPresenter CanContentScroll="{TemplateBinding CanContentScroll}" />
                         </Border>
-                        <ScrollBar Style="{StaticResource BarStyle}" Grid.Row="0" Grid.Column="1"
+                        <ScrollBar x:Name="PART_VerticalScrollBar"
+                                    Style="{StaticResource BarStyle}" 
+                                   Grid.Row="0" Grid.Column="1"
                                    Value="{TemplateBinding VerticalOffset}"
                                    Maximum="{TemplateBinding ScrollableHeight}"
                                    ViewportSize="{TemplateBinding ViewportHeight}"
                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
-                        <ScrollBar Style="{StaticResource BarStyle}" Orientation="Horizontal"
+                        <ScrollBar x:Name="PART_HorizontalScrollBar" 
+                            Style="{StaticResource BarStyle}" Orientation="Horizontal"
                                    Grid.Row="1"
                                    Grid.Column="1"
                                    Value="{TemplateBinding HorizontalOffset}"

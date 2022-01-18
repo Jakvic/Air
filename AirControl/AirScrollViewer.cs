@@ -5,8 +5,11 @@ namespace AirControl
 {
     public class AirScrollViewer : ScrollViewer
     {
-        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-            "CornerRadius", typeof(CornerRadius), typeof(AirScrollViewer), new PropertyMetadata(default(CornerRadius)));
+        //https://referencesource.microsoft.com/#PresentationFramework/src/Framework/System/windows/Controls/ScrollViewer.cs,2919
+        //Custom ScrollBar not works ? the answer in this link
+
+        public static readonly DependencyProperty ScrollBarCornerRadiusProperty = DependencyProperty.Register(
+            "ScrollBarCornerRadius", typeof(CornerRadius), typeof(AirScrollViewer), new PropertyMetadata(default(CornerRadius)));
 
         static AirScrollViewer()
         {
@@ -14,10 +17,10 @@ namespace AirControl
                 new FrameworkPropertyMetadata(typeof(AirScrollViewer)));
         }
 
-        public CornerRadius CornerRadius
+        public CornerRadius ScrollBarCornerRadius
         {
-            get => (CornerRadius) GetValue(CornerRadiusProperty);
-            set => SetValue(CornerRadiusProperty, value);
+            get => (CornerRadius) GetValue(ScrollBarCornerRadiusProperty);
+            set => SetValue(ScrollBarCornerRadiusProperty, value);
         }
     }
 }
