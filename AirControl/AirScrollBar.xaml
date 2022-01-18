@@ -9,7 +9,8 @@
                         <Rectangle Width="Auto" Height="Auto"
                                    HorizontalAlignment="Stretch" Fill="Transparent"
                                    VerticalAlignment="Stretch" />
-                        <Border x:Name="PART_Border" CornerRadius="5"
+                        <Border x:Name="PART_Border" CornerRadius="{Binding Path=CornerRadius, 
+                        RelativeSource={RelativeSource Mode=FindAncestor,AncestorType= local:AirScrollViewer}}"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 Width="Auto" Height="Auto"
