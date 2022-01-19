@@ -9,7 +9,11 @@ namespace AirControl
         //Custom ScrollBar not works ? the answer in this link
 
         public static readonly DependencyProperty ScrollBarCornerRadiusProperty = DependencyProperty.Register(
-            "ScrollBarCornerRadius", typeof(CornerRadius), typeof(AirScrollViewer), new PropertyMetadata(default(CornerRadius)));
+            "ScrollBarCornerRadius", typeof(CornerRadius), typeof(AirScrollViewer),
+            new PropertyMetadata(default(CornerRadius)));
+
+        public static readonly DependencyProperty ScrollBarWidthProperty = DependencyProperty.Register(
+            "ScrollBarWidth", typeof(double), typeof(AirScrollViewer), new PropertyMetadata(default(double)));
 
         static AirScrollViewer()
         {
@@ -21,6 +25,12 @@ namespace AirControl
         {
             get => (CornerRadius) GetValue(ScrollBarCornerRadiusProperty);
             set => SetValue(ScrollBarCornerRadiusProperty, value);
+        }
+
+        public double ScrollBarWidth
+        {
+            get => (double) GetValue(ScrollBarWidthProperty);
+            set => SetValue(ScrollBarWidthProperty, value);
         }
     }
 }

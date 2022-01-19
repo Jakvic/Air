@@ -9,8 +9,13 @@
     <Style TargetType="{x:Type local:AirButton}">
         <Setter Property="Padding" Value="8" />
         <Setter Property="CornerRadius" Value="5" />
+        
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        
         <Setter Property="Background" Value="{StaticResource MainBackground}" />
         <Setter Property="Foreground" Value="{StaticResource MainForeground}" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AirButton}">
