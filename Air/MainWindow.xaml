@@ -158,9 +158,10 @@
                 </StackPanel>
 
                 <!-- Horizontal AirViewer test -->
-                <Border Width="200" Margin="0 10 0 0" Padding="0 5" Background="LightSlateGray">
-                    <AirScrollViewer HorizontalScrollBarVisibility="Auto">
-                        <StackPanel Orientation="Horizontal">
+                <Border Width="200" Margin="0 10 0 0" CornerRadius="10"
+                        Padding="5" Background="#E1E1E1">
+                    <AirScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <AirButton Content="AAAA" />
                             <AirButton Content="BBBB" />
                             <AirButton Content="CCCC" />
