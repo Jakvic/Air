@@ -20,12 +20,6 @@
                                 Width="Auto" Height="Auto"
                                 Background="{TemplateBinding Background}" />
                     </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="Tag" Value="Horizontal">
-                            <Setter TargetName="PART_Border" Property="Width" Value="Auto" />
-                            <Setter TargetName="PART_Border" Property="Height" Value="Auto" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -42,29 +36,34 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
-                    <Border x:Name="BorderRoot" Background="LightBlue" HorizontalAlignment="Right"
+                    <Grid>
+                        <Border x:Name="BorderRoot" Background="LightBlue" HorizontalAlignment="Right"
                             Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"
                             CornerRadius="{Binding Path=ScrollBarCornerRadius,RelativeSource={RelativeSource AncestorType=local:AirScrollViewer}}">
-                        <Grid x:Name="GridRoot">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="0.00001*" />
-                            </Grid.RowDefinitions>
-                            <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="True" Focusable="False">
-                                <Track.Thumb>
-                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}"
+                            <Grid x:Name="GridRoot">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.00001*" />
+                                </Grid.RowDefinitions>
+                                <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="True" Focusable="False">
+                                    <Track.Thumb>
+                                        <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}"
                                            Style="{StaticResource ScrollBarThumb}" />
-                                </Track.Thumb>
-                                <Track.IncreaseRepeatButton>
-                                    <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0"
+                                    </Track.Thumb>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0"
                                                   Focusable="False" />
-                                </Track.IncreaseRepeatButton>
-                                <Track.DecreaseRepeatButton>
-                                    <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0"
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0"
                                                   Focusable="False" />
-                                </Track.DecreaseRepeatButton>
-                            </Track>
-                        </Grid>
-                    </Border>
+                                    </Track.DecreaseRepeatButton>
+                                </Track>
+                            </Grid>
+                        </Border>
+                        <Border x:Name="HitTestBorder" Height="{Binding ElementName=BorderRoot,Path=Height}" 
+                                Background="Black" HorizontalAlignment="Right"
+                                Width="{Binding Path=ScrollBarWidth,RelativeSource={RelativeSource AncestorType=local:AirScrollViewer}}"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
@@ -78,6 +77,10 @@
                             <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
                             <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
                             <Setter TargetName="PART_Track" Property="IsDirectionReversed" Value="False"/>
+                            <Setter TargetName="HitTestBorder" Property="Height" Value="{Binding ScrollBarWidth, RelativeSource={RelativeSource AncestorType=local:AirScrollViewer}}"/>
+                            <Setter TargetName="HitTestBorder" Property="Width" Value="{Binding ElementName=BorderRoot,Path=Width}"/>
+                            <Setter TargetName="HitTestBorder" Property="VerticalAlignment" Value="Bottom"/>
+
                         </Trigger>
 
                         <MultiTrigger>
@@ -88,7 +91,7 @@
                             <MultiTrigger.Setters>
                                 <Setter Value="{StaticResource MainDisableBackground}" TargetName="Thumb" Property="Background" />
                             </MultiTrigger.Setters>
-                            <MultiTrigger.EnterActions>
+                            <!--<MultiTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Height"
@@ -107,7 +110,7 @@
                                                          Duration="0:0:0.1" />
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </MultiTrigger.ExitActions>
+                            </MultiTrigger.ExitActions>-->
                         </MultiTrigger>
 
                         <MultiTrigger>
@@ -118,7 +121,7 @@
                             <MultiTrigger.Setters>
                                 <Setter Value="{StaticResource MainDisableBackground}" TargetName="Thumb" Property="Background" />
                             </MultiTrigger.Setters>
-                            <MultiTrigger.EnterActions>
+                            <!--<MultiTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Width"
@@ -137,7 +140,7 @@
                                                          Duration="0:0:0.1"/>
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </MultiTrigger.ExitActions>
+                            </MultiTrigger.ExitActions>-->
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -171,7 +174,7 @@
                                    Maximum="{TemplateBinding ScrollableHeight}"
                                    ViewportSize="{TemplateBinding ViewportHeight}"
                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
-                        
+
                         <ScrollBar x:Name="PART_HorizontalScrollBar"
                                    Style="{StaticResource BarStyle}"
                                    Orientation="Horizontal"
