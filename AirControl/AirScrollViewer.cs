@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -38,7 +39,6 @@ namespace AirControl
         }
 
         Border animationBorder;
-        Border hitTestBorder;
         Storyboard startStoryboard;
         Storyboard endStoryboard;
         ScrollBar vsb;
@@ -46,26 +46,29 @@ namespace AirControl
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
+            return;
             vsb = GetTemplateChild("PART_VerticalScrollBar") as ScrollBar;
             hsb = GetTemplateChild("PART_HorizontalScrollBar") as ScrollBar;
 
             vsb.ApplyTemplate();
             animationBorder = vsb.Template.FindName("BorderRoot", vsb) as Border;
-            vsb.ApplyTemplate();
-            hitTestBorder = vsb.Template.FindName("HitTestBorder", vsb) as Border;
 
-            hitTestBorder.MouseEnter += ScrollBar_MouseEnter;
-            hitTestBorder.MouseLeave += ScrollBar_MouseLeave;
+            vsb.MouseEnter += ScrollBar_MouseEnter;
+            vsb.MouseLeave += ScrollBar_MouseLeave;
+
+            hsb.MouseEnter += ScrollBar_MouseEnter;
+            hsb.MouseLeave += ScrollBar_MouseLeave;
         }
 
-        private void ScrollBar_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private  void ScrollBar_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
+            var scrollBar = sender as ScrollBar; ;
             endStoryboard?.Stop();
-            startStoryboard = new Storyboard();
+            startStoryboard = new();
+            
             var animation = new DoubleAnimation(ScrollBarWidth, 10, new Duration(TimeSpan.FromMilliseconds(100)));
             Storyboard.SetTarget(animation, animationBorder);
-            var scrollBar = vsb ?? hsb;
+            
             if (scrollBar.Orientation is Orientation.Vertical)
             {
                 Storyboard.SetTargetProperty(animation, new PropertyPath("Width"));
@@ -79,14 +82,21 @@ namespace AirControl
             startStoryboard.Begin();
 
         }
-        private void ScrollBar_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private async void ScrollBar_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            var scrollBar = vsb ?? hsb;
+            await Task.Delay(1000);
+            var scrollBar = sender as ScrollBar;
+
+            if (!scrollBar.IsMouseOver)
+            {
+                return;
+            }
             startStoryboard?.Stop();
             endStoryboard?.Stop();
-            endStoryboard = new Storyboard();
+            endStoryboard = new();
             var animation = new DoubleAnimation(10, ScrollBarWidth, new Duration(TimeSpan.FromMilliseconds(100)));
             Storyboard.SetTarget(animation, animationBorder);
+            
             if (scrollBar.Orientation is Orientation.Vertical)
             {
                 Storyboard.SetTargetProperty(animation, new PropertyPath("Width"));
@@ -99,6 +109,5 @@ namespace AirControl
             }
             endStoryboard.Begin();
         }
-
     }
 }
