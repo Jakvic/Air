@@ -1,14 +1,3 @@
-//-----------------------------------------------------------------------
-// <copyright file="ClippingBorder.cs" company="Microsoft Corporation copyright 2008.">
-// (c) 2008 Microsoft Corporation. All rights reserved.
-// This source is subject to the Microsoft Public License.
-// See http://www.microsoft.com/resources/sharedsource/licensingbasics/sharedsourcelicenses.mspx.
-// </copyright>
-// <date>07-Oct-2008</date>
-// <author>Martin Grayson</author>
-// <summary>A border that clips its contents.</summary>
-//-----------------------------------------------------------------------
-
 using System;
 using System.ComponentModel;
 using System.Windows;

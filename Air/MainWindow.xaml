@@ -18,26 +18,47 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <AirTabControl Margin="20">
-                <AirTabControl.Resources>
-                    <Style TargetType="AirTabItem">
-                        <Setter Property="FontSize" Value="16" />
-                        <Setter Property="FontWeight" Value="Bold" />
-                    </Style>
-                </AirTabControl.Resources>
-                <AirTabItem Header="Switzerland">
-                    <ContentPresenter Content="Shaqiri" />
+                <AirTabItem>
+                    <AirTabItem.Header>
+                        <TextBlock FontSize="16" FontWeight="Bold">Switzerland</TextBlock>
+                    </AirTabItem.Header>
+                    <!-- Horizontal AirViewer test -->
+                    <Border Width="200" Margin="0 10 0 0" CornerRadius="10"
+                            Padding="5" Background="#E1E1E1">
+                        <AirScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <AirButton Content="AAAA" />
+                                <AirButton Content="BBBB" />
+                                <AirButton Content="CCCC" />
+                                <AirButton Content="DDDD" />
+                                <AirButton Content="EEEE" />
+                            </StackPanel>
+                        </AirScrollViewer>
+                    </Border>
                 </AirTabItem>
 
                 <AirTabItem Header="France">
-                    <ContentPresenter Content="LLoris" />
+                    <!--NullOrEmptyConverter test-->
+                    <StackPanel Margin="0 10 0 0">
+                        <AirButton Content="Salute"
+                                   IsEnabled="{Binding Path=Text, ElementName=AirTextBox,Converter={NullOrEmptyConverter Reversed=True}}" />
+                    </StackPanel>
                 </AirTabItem>
 
                 <AirTabItem Margin="0 0 0 0" Header="Argentina">
-                    <ContentPresenter Content="Di Maria" />
+                    <!-- Bool2Visibility test -->
+                    <StackPanel Background="LightCyan" Margin="0 10 0 0">
+                        <AirButton HorizontalAlignment="Center" Content="1111"
+                                   VerticalAlignment="Center" Type="Default" IsEnabled="False"
+                                   Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={Bool2VisibilityConverter UseHidden=True}}" />
+                        <AirButton HorizontalAlignment="Center" Content="2222"
+                                   VerticalAlignment="Center" Type="Default"
+                                   Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={Bool2VisibilityConverter}}" />
+                    </StackPanel>
                 </AirTabItem>
 
             </AirTabControl>
-            
+
             <AirTabControl Grid.Column="1" Margin="20" TabStripPlacement="Bottom">
                 <AirTabControl.Resources>
                     <Style TargetType="AirTabItem">
@@ -58,7 +79,7 @@
                 </AirTabItem>
 
             </AirTabControl>
-            
+
             <AirTabControl Grid.Column="2" Margin="20" TabStripPlacement="Right">
                 <AirTabControl.Resources>
                     <Style TargetType="AirTabItem">
@@ -160,36 +181,8 @@
                     </StackPanel>
 
                 </GroupBox>
-                <!-- Bool2Visibility test -->
-                <StackPanel Background="LightCyan" Margin="0 10 0 0">
-                    <AirButton HorizontalAlignment="Center" Content="1111"
-                               VerticalAlignment="Center" Type="Default" IsEnabled="False"
-                               Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={Bool2VisibilityConverter UseHidden=True}}" />
-                    <AirButton HorizontalAlignment="Center" Content="2222"
-                               VerticalAlignment="Center" Type="Default"
-                               Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={Bool2VisibilityConverter}}" />
-                </StackPanel>
 
-                <!--NullOrEmptyConverter test-->
-                <StackPanel Margin="0 10 0 0">
-                    <AirButton Content="Salute"
-                               IsEnabled="{Binding Path=Text, ElementName=AirTextBox,Converter={NullOrEmptyConverter Reversed=True}}">
-                    </AirButton>
-                </StackPanel>
 
-                <!-- Horizontal AirViewer test -->
-                <Border Width="200" Margin="0 10 0 0" CornerRadius="10"
-                        Padding="5" Background="#E1E1E1">
-                    <AirScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <AirButton Content="AAAA" />
-                            <AirButton Content="BBBB" />
-                            <AirButton Content="CCCC" />
-                            <AirButton Content="DDDD" />
-                            <AirButton Content="EEEE" />
-                        </StackPanel>
-                    </AirScrollViewer>
-                </Border>
             </StackPanel>
         </AirScrollViewer>
         <Grid Grid.Column="1" />
