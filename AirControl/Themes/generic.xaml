@@ -3,7 +3,8 @@
         <ResourceDictionary Source="AirControl;component/AirButton.xaml" />
         <ResourceDictionary Source="AirControl;component/AirTextBox.xaml" />
         <ResourceDictionary Source="AirControl;component/AirProgressBar.xaml" />
-        <ResourceDictionary Source="AirControl;component/AirScrollBar.xaml" />
         <ResourceDictionary Source="AirControl;component/AirScrollViewer.xaml" />
+        <ResourceDictionary Source="AirControl;component/AirTabControl.xaml" />
+        <ResourceDictionary Source="AirControl;component/AirTabItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

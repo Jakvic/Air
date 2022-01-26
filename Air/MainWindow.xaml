@@ -6,59 +6,79 @@
         mc:Ignorable="d"
         Title="MainWindow">
 
-    <Window.Resources>
-
-    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <TabControl Margin="20"
-                        Background="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
-                <TabControl.Resources>
-                    <Style TargetType="{x:Type TabItem}">
-                        <Setter Property="FontSize" Value="20" />
-                        <Setter Property="FontFamily" Value="Weight" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type TabItem}">
-                                    <Border x:Name="border" Background="{TemplateBinding Background}">
-                                        <ContentPresenter x:Name="ContentPresenter"
-                                                          VerticalAlignment="Center"
-                                                          HorizontalAlignment="Center"
-                                                          Margin="10 2 "
-                                                          ContentSource="Header" />
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <!-- <Setter TargetName="border" Property="Background" Value="LightSkyBlue"/> -->
-                                            <Setter TargetName="border" Property="BorderThickness" Value="0 0 0 1" />
-                                            <Setter TargetName="border" Property="BorderBrush" Value="LightSkyBlue" />
-                                        </Trigger>
-                                        <Trigger Property="IsSelected" Value="False">
-                                            <Setter TargetName="border" Property="Background" Value="White" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <AirTabControl Margin="20">
+                <AirTabControl.Resources>
+                    <Style TargetType="AirTabItem">
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="FontWeight" Value="Bold" />
                     </Style>
-                </TabControl.Resources>
-                <TabItem Header="Switzerland">
+                </AirTabControl.Resources>
+                <AirTabItem Header="Switzerland">
                     <ContentPresenter Content="Shaqiri" />
-                </TabItem>
-                <TabItem Margin="0 0 0 0">
-                    <TabItem.Header>
-                        <TextBlock Text="France" />
-                    </TabItem.Header>
+                </AirTabItem>
+
+                <AirTabItem Header="France">
                     <ContentPresenter Content="LLoris" />
-                </TabItem>
-                <TabItem Margin="0 0 0 0" Header="Argentina">
+                </AirTabItem>
+
+                <AirTabItem Margin="0 0 0 0" Header="Argentina">
                     <ContentPresenter Content="Di Maria" />
-                </TabItem>
-            </TabControl>
+                </AirTabItem>
+
+            </AirTabControl>
+            
+            <AirTabControl Grid.Column="1" Margin="20" TabStripPlacement="Bottom">
+                <AirTabControl.Resources>
+                    <Style TargetType="AirTabItem">
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                </AirTabControl.Resources>
+                <AirTabItem Header="Switzerland">
+                    <ContentPresenter Content="Shaqiri" />
+                </AirTabItem>
+
+                <AirTabItem Header="France">
+                    <ContentPresenter Content="LLoris" />
+                </AirTabItem>
+
+                <AirTabItem Margin="0 0 0 0" Header="Argentina">
+                    <ContentPresenter Content="Di Maria" />
+                </AirTabItem>
+
+            </AirTabControl>
+            
+            <AirTabControl Grid.Column="2" Margin="20" TabStripPlacement="Right">
+                <AirTabControl.Resources>
+                    <Style TargetType="AirTabItem">
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                </AirTabControl.Resources>
+                <AirTabItem Header="Switzerland">
+                    <ContentPresenter Content="Shaqiri" />
+                </AirTabItem>
+
+                <AirTabItem Header="France">
+                    <ContentPresenter Content="LLoris" />
+                </AirTabItem>
+
+                <AirTabItem Margin="0 0 0 0" Header="Argentina">
+                    <ContentPresenter Content="Di Maria" />
+                </AirTabItem>
+
+            </AirTabControl>
         </Grid>
         <AirScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto"
                          HorizontalScrollBarVisibility="Auto">
