@@ -37,7 +37,8 @@ namespace Air
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            StartAnimation();
+            var demo = new Demo();
+            demo.ShowDialog();
         }
     }
 }
