@@ -75,18 +75,37 @@ namespace AirControl
 
             size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
             size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
-            
+            return size;
         }
 
-        private void HorizontalArrange(Size size)
+        private void HorizontalArrange(Size finalSize)
         {
-           
+            foreach (UIElement child in InternalChildren)
+            {
+                
+            }
         }
         
         
-        private Size VerticalMeasure(Size size)
+        private Size VerticalMeasure(Size availableSize)
         {
-          
+            var width = 0d;
+            var height = 0d;
+            var size = new Size();
+            foreach (UIElement child in InternalChildren)
+            {
+                child.Measure(new Size(availableSize.Width,availableSize.Height));
+                if (child.DesiredSize.Width > width)
+                {
+                    width = child.DesiredSize.Width;
+                }
+
+                height += child.DesiredSize.Height + Space;
+            }
+
+            size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
+            size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
+            return size;
         }
         
         private void VerticalArrange(Size size)
