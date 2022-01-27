@@ -30,6 +30,23 @@ namespace AirControl
             DoClip();
         }
 
+        private void DoClip2()
+        {
+            if (Child is null)
+            {
+                return;
+            }
+
+            Child.Clip ??= new RectangleGeometry();
+            var rectangleGeometry = Child.Clip as RectangleGeometry;
+            if (rectangleGeometry is not null)
+            {
+                rectangleGeometry.RadiusX = rectangleGeometry.RadiusY =
+                    Math.Max(0.0, CornerRadius.TopLeft - (BorderThickness.Left * 0.5));
+                rectangleGeometry.Rect = new Rect(Child.RenderSize);
+            }
+        }
+
         private void DoClip()
         {
             if (Child is null)

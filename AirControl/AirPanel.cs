@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media.Converters;
 
 namespace AirControl
 {
@@ -38,119 +39,59 @@ namespace AirControl
         protected override Size MeasureOverride(Size availableSize)
         {
             return Type == PanelType.Horizontal
-                ? HorizontalLayout(availableSize, true)
-                : VerticalLayout(availableSize, true);
+                ? HorizontalMeasure(availableSize)
+                : VerticalMeasure(availableSize);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
             if (Type == PanelType.Horizontal)
             {
-                HorizontalLayout(finalSize, false);
+                HorizontalArrange(finalSize);
             }
             else
             {
-                VerticalLayout(finalSize, false);
+                VerticalArrange(finalSize);
             }
 
             return finalSize;
         }
 
-        private Size HorizontalLayout(Size size, bool isMeasure)
+        private Size HorizontalMeasure(Size availableSize)
         {
-            var result = default(Size);
-            var isInfinity = double.IsInfinity(size.Height);
-            result.Height = isInfinity ? 0 : size.Height;
-            var heightList = new List<double>();
+            var width = 0d;
+            var height = 0d;
+            var size = new Size();
             foreach (UIElement child in InternalChildren)
             {
-                if (child is Popup || child.Visibility is Visibility.Collapsed)
+                child.Measure(new Size(availableSize.Width,availableSize.Height));
+                if (child.DesiredSize.Height > height)
                 {
-                    continue;
+                    height = child.DesiredSize.Height;
                 }
 
-                if (isMeasure)
-                {
-                    child.Measure(new Size(double.PositiveInfinity, size.Height));
-                }
-                else
-                {
-                    child.Arrange(new Rect(result.Width, 0, child.DesiredSize.Width, size.Height));
-                }
-
-                result.Width += child.DesiredSize.Width + Space;
-
-                if (isInfinity)
-                {
-                    result.Height = Math.Max(result.Height, child.DesiredSize.Height);
-                }
-                else
-                {
-                    result.Height = child.DesiredSize.Height;
-                }
-
-
-                heightList.Add(result.Height);
+                width += child.DesiredSize.Width + Space;
             }
 
-            if (result.Width > 0)
-            {
-                result.Width -= Space;
-            }
-
-            result.Width = Math.Max(0, result.Width);
-            result.Height = heightList.Max();
-            return result;
+            size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
+            size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
+            
         }
 
-        private Size VerticalLayout(Size size, bool isMeasure)
+        private void HorizontalArrange(Size size)
         {
-            var result = default(Size);
-            var isInfinity = double.IsInfinity(size.Width);
-            result.Width = isInfinity ? 0 : size.Width;
-            var maxWidth = size.Width;
-            foreach (UIElement child in InternalChildren)
-            {
-                if (child is Popup || child.Visibility is Visibility.Collapsed)
-                {
-                    continue;
-                }
-
-                if (isMeasure)
-                {
-                    child.Measure(new Size(size.Width, double.PositiveInfinity));
-                }
-                else
-                {
-                    child.Arrange(new Rect(0, result.Height, size.Width, child.DesiredSize.Height));
-                }
-
-                result.Height += child.DesiredSize.Height + Space;
-
-                if (isInfinity)
-                {
-                    result.Width = Math.Max(result.Width, child.DesiredSize.Width);
-                }
-                else
-                {
-                    result.Width = child.DesiredSize.Width;
-                }
-
-                if (result.Width > maxWidth)
-                {
-                    maxWidth = result.Width;
-                }
-            }
-
-            if (result.Height > 0)
-            {
-                result.Height -= Space;
-            }
-
-            result.Width = maxWidth;
-            result.Height = Math.Max(0, result.Height);
-
-            return result;
+           
+        }
+        
+        
+        private Size VerticalMeasure(Size size)
+        {
+          
+        }
+        
+        private void VerticalArrange(Size size)
+        {
+          
         }
     }
 }

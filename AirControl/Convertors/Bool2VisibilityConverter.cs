@@ -9,6 +9,7 @@ namespace AirControl.Convertors
     public class Bool2VisibilityConverter : MarkupExtension, IValueConverter
     {
         public bool UseHidden { get; set; }
+        public bool Reversed { get; set; }
 
 
         public override object ProvideValue(IServiceProvider serviceProvider)
@@ -20,6 +21,11 @@ namespace AirControl.Convertors
         {
             if (value is bool flag)
             {
+                if (Reversed)
+                {
+                    flag = !flag;
+                }
+
                 return flag ? Visibility.Visible : UseHidden ? Visibility.Hidden : Visibility.Collapsed;
             }
             else

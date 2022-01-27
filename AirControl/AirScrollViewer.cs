@@ -46,10 +46,11 @@ namespace AirControl
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            return;
+
             vsb = GetTemplateChild("PART_VerticalScrollBar") as ScrollBar;
             hsb = GetTemplateChild("PART_HorizontalScrollBar") as ScrollBar;
 
+            return;
             vsb.ApplyTemplate();
             animationBorder = vsb.Template.FindName("BorderRoot", vsb) as Border;
 
