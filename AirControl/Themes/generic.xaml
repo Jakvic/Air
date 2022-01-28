@@ -7,5 +7,6 @@
         <ResourceDictionary Source="AirControl;component/AirTabControl.xaml" />
         <ResourceDictionary Source="AirControl;component/AirTabItem.xaml" />
         <ResourceDictionary Source="AirControl;component/Loading.xaml" />
+        <ResourceDictionary Source="AirControl;component/AirRadioButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
