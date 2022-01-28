@@ -18,14 +18,17 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <AirPanel Type="Vertical">
-                <AirTabControl Margin="20">
+            <AirPanel Type="Vertical" VerticalAlignment="Top" 
+                      HorizontalAlignment="Stretch"
+                      Space="20"  Background="Honeydew">
+
+                <AirTabControl>
                     <AirTabItem Header="Switzerland">
                         <!-- Horizontal AirViewer test -->
                         <Border Width="200" Margin="0 10 0 0" CornerRadius="10"
                             Padding="5" Background="#E1E1E1">
                             <AirScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
-                                <AirPanel VerticalAlignment="Center" Space="10" Type="Horizontal">
+                                <AirPanel Space="10" Type="Horizontal">
                                     <AirButton Content="AAAA" />
                                     <AirButton Content="BBBB" />
                                     <AirButton Content="CCCC" />
@@ -57,13 +60,14 @@
                     </AirTabItem>
 
                 </AirTabControl>
-                <AirPanel Margin="0 20 0 0" Type="Vertical">
-                    <TextBlock Text="AirBorder Test" FontSize="15" FontWeight="Bold"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <AirButton Content="AIRBUTTON" HorizontalAlignment="Center"/>
+                
+                <AirPanel Type="Vertical" HorizontalAlignment="Center" Space="10">
+                    <TextBlock Text="AirBorder Test" FontSize="15" FontWeight="Bold"/>
                     <AirBorder Background="#FCFF9E" CornerRadius="4"  Width="100"
                                HorizontalAlignment="Center" BorderThickness="1" BorderBrush="#c67700">
                         <AirBorder Width="200" Height="40" Background="Transparent" >
-
                         </AirBorder>
                     </AirBorder>
                 </AirPanel>

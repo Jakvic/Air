@@ -11,7 +11,9 @@ namespace AirControl
     public enum PanelType
     {
         Horizontal,
-        Vertical
+        HorizontalFull,
+        Vertical,
+        VerticalFull,
     }
 
     public class AirPanel : Panel
@@ -26,32 +28,50 @@ namespace AirControl
 
         public PanelType Type
         {
-            get => (PanelType) GetValue(TypeProperty);
+            get => (PanelType)GetValue(TypeProperty);
             set => SetValue(TypeProperty, value);
         }
 
         public double Space
         {
-            get => (double) GetValue(SpaceProperty);
+            get => (double)GetValue(SpaceProperty);
             set => SetValue(SpaceProperty, value);
         }
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            return Type == PanelType.Horizontal
-                ? HorizontalMeasure(availableSize)
-                : VerticalMeasure(availableSize);
+            Size size;
+            switch (Type)
+            {
+                case PanelType.Horizontal:
+                    size = HorizontalMeasure(availableSize);
+                    break;
+                case PanelType.HorizontalFull:
+                    size = HorizontalFullMeasure(availableSize);
+                    break;
+                case PanelType.Vertical:
+                    size = VerticalMeasure(availableSize);
+                    break;
+                case PanelType.VerticalFull:
+                    size = VerticalFullMeasure(availableSize);
+                    break;
+            }
+
+            return size;
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            if (Type == PanelType.Horizontal)
+            switch (Type)
             {
-                HorizontalArrange();
-            }
-            else
-            {
-                VerticalArrange();
+                case PanelType.Horizontal:
+                case PanelType.HorizontalFull:
+                    HorizontalArrange(finalSize);
+                    break;
+                case PanelType.Vertical:
+                case PanelType.VerticalFull:
+                    VerticalArrange(finalSize);
+                    break;
             }
 
             return finalSize;
@@ -65,30 +85,47 @@ namespace AirControl
             foreach (UIElement child in InternalChildren)
             {
                 child.Measure(new Size(availableSize.Width, availableSize.Height));
-                if (child.DesiredSize.Height > height)
-                {
-                    height = child.DesiredSize.Height;
-                }
-
+                height = Math.Max(height, child.DesiredSize.Height);
                 width += child.DesiredSize.Width + Space;
             }
+            width -= Space;
+            size.Width = Math.Min(width, availableSize.Width);
+            size.Height = Math.Min(height, availableSize.Height);
+            //size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
+            return size;
+        }
 
+        private Size HorizontalFullMeasure(Size availableSize)
+        {
+            var width = 0d;
+            var height = 0d;
+            var size = new Size();
+            foreach (UIElement child in InternalChildren)
+            {
+                child.Measure(new Size(availableSize.Width, availableSize.Height));
+                height = Math.Max(height, child.DesiredSize.Height);
+                width += child.DesiredSize.Width + Space;
+            }
+            width -= Space;
             size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
             size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
             return size;
         }
 
-        private void HorizontalArrange()
+        private void HorizontalArrange(Size finalSize)
         {
-            var x = 0d;
+            var rcChild = new Rect(finalSize);
+            var previousChildSize = 0d;
             foreach (UIElement child in InternalChildren)
             {
-                var rect = new Rect(new Point(x, 0d), child.DesiredSize);
-                child.Arrange(rect);
-                x += child.DesiredSize.Width + Space;
+                rcChild.X += (previousChildSize + (previousChildSize == 0 ? 0 : Space));
+                previousChildSize = child.DesiredSize.Width;
+                rcChild.Width = previousChildSize;
+                rcChild.Height = Math.Max(finalSize.Height, child.DesiredSize.Height);
+
+                child.Arrange(rcChild);
             }
         }
-
 
         private Size VerticalMeasure(Size availableSize)
         {
@@ -98,27 +135,45 @@ namespace AirControl
             foreach (UIElement child in InternalChildren)
             {
                 child.Measure(new Size(availableSize.Width, availableSize.Height));
-                if (child.DesiredSize.Width > width)
-                {
-                    width = child.DesiredSize.Width;
-                }
+                width = Math.Max(width, child.DesiredSize.Width);
+                height += child.DesiredSize.Height + Space;
+            }
+            height -= Space;
+            //size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
+            size.Width = Math.Min(width, availableSize.Width);
+            size.Height = Math.Min(height, availableSize.Height);
+            return size;
+        }
 
+        private Size VerticalFullMeasure(Size availableSize)
+        {
+            var width = 0d;
+            var height = 0d;
+            var size = new Size();
+            foreach (UIElement child in InternalChildren)
+            {
+                child.Measure(new Size(availableSize.Width, availableSize.Height));
+                width = Math.Max(width, child.DesiredSize.Width);
                 height += child.DesiredSize.Height + Space;
             }
 
+            height -= Space;
             size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
             size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
             return size;
         }
 
-        private void VerticalArrange()
+        private void VerticalArrange(Size finalSize)
         {
-            var y = 0d;
+            var rcChild = new Rect(finalSize);
+            var previousChildSize = 0d;
             foreach (UIElement child in InternalChildren)
             {
-                var rect = new Rect(new Point(0d, y), child.DesiredSize);
-                child.Arrange(rect);
-                y += child.DesiredSize.Height + Space;
+                rcChild.Y += (previousChildSize + (previousChildSize == 0 ? 0 : Space));
+                previousChildSize = child.DesiredSize.Height;
+                rcChild.Height = previousChildSize;
+                rcChild.Width = Math.Max(finalSize.Width, child.DesiredSize.Width);
+                child.Arrange(rcChild);
             }
         }
     }
