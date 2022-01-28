@@ -16,7 +16,7 @@
 
 
     <LinearGradientBrush x:Key="MainLinearGradientBorderBrush" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#2D89EF" Offset="0"/>
-        <GradientStop Color="#007FFF" Offset="1"/>
+        <GradientStop Color="#007FFF" Offset="0"/>
+        <GradientStop Color="#6F00FF" Offset="1"/> 
     </LinearGradientBrush>
 </ResourceDictionary>

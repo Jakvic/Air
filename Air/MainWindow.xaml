@@ -75,7 +75,7 @@
                                TabStripPlacement="Left" >
                     <AirTabItem Header="Animation">
                         <AirPanel Type="Horizontal" Space="10">
-                            <Loading Diameter="100" BorderThickness="2" 
+                            <Loading Diameter="80" BorderThickness="5" 
                             ProgressValue="{Binding Value, ElementName=slider}"/>
 
                             <Slider x:Name="slider" Value="40" Maximum="100" Width="100" VerticalAlignment="Center" />
