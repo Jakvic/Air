@@ -86,7 +86,7 @@ namespace AirControl
                 return;
             }
 
-            var lineLength = perimeter * (Math.Floor(ProgressValue) / 100);
+            var lineLength = perimeter * (ProgressValue / 100);
             var gapLength = perimeter - lineLength;
             ellipse!.StrokeDashArray = new DoubleCollection(new[]
             {
