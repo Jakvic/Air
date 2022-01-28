@@ -31,7 +31,7 @@
                                     <Storyboard RepeatBehavior="Forever">
                                         <DoubleAnimation Storyboard.TargetProperty="Angle"
                                                          Storyboard.TargetName="RotateTransform"
-                                                         From="0" To="360" />
+                                                         From="0" To="359" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>

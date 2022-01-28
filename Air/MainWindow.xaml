@@ -76,7 +76,7 @@
                     <AirTabItem Header="Animation">
                         <AirPanel Type="Horizontal" Space="10">
                             <Loading Diameter="100" BorderThickness="2" 
-                            ProgressValue="{Binding Value, ElementName=slider, TargetNullValue=40}"/>
+                            ProgressValue="{Binding Value, ElementName=slider, Mode=TwoWay}"/>
 
                             <Slider x:Name="slider" Value="40" Maximum="100" Width="100" VerticalAlignment="Center" />
                             <TextBlock Text="{Binding Value, ElementName=slider,StringFormat=N2}"

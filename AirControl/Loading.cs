@@ -24,7 +24,18 @@ namespace AirControl
             "Diameter", typeof(double), typeof(Loading), new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty ProgressValueProperty = DependencyProperty.Register(
-            "ProgressValue", typeof(double), typeof(Loading), new PropertyMetadata(40d));
+            "ProgressValue", typeof(double), typeof(Loading), new PropertyMetadata(40d,PropertyChangedCallback));
+
+        private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var loading = d as Loading;
+            var lineLength = loading.perimeter * (loading.ProgressValue / 100);
+            var gapLength = loading.perimeter - lineLength;
+            loading.ellipse.StrokeDashArray = new DoubleCollection(new[]
+            {
+                lineLength / loading.BorderThickness, gapLength / loading.BorderThickness
+            });
+        }
 
         static Loading()
         {
@@ -62,11 +73,13 @@ namespace AirControl
             set => SetValue(BorderBrushProperty, value);
         }
 
+        private double perimeter;
+        private Ellipse ellipse;
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            var ellipse = GetTemplateChild("PART_Ellipse") as Ellipse;
-            var perimeter = Math.PI * Diameter;
+            ellipse = GetTemplateChild("PART_Ellipse") as Ellipse;
+            perimeter = Math.PI * Diameter;
 
             if (!(Diameter >= 0) && !(BorderThickness >= 0))
             {
