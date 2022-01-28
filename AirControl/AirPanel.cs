@@ -47,11 +47,11 @@ namespace AirControl
         {
             if (Type == PanelType.Horizontal)
             {
-                HorizontalArrange(finalSize);
+                HorizontalArrange();
             }
             else
             {
-                VerticalArrange(finalSize);
+                VerticalArrange();
             }
 
             return finalSize;
@@ -64,7 +64,7 @@ namespace AirControl
             var size = new Size();
             foreach (UIElement child in InternalChildren)
             {
-                child.Measure(new Size(availableSize.Width,availableSize.Height));
+                child.Measure(new Size(availableSize.Width, availableSize.Height));
                 if (child.DesiredSize.Height > height)
                 {
                     height = child.DesiredSize.Height;
@@ -78,15 +78,18 @@ namespace AirControl
             return size;
         }
 
-        private void HorizontalArrange(Size finalSize)
+        private void HorizontalArrange()
         {
+            var x = 0d;
             foreach (UIElement child in InternalChildren)
             {
-                
+                var rect = new Rect(new Point(x, 0d), child.DesiredSize);
+                child.Arrange(rect);
+                x += child.DesiredSize.Width + Space;
             }
         }
-        
-        
+
+
         private Size VerticalMeasure(Size availableSize)
         {
             var width = 0d;
@@ -94,7 +97,7 @@ namespace AirControl
             var size = new Size();
             foreach (UIElement child in InternalChildren)
             {
-                child.Measure(new Size(availableSize.Width,availableSize.Height));
+                child.Measure(new Size(availableSize.Width, availableSize.Height));
                 if (child.DesiredSize.Width > width)
                 {
                     width = child.DesiredSize.Width;
@@ -107,10 +110,16 @@ namespace AirControl
             size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
             return size;
         }
-        
-        private void VerticalArrange(Size size)
+
+        private void VerticalArrange()
         {
-          
+            var y = 0d;
+            foreach (UIElement child in InternalChildren)
+            {
+                var rect = new Rect(new Point(0d, y), child.DesiredSize);
+                child.Arrange(rect);
+                y += child.DesiredSize.Height + Space;
+            }
         }
     }
 }
