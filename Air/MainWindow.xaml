@@ -74,7 +74,15 @@
                 <AirTabControl Margin="10 10 0 0" FontSize="20" FontWeight="Bold" 
                                TabStripPlacement="Left" >
                     <AirTabItem Header="Animation">
-                        <Loading/>
+                        <AirPanel Type="Horizontal" Space="10">
+                            <Loading Diameter="100" BorderThickness="2" 
+                            ProgressValue="{Binding Value, ElementName=slider, TargetNullValue=40}"/>
+
+                            <Slider x:Name="slider" Value="40" Maximum="100" Width="100" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Value, ElementName=slider,StringFormat=N2}"
+                                       FontSize="12" 
+                                       VerticalAlignment="Center"/>
+                        </AirPanel>
                     </AirTabItem>
 
                     <AirTabItem Header="ToggleButton">

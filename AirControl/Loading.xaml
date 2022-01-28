@@ -7,23 +7,25 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="local:Loading">
-        <Setter Property="BorderThickness" Value="2 2 0 0" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{StaticResource MainLinearGradientBorderBrush}" />
-        <Setter Property="IsLoading" Value="True" />
-        <Setter Property="Size" Value="40"></Setter>
+        <Setter Property="Diameter" Value="40" />
+        <Setter Property="ProgressValue" Value="50" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Loading">
-                    <Border x:Name="PART_Border" RenderTransformOrigin="0.5,0.5"
-                            Width="{TemplateBinding Size}"
-                            Height="{TemplateBinding Size}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Visibility="{TemplateBinding IsLoading,Converter={convertors:Bool2VisibilityConverter}}">
-                        <Border.RenderTransform>
-                            <RotateTransform Angle="0" x:Name="RotateTransform"/>
-                        </Border.RenderTransform>
-                        <Border.Triggers>
+                    <Ellipse x:Name="PART_Ellipse"
+                             RenderOptions.BitmapScalingMode="HighQuality"
+                             Stroke="{TemplateBinding BorderBrush}"
+                             StrokeThickness="{TemplateBinding BorderThickness}"
+                             Width="{TemplateBinding Diameter}"
+                             Height="{TemplateBinding Diameter}"
+                             Visibility="{TemplateBinding IsLoading,Converter={convertors:Bool2VisibilityConverter}}"
+                             RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <RotateTransform x:Name="RotateTransform" />
+                        </Ellipse.RenderTransform>
+                        <Ellipse.Triggers>
                             <EventTrigger RoutedEvent="Loaded">
                                 <BeginStoryboard>
                                     <Storyboard RepeatBehavior="Forever">
@@ -33,14 +35,7 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
-                        </Border.Triggers>
-                    </Border>
-                    
-                    <Ellipse x:Name="PART_Ellipse"
-                             Stroke="{TemplateBinding BorderBrush}"
-                             StrokeThickness="{TemplateBinding BorderThickness}"
-                             RenderTransformOrigin="0.5,0.5">
-                        
+                        </Ellipse.Triggers>
                     </Ellipse>
                 </ControlTemplate>
             </Setter.Value>
