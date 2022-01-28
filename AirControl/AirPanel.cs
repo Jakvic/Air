@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Media.Converters;
 
 namespace AirControl
 {
@@ -13,7 +9,7 @@ namespace AirControl
         Horizontal,
         HorizontalFull,
         Vertical,
-        VerticalFull,
+        VerticalFull
     }
 
     public class AirPanel : Panel
@@ -28,13 +24,13 @@ namespace AirControl
 
         public PanelType Type
         {
-            get => (PanelType)GetValue(TypeProperty);
+            get => (PanelType) GetValue(TypeProperty);
             set => SetValue(TypeProperty, value);
         }
 
         public double Space
         {
-            get => (double)GetValue(SpaceProperty);
+            get => (double) GetValue(SpaceProperty);
             set => SetValue(SpaceProperty, value);
         }
 
@@ -88,6 +84,7 @@ namespace AirControl
                 height = Math.Max(height, child.DesiredSize.Height);
                 width += child.DesiredSize.Width + Space;
             }
+
             width -= Space;
             size.Width = Math.Min(width, availableSize.Width);
             size.Height = Math.Min(height, availableSize.Height);
@@ -106,9 +103,10 @@ namespace AirControl
                 height = Math.Max(height, child.DesiredSize.Height);
                 width += child.DesiredSize.Width + Space;
             }
+
             width -= Space;
             size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
-            size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
+            size.Height = Math.Min(height, availableSize.Height);
             return size;
         }
 
@@ -118,7 +116,7 @@ namespace AirControl
             var previousChildSize = 0d;
             foreach (UIElement child in InternalChildren)
             {
-                rcChild.X += (previousChildSize + (previousChildSize == 0 ? 0 : Space));
+                rcChild.X += previousChildSize + (previousChildSize == 0 ? 0 : Space);
                 previousChildSize = child.DesiredSize.Width;
                 rcChild.Width = previousChildSize;
                 rcChild.Height = Math.Max(finalSize.Height, child.DesiredSize.Height);
@@ -138,6 +136,7 @@ namespace AirControl
                 width = Math.Max(width, child.DesiredSize.Width);
                 height += child.DesiredSize.Height + Space;
             }
+
             height -= Space;
             //size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
             size.Width = Math.Min(width, availableSize.Width);
@@ -158,7 +157,7 @@ namespace AirControl
             }
 
             height -= Space;
-            size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
+            size.Width = Math.Min(width, availableSize.Width);
             size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
             return size;
         }
@@ -169,7 +168,7 @@ namespace AirControl
             var previousChildSize = 0d;
             foreach (UIElement child in InternalChildren)
             {
-                rcChild.Y += (previousChildSize + (previousChildSize == 0 ? 0 : Space));
+                rcChild.Y += previousChildSize + (previousChildSize == 0 ? 0 : Space);
                 previousChildSize = child.DesiredSize.Height;
                 rcChild.Height = previousChildSize;
                 rcChild.Width = Math.Max(finalSize.Width, child.DesiredSize.Width);

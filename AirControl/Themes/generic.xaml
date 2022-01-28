@@ -6,5 +6,6 @@
         <ResourceDictionary Source="AirControl;component/AirScrollViewer.xaml" />
         <ResourceDictionary Source="AirControl;component/AirTabControl.xaml" />
         <ResourceDictionary Source="AirControl;component/AirTabItem.xaml" />
+        <ResourceDictionary Source="AirControl;component/Loading.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
