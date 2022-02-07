@@ -18,14 +18,14 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <AirPanel Type="Vertical" VerticalAlignment="Top" 
-                      HorizontalAlignment="Stretch" Space="20" >
+            <AirPanel Type="Vertical" VerticalAlignment="Top"
+                      HorizontalAlignment="Stretch" Space="20">
 
                 <AirTabControl Margin="10 10">
                     <AirTabItem Header="Switzerland">
                         <!-- Horizontal AirViewer test -->
                         <Border Width="200" Margin="0 10 0 0" CornerRadius="10"
-                            Padding="5" Background="#E1E1E1">
+                                Padding="5" Background="#E1E1E1">
                             <AirScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
                                 <AirPanel Space="10" Type="Horizontal">
                                     <AirButton Content="AAAA" />
@@ -42,61 +42,65 @@
                         <!--NullOrEmptyConverter test-->
                         <AirPanel Margin="0 10 0 0">
                             <AirButton Content="Salute"
-                                   IsEnabled="{Binding Path=Text, ElementName=AirTextBox,Converter={NullOrEmptyConverter Reversed=True}}" />
+                                       IsEnabled="{Binding Path=Text, ElementName=AirTextBox,Converter={NullOrEmptyConverter Reversed=True}}" />
                         </AirPanel>
                     </AirTabItem>
 
                     <AirTabItem Header="Argentina">
                         <!-- Bool2Visibility test -->
-                        <AirPanel Background="LightCyan" Space="10" 
+                        <AirPanel Background="LightCyan" Space="10"
                                   Margin="10" Type="Vertical">
                             <AirButton HorizontalAlignment="Center" Content="1111"
-                                   VerticalAlignment="Center" Type="Default" IsEnabled="{Binding Text, ElementName=AirTextBox,Converter={NullOrEmptyConverter Reversed=True}}"
-                                   Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={Bool2VisibilityConverter UseHidden=True, Reversed=True}}" />
-                            <AirButton HorizontalAlignment="Center" Content="2222" VerticalAlignment="Center" Type="Default"
-                                   Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={Bool2VisibilityConverter}}" />
+                                       VerticalAlignment="Center" Type="Default"
+                                       IsEnabled="{Binding Text, ElementName=AirTextBox,Converter={NullOrEmptyConverter Reversed=True}}"
+                                       Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={Bool2VisibilityConverter UseHidden=True, Reversed=True}}" />
+                            <AirButton HorizontalAlignment="Center" Content="2222" VerticalAlignment="Center"
+                                       Type="Default"
+                                       Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={Bool2VisibilityConverter}}" />
                         </AirPanel>
                     </AirTabItem>
 
                 </AirTabControl>
 
-                <AirButton Content="AIRBUTTON" HorizontalAlignment="Center"/>
+                <AirButton Content="AIRBUTTON" HorizontalAlignment="Center" />
 
                 <AirPanel Type="Vertical" HorizontalAlignment="Center" Space="10">
-                    <TextBlock Text="AirBorder Test" FontSize="15" FontWeight="Bold"/>
-                    <AirBorder Background="#FCFF9E" CornerRadius="4"  Width="100"
+                    <TextBlock Text="AirBorder Test" FontSize="15" FontWeight="Bold" />
+                    <AirBorder Background="#FCFF9E" CornerRadius="4" Width="100"
                                HorizontalAlignment="Center" BorderThickness="1" BorderBrush="#c67700">
-                        <AirBorder Width="200" Height="40" Background="Transparent" >
+                        <AirBorder Width="200" Height="40" Background="Transparent">
                         </AirBorder>
                     </AirBorder>
                 </AirPanel>
 
-                <AirTabControl Margin="10 10 0 0" FontSize="20" FontWeight="Bold" 
-                               TabStripPlacement="Left" >
-                    <AirTabItem Header="Animation">
+                <AirTabControl Margin="10 10 0 0"
+                               TabStripPlacement="Left">
+                    <AirTabItem>
+                        <AirTabItem.Header>
+                            <TextBlock Text="Animation" />
+                        </AirTabItem.Header>
                         <AirPanel Type="Horizontal" Space="10">
-                            <Loading Diameter="80" BorderThickness="5" 
-                            ProgressValue="{Binding Value, ElementName=slider}"/>
+                            <Loading Diameter="80" BorderThickness="5"
+                                     ProgressValue="{Binding Value, ElementName=slider}" />
 
                             <Slider x:Name="slider" Value="40" Maximum="100" Width="100" VerticalAlignment="Center" />
                             <TextBlock Text="{Binding Value, ElementName=slider,StringFormat=N2}"
-                                       FontSize="12" 
-                                       VerticalAlignment="Center"/>
+                                       FontSize="12"
+                                       VerticalAlignment="Center" />
                         </AirPanel>
                     </AirTabItem>
 
                     <AirTabItem Header="ToggleButton">
-                        <AirRadioButton Content="asdf"/>
+                        <AirPanel Type="Horizontal" Space="10">
+                            <AirRadioButton Content="asdf" GroupName="1" />
+                            <AirRadioButton Content="ZXCV" GroupName="1" />
+                        </AirPanel>
                     </AirTabItem>
                 </AirTabControl>
 
             </AirPanel>
             <AirTabControl Grid.Column="1" Margin="20" TabStripPlacement="Bottom">
                 <AirTabControl.Resources>
-                    <Style TargetType="AirTabItem">
-                        <Setter Property="FontSize" Value="16" />
-                        <Setter Property="FontWeight" Value="Bold" />
-                    </Style>
                 </AirTabControl.Resources>
                 <AirTabItem Header="Switzerland">
                     <ContentPresenter Content="Shaqiri" />
@@ -147,13 +151,13 @@
                                VerticalAlignment="Center" FontSize="18" />
                 </AirPanel>
                 <AirPanel Margin="10 0 10 0" Type="Horizontal"
-                            VerticalAlignment="Center">
+                          VerticalAlignment="Center">
                     <AirButton Content="Hello" Type="Main" Margin="10"
                                FontSize="16" />
                     <AirButton Content="There" Type="Default"
                                Margin="10" FontSize="16" />
-                    <Button Content="Jakvic" FontSize="16" Padding="6"
-                            VerticalAlignment="Center" Click="Button_Click" />
+                    <AirButton Content="Jakvic" FontSize="16" Padding="6"
+                               VerticalAlignment="Center" Click="Button_Click" />
                 </AirPanel>
 
                 <GroupBox Header="TextBox" HorizontalAlignment="Center" Padding="10">
@@ -171,11 +175,11 @@
                         </WrapPanel>
 
                         <AirPanel Type="Vertical">
-                            <AirTextBox HelpText="Write..."
-                                        FontSize="18" Margin="0"
-                                        Width="150" x:Name="AirTextBox"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center" />
+                            <AirTextBox
+                                FontSize="18" Margin="0"
+                                Width="150" x:Name="AirTextBox"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center" />
                         </AirPanel>
                     </AirPanel>
                 </GroupBox>
