@@ -35,10 +35,9 @@
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
-
+                            <Setter Property="Opacity" Value="0.56" />
                         </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
-                        </Trigger>
+                        
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="BorderBrush" Value="{StaticResource MainBackground}"></Setter>
                             <Trigger.EnterActions>
@@ -53,7 +52,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ThicknessAnimation Storyboard.TargetProperty="BorderThickness"
-                                                         To="2" Duration="0:0:0.1" />
+                                                            To="2" Duration="0:0:0.1" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>

@@ -94,6 +94,7 @@
                         <AirPanel Type="Horizontal" Space="10">
                             <AirRadioButton Content="asdf"/>
                             <AirRadioButton Content="ZXCV"/>
+                            <AirRadioButton Content="Enable" IsEnabled="False"/>
                         </AirPanel>
                     </AirTabItem>
                 </AirTabControl>
