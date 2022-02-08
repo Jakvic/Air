@@ -8,14 +8,14 @@
 
     <Style TargetType="local:Loading">
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="BorderBrush" Value="{StaticResource MainLinearGradientBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource MainBackground}" />
         <Setter Property="Diameter" Value="40" />
         <Setter Property="ProgressValue" Value="50" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Loading">
                     <Ellipse x:Name="PART_Ellipse"
-                             RenderOptions.BitmapScalingMode="HighQuality"
+                             RenderOptions.BitmapScalingMode="Fant"
                              Stroke="{TemplateBinding BorderBrush}"
                              StrokeThickness="{TemplateBinding BorderThickness}"
                              Width="{TemplateBinding Diameter}"

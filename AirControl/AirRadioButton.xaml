@@ -6,49 +6,57 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="local:AirRadioButton">
-        <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
-        <Setter Property="BorderBrush" Value="{StaticResource MainLinearGradientBorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AirRadioButton">
-                    <local:AirBorder x:Name="outBorder" Padding="4" CornerRadius="8" 
-                                     BorderThickness="0" Background="Transparent">
-                        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" x:Name="radioButtonBorder"
-                                    MinWidth="14" MinHeight="14"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="100"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,1,2,1"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                            </Border>
-                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        </Grid>
-                    </local:AirBorder>
+                    <local:AirPanel x:Name="templateRoot" Space="4" Type="Horizontal"
+                                    Background="Transparent" SnapsToDevicePixels="True">
+                        <Border x:Name="radioButtonBorder"
+                                MinWidth="15" MinHeight="15"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="100"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,1,2,1"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        </Border>
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </local:AirPanel>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="outBorder" Value="LightBlue"/>
-                                    <!-- Value="{StaticResource DefaultBackgroundHover}" /> -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource MainBackground}" />
                         </Trigger>
+
                         <Trigger Property="IsEnabled" Value="False">
 
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-
                         </Trigger>
                         <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="BorderThickness" Value="2" TargetName="radioButtonBorder" />
+                            <Setter Property="BorderBrush" Value="{StaticResource MainBackground}"></Setter>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetProperty="BorderThickness"
+                                                            To="4" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetProperty="BorderThickness"
+                                                         To="2" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

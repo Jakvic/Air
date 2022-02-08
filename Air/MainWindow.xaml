@@ -92,8 +92,8 @@
 
                     <AirTabItem Header="ToggleButton">
                         <AirPanel Type="Horizontal" Space="10">
-                            <AirRadioButton Content="asdf" GroupName="1" />
-                            <AirRadioButton Content="ZXCV" GroupName="1" />
+                            <AirRadioButton Content="asdf"/>
+                            <AirRadioButton Content="ZXCV"/>
                         </AirPanel>
                     </AirTabItem>
                 </AirTabControl>
