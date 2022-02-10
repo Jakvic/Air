@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="MainWindow">
-
-
+        xmlns:local="clr-namespace:Air"
+        mc:Ignorable="d" 
+        Title="MainWindow" d:DataContext="{d:DesignInstance local:Person}">
+    <Window.DataContext>
+        <local:Person Gender="Male" Name="Jakvic"/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -28,7 +30,7 @@
                                 Padding="5" Background="#E1E1E1">
                             <AirScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
                                 <AirPanel Space="10" Type="Horizontal">
-                                    <AirButton Content="AAAA" />
+                                    <AirButton Content="AAAA" Command="{Binding Eat}" />
                                     <AirButton Content="BBBB" />
                                     <AirButton Content="CCCC" />
                                     <AirButton Content="DDDD" />
@@ -77,24 +79,33 @@
                                TabStripPlacement="Left">
                     <AirTabItem>
                         <AirTabItem.Header>
-                            <TextBlock Text="Animation" />
+                            <TextBlock Text="LoadingAnimation" />
                         </AirTabItem.Header>
                         <AirPanel Type="Horizontal" Space="10">
                             <Loading Diameter="80" BorderThickness="5"
-                                     ProgressValue="{Binding Value, ElementName=slider}" />
+                                     ProgressValue="{Binding Value, ElementName=Slider}" />
 
-                            <Slider x:Name="slider" Value="40" Maximum="100" Width="100" VerticalAlignment="Center" />
-                            <TextBlock Text="{Binding Value, ElementName=slider,StringFormat=N2}"
+                            <Slider x:Name="Slider" Value="40" Maximum="100" Width="100" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Value, ElementName=Slider,StringFormat=N2}"
                                        FontSize="12"
                                        VerticalAlignment="Center" />
                         </AirPanel>
                     </AirTabItem>
 
-                    <AirTabItem Header="ToggleButton">
+                    <AirTabItem Header="RadioButton">
                         <AirPanel Type="Horizontal" Space="10">
                             <AirRadioButton Content="asdf"/>
                             <AirRadioButton Content="ZXCV"/>
                             <AirRadioButton Content="Enable" IsEnabled="False"/>
+                        </AirPanel>
+                    </AirTabItem>
+                    <AirTabItem Header="ComboBox">
+                        <AirPanel Type="Vertical" Space="10">
+                            <ComboBox ItemsSource="{Binding }">
+                                <!-- <ComboBoxItem Content="Le Feg" IsSelected="True"/> -->
+                                <!-- <ComboBoxItem Content="La Red"/> -->
+                                <!-- <ComboBoxItem Content="OJ!@FDS9023fs"/> -->
+                            </ComboBox>
                         </AirPanel>
                     </AirTabItem>
                 </AirTabControl>
@@ -168,7 +179,7 @@
                                      FontSize="18" Padding="4" MinWidth="80" MaxWidth="80"
                                      HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-                            <AirTextBox IsEnabled="False" Text="Fuck" FontSize="18" Margin="10"
+                            <AirTextBox IsEnabled="False" Text="SHOW" FontSize="18" Margin="10"
                                         Width="60"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center" />

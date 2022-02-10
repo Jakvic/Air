@@ -7,5 +7,6 @@ namespace Air
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }
