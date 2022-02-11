@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Air"
-        mc:Ignorable="d" 
+        mc:Ignorable="d"
         Title="MainWindow" d:DataContext="{d:DesignInstance local:Person}">
     <Window.DataContext>
-        <local:Person Gender="Male" Name="Jakvic"/>
+        <local:Person Gender="Male" Name="Jakvic" />
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -94,18 +94,35 @@
 
                     <AirTabItem Header="RadioButton">
                         <AirPanel Type="Horizontal" Space="10">
-                            <AirRadioButton Content="asdf"/>
-                            <AirRadioButton Content="ZXCV"/>
-                            <AirRadioButton Content="Enable" IsEnabled="False"/>
+                            <AirRadioButton Content="asdf" />
+                            <AirRadioButton Content="ZXCV" />
+                            <AirRadioButton Content="Enable" IsEnabled="False" />
                         </AirPanel>
                     </AirTabItem>
                     <AirTabItem Header="ComboBox">
                         <AirPanel Type="Vertical" Space="10">
                             <ComboBox ItemsSource="{Binding }">
-                                <!-- <ComboBoxItem Content="Le Feg" IsSelected="True"/> -->
-                                <!-- <ComboBoxItem Content="La Red"/> -->
-                                <!-- <ComboBoxItem Content="OJ!@FDS9023fs"/> -->
+                                <ComboBoxItem Content="Le Feg" IsSelected="True" />
+                                <ComboBoxItem Content="La Red" />
+                                <ComboBoxItem Content="OJ!@FDS9023fs" />
                             </ComboBox>
+                            <ComboBox ItemsSource="{Binding }" IsEditable="True">
+                                <ComboBoxItem Content="Le Feg" IsSelected="True" />
+                                <ComboBoxItem Content="La Red" />
+                                <ComboBoxItem Content="OJ!@FDS9023fs" />
+                            </ComboBox>
+                            <AirComboBox>
+                                <ComboBoxItem Content="LaGea" />
+                                <ComboBoxItem Content="Amelika Dream" />
+                            </AirComboBox>
+                            <Border BorderBrush="LightGray" BorderThickness="1" Margin="10">
+
+                                <Border.Effect>
+                                    <DropShadowEffect />
+                                </Border.Effect>
+                                <TextBlock Text="King Crimson" Margin="10"
+                                           FontWeight="Bold" FontSize="22" />
+                            </Border>
                         </AirPanel>
                     </AirTabItem>
                 </AirTabControl>

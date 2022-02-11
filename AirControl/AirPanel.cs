@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace AirControl
 {
@@ -80,6 +81,10 @@ namespace AirControl
             var size = new Size();
             foreach (UIElement child in InternalChildren)
             {
+                if (child is Popup)
+                {
+                    continue;
+                }
                 child.Measure(new Size(availableSize.Width, availableSize.Height));
                 height = Math.Max(height, child.DesiredSize.Height);
                 width += child.DesiredSize.Width + Space;
@@ -99,6 +104,10 @@ namespace AirControl
             var size = new Size();
             foreach (UIElement child in InternalChildren)
             {
+                if (child is Popup)
+                {
+                    continue;
+                }
                 child.Measure(new Size(availableSize.Width, availableSize.Height));
                 height = Math.Max(height, child.DesiredSize.Height);
                 width += child.DesiredSize.Width + Space;
@@ -116,6 +125,10 @@ namespace AirControl
             var previousChildSize = 0d;
             foreach (UIElement child in InternalChildren)
             {
+                if (child is Popup)
+                {
+                    continue;
+                }
                 rcChild.X += previousChildSize + (previousChildSize == 0 ? 0 : Space);
                 previousChildSize = child.DesiredSize.Width;
                 rcChild.Width = previousChildSize;
@@ -132,6 +145,11 @@ namespace AirControl
             var size = new Size();
             foreach (UIElement child in InternalChildren)
             {
+                if (child is Popup)
+                {
+                    continue;
+                }
+                
                 child.Measure(new Size(availableSize.Width, availableSize.Height));
                 width = Math.Max(width, child.DesiredSize.Width);
                 height += child.DesiredSize.Height + Space;
@@ -151,6 +169,11 @@ namespace AirControl
             var size = new Size();
             foreach (UIElement child in InternalChildren)
             {
+                if (child is Popup)
+                {
+                    continue;
+                }
+                
                 child.Measure(new Size(availableSize.Width, availableSize.Height));
                 width = Math.Max(width, child.DesiredSize.Width);
                 height += child.DesiredSize.Height + Space;
@@ -168,6 +191,11 @@ namespace AirControl
             var previousChildSize = 0d;
             foreach (UIElement child in InternalChildren)
             {
+                if (child is Popup)
+                {
+                    continue;
+                }
+                
                 rcChild.Y += previousChildSize + (previousChildSize == 0 ? 0 : Space);
                 previousChildSize = child.DesiredSize.Height;
                 rcChild.Height = previousChildSize;

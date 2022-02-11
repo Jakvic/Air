@@ -27,7 +27,8 @@ namespace Air
                 Debug.WriteLine("Done" + DateTime.Now);
             });
             //DeadLockDemo.Test();
-           DeadLockDemo.TestNotFullyAsync();
+           //DeadLockDemo.TestNotFullyAsync();
+           DeadLockDemo.FuncAsync();
         });
     }
 }

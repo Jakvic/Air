@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Air
 {
@@ -35,10 +38,26 @@ namespace Air
                         sb.Begin(rect);*/
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        async Task cw()
         {
+            await Task.Delay(1000).ConfigureAwait(false);
+        }
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            button.IsEnabled = false;
+            try
+            {
+                await cw();
+            }
+            finally
+            {
+                button.IsEnabled = true;
+            }
+            return;
             var demo = new Demo();
             demo.ShowDialog();
         }
+
     }
 }

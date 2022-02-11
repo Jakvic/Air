@@ -5,11 +5,24 @@
         <ResourceDictionary Source="Colors.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
+    <Style x:Key="DefaultFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Background="{StaticResource DefaultBorderBrush}"
+                                     Opacity="0.1" Margin="-2"
+                                     CornerRadius="4"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="local:AirRadioButton">
         <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FocusVisualStyle" Value ="{StaticResource DefaultFocusVisualStyle}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AirRadioButton">
@@ -37,7 +50,7 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" Value="0.56" />
                         </Trigger>
-                        
+
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="BorderBrush" Value="{StaticResource MainBackground}"></Setter>
                             <Trigger.EnterActions>
