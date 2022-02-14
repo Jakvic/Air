@@ -2,91 +2,144 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:AirControl">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Colors.xaml"/>
+        <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
-        <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
-                                  Width="0" />
-            </Grid.ColumnDefinitions>
-            <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2"
-                   IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                   Margin="1" Placement="Bottom"
-                   PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
-                    <Border x:Name="dropDownBorder"
-                            Background="{StaticResource DefaultBackground}"
-                            BorderBrush="{StaticResource MainLinearGradientBorderBrush}"
-                            BorderThickness="1">
-                        <Border.Effect>
-                            <DropShadowEffect/> 
-                        </Border.Effect>
-                        <ScrollViewer x:Name="DropDownScrollViewer">
-                            <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
-                                <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top"
-                                        Width="0">
-                                    <Rectangle x:Name="opaqueRect"
-                                               Fill="{Binding Background, ElementName=dropDownBorder}"
-                                               Height="{Binding ActualHeight, ElementName=dropDownBorder}"
-                                               Width="{Binding ActualWidth, ElementName=dropDownBorder}" />
-                                </Canvas>
-                                <ItemsPresenter x:Name="ItemsPresenter"
-                                                KeyboardNavigation.DirectionalNavigation="Contained"
-                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            </Grid>
-                        </ScrollViewer>
-                    </Border>
-            </Popup>
-            <ToggleButton x:Name="toggleButton" Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" Grid.Column="0"
-                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-            
-            <ContentPresenter Grid.Column="0" x:Name="contentPresenter"
-                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                              Content="{TemplateBinding SelectionBoxItem}"
-                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              IsHitTestVisible="false" Margin="{TemplateBinding Padding}"
-                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-        </Grid>
-        <ControlTemplate.Triggers>
-            <!-- <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true"> -->
-            <!--     <Setter Property="Color" TargetName="shadow" Value="#71000000" /> -->
-            <!-- </Trigger> -->
-            <Trigger Property="HasItems" Value="false">
-                <Setter Property="Height" TargetName="dropDownBorder" Value="95" />
-            </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsGrouping" Value="true" />
-                    <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false" />
-                </MultiTrigger.Conditions>
-                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-            </MultiTrigger>
-            <Trigger Property="ScrollViewer.CanContentScroll" SourceName="DropDownScrollViewer" Value="false">
-                <Setter Property="Canvas.Top" TargetName="opaqueRect"
-                        Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}" />
-                <Setter Property="Canvas.Left" TargetName="opaqueRect"
-                        Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}" />
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
+
+    <Style x:Key="ToggleLabel" TargetType="Label">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Label">
+                    <Canvas Width="14" Height="14">
+                        <Path Stroke="{StaticResource MainLinearGradientBorderBrush}" StrokeThickness="1.2">
+                            <Path.Data>
+                                <PathGeometry Figures="M0,0 L7,7 L14,0" />
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style TargetType="local:AirComboBox">
         <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource MainBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+        <Setter Property="CornerRadius" Value="4" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-        <Setter Property="Padding" Value="6,3,5,3" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-        <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:AirComboBox">
+                    <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition
+                                MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
+                                Width="0" />
+                        </Grid.ColumnDefinitions>
+                        <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2"
+                               IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                               Margin="1" Placement="Bottom"
+                               PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                            <Border x:Name="dropDownBorder" CornerRadius="{TemplateBinding CornerRadius}"
+                                    Background="{StaticResource DefaultBackground}"
+                                    BorderBrush="{StaticResource MainLinearGradientBorderBrush}"
+                                    BorderThickness="1">
+                                <Border.Effect>
+                                    <DropShadowEffect />
+                                </Border.Effect>
+                                <ScrollViewer x:Name="DropDownScrollViewer">
+                                    <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+                                        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0"
+                                                VerticalAlignment="Top"
+                                                Width="0">
+                                            <Rectangle x:Name="opaqueRect"
+                                                       Fill="{Binding Background, ElementName=dropDownBorder}"
+                                                       Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                                       Width="{Binding ActualWidth, ElementName=dropDownBorder}"
+                                                       RadiusX="4"
+                                                       RadiusY="4">
+                                            </Rectangle>
+                                        </Canvas>
+                                        <ItemsPresenter x:Name="ItemsPresenter"
+                                                        KeyboardNavigation.DirectionalNavigation="Contained"
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    </Grid>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                        <local:AirToggleButton Grid.Column="0" x:Name="toggleButton"
+                                               Background="{TemplateBinding Background}"
+                                               BorderBrush="{TemplateBinding BorderBrush}"
+                                               CornerRadius="{TemplateBinding CornerRadius}"
+                                               BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2"
+                                               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                            <Label x:Name="label" Style="{StaticResource ToggleLabel}"
+                                   Margin="0 0 5 0"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center">
+                                <Label.LayoutTransform>
+                                    <RotateTransform x:Name="LabelRotateTransform" />
+                                </Label.LayoutTransform>
+                            </Label>
+                            <local:AirToggleButton.Style>
+                                <Style TargetType="local:AirToggleButton">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard TargetName="LabelRotateTransform"
+                                                                TargetProperty="Angle">
+                                                        <DoubleAnimation To="180" Duration="100" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </local:AirToggleButton.Style>
+                        </local:AirToggleButton>
+
+
+                        <ContentPresenter Grid.Column="0" x:Name="contentPresenter"
+                                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          Content="{TemplateBinding SelectionBoxItem}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          IsHitTestVisible="false" Margin="{TemplateBinding Padding}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!-- <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true"> -->
+                        <!--     <Setter Property="Color" TargetName="shadow" Value="#71000000" /> -->
+                        <!-- </Trigger> -->
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter Property="Height" TargetName="dropDownBorder" Value="95" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsGrouping" Value="true" />
+                                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                        </MultiTrigger>
+                        <Trigger Property="ScrollViewer.CanContentScroll" SourceName="DropDownScrollViewer"
+                                 Value="false">
+                            <Setter Property="Canvas.Top" TargetName="opaqueRect"
+                                    Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}" />
+                            <Setter Property="Canvas.Left" TargetName="opaqueRect"
+                                    Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
-    
+
 </ResourceDictionary>

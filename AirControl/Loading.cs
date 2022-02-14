@@ -45,7 +45,6 @@ namespace AirControl
             else
             {
                 var state = loading.storyboard.GetCurrentState();
-                Debug.WriteLine(state.ToString());
                 if (state is ClockState.Stopped)
                 {
                     loading.storyboard?.Begin();
