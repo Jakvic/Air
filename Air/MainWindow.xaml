@@ -123,14 +123,14 @@
                                 <ComboBoxItem Content="LaGea" />
                                 <ComboBoxItem Content="Amelika Dream" />
                             </AirComboBox>
-                            <Border BorderBrush="LightGray" BorderThickness="1" Margin="10">
-
-                                <Border.Effect>
-                                    <DropShadowEffect />
-                                </Border.Effect>
-                                <TextBlock Text="King Crimson" Margin="10"
-                                           FontWeight="Bold" FontSize="22" />
-                            </Border>
+                            <!-- <Border BorderBrush="LightGray" BorderThickness="1" Margin="10"> -->
+                            <!-- -->
+                            <!--     <Border.Effect> -->
+                            <!--         <DropShadowEffect /> -->
+                            <!--     </Border.Effect> -->
+                            <!--     <TextBlock Text="King Crimson" Margin="10" -->
+                            <!--                FontWeight="Bold" FontSize="22" /> -->
+                            <!-- </Border> -->
                         </AirPanel>
                     </AirTabItem>
                 </AirTabControl>

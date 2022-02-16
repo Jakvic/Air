@@ -100,7 +100,7 @@ namespace AirControl
             var animation = new DoubleAnimation
             {
                 From = 0,
-                To = 359.99,
+                To = 359.99
             };
             Storyboard.SetTargetProperty(animation, new PropertyPath("RenderTransform.Angle"));
             Storyboard.SetTarget(animation, ellipse);

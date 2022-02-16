@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace AirControl
 {
@@ -18,6 +20,11 @@ namespace AirControl
         {
             get => (CornerRadius) GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
+        }
+
+        public AirComboBox()
+        {
+            
         }
     }
 }
