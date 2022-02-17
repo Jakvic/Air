@@ -140,7 +140,10 @@
                 <AirTabControl.Resources>
                 </AirTabControl.Resources>
                 <AirTabItem Header="Switzerland">
-                    <ContentPresenter Content="Shaqiri" />
+                    <AirPanel Type="Vertical" Space="10">
+                        <ContentPresenter Content="Shaqiri" />
+                        <Popup Width="100" Height="100" />
+                    </AirPanel>
                 </AirTabItem>
 
                 <AirTabItem Header="France">

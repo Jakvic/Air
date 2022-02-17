@@ -22,12 +22,12 @@ namespace AirControl
 
         private void OnCornerRadiusChanged(object? sender, EventArgs e)
         {
-            DoClip();
+            DoClip2();
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            DoClip();
+            DoClip2();
         }
 
         private void DoClip2()

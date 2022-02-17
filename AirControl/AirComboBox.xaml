@@ -39,69 +39,67 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AirComboBox">
-                    <local:AirBorder x:Name="outterBorder" BorderThickness="0" Background="LightCoral" Opacity=".4"
-                                     BorderBrush="{StaticResource MainLinearGradientBorderBrush}"
-                                     CornerRadius="{TemplateBinding CornerRadius}">
-                        <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition
-                                    MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
-                                    Width="0" />
-                            </Grid.ColumnDefinitions>
-                            <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2"
-                                   IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                   Margin="1" Placement="Bottom"
-                                   PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
-                                <Border x:Name="dropDownBorder" CornerRadius="{TemplateBinding CornerRadius}"
-                                        Background="{StaticResource DefaultBackground}"
-                                        BorderBrush="{StaticResource MainLinearGradientBorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}">
-                                    <Border.Effect>
-                                        <DropShadowEffect />
-                                    </Border.Effect>
-                                    <ScrollViewer x:Name="DropDownScrollViewer">
-                                        <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
-                                            <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0"
-                                                    VerticalAlignment="Top"
-                                                    Width="0">
-                                                <Rectangle x:Name="opaqueRect"
-                                                           Fill="{Binding Background, ElementName=dropDownBorder}"
-                                                           Height="{Binding ActualHeight, ElementName=dropDownBorder}"
-                                                           Width="{Binding ActualWidth, ElementName=dropDownBorder}"
-                                                           RadiusX="{TemplateBinding CornerRadius,Converter={convertors:CornerRadius2RectRadiusConverter}}"
-                                                           RadiusY="{Binding Path= RadiusX, RelativeSource={RelativeSource Self}}" />
-                                            </Canvas>
-                                            <ItemsPresenter x:Name="ItemsPresenter"
-                                                            KeyboardNavigation.DirectionalNavigation="Contained"
-                                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                        </Grid>
-                                    </ScrollViewer>
-                                </Border>
-                            </Popup>
-                            <local:AirToggleButton Grid.Column="0" Grid.ColumnSpan="2" x:Name="toggleButton"
-                                                   HorizontalContentAlignment="Right"
-                                                   VerticalContentAlignment="Center"
-                                                   Background="{TemplateBinding Background}"
-                                                   BorderBrush="{TemplateBinding BorderBrush}"
-                                                   CornerRadius="{TemplateBinding CornerRadius}"
-                                                   BorderThickness="{TemplateBinding BorderThickness}"
-                                                   IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
-                                <Label x:Name="label" Style="{StaticResource ToggleLabel}" />
-                            </local:AirToggleButton>
+                    <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition
+                                MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
+                                Width="0" />
+                        </Grid.ColumnDefinitions>
+                        <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2"
+                               IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                               Margin="1" Placement="Bottom"
+                               PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                            <Border x:Name="dropDownBorder"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Background="{StaticResource DefaultBackground}"
+                                    BorderBrush="{StaticResource MainLinearGradientBorderBrush}"
+                                    BorderThickness="1 0 1 1">
+
+                                <Border.Effect>
+                                    <DropShadowEffect />
+                                </Border.Effect>
+                                <ScrollViewer x:Name="DropDownScrollViewer">
+                                    <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+                                        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0"
+                                                VerticalAlignment="Top"
+                                                Width="0">
+                                            <Rectangle x:Name="opaqueRect"
+                                                       Fill="{Binding Background, ElementName=dropDownBorder}"
+                                                       Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                                       Width="{Binding ActualWidth, ElementName=dropDownBorder}"
+                                                       RadiusX="{TemplateBinding CornerRadius,Converter={convertors:CornerRadius2CornerConverter}}"
+                                                       RadiusY="{Binding Path= RadiusX, RelativeSource={RelativeSource Self}}" />
+                                        </Canvas>
+                                        <ItemsPresenter x:Name="ItemsPresenter"
+                                                        KeyboardNavigation.DirectionalNavigation="Contained"
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    </Grid>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                        <local:AirToggleButton Grid.Column="0" Grid.ColumnSpan="2" x:Name="toggleButton"
+                                               HorizontalContentAlignment="Right"
+                                               VerticalContentAlignment="Center"
+                                               Background="{TemplateBinding Background}"
+                                               BorderBrush="{TemplateBinding BorderBrush}"
+                                               CornerRadius="{TemplateBinding CornerRadius}"
+                                               BorderThickness="{TemplateBinding BorderThickness}"
+                                               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                            <Label x:Name="label" Style="{StaticResource ToggleLabel}" />
+                        </local:AirToggleButton>
 
 
-                            <ContentPresenter Grid.Column="0" x:Name="contentPresenter"
-                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                              Content="{TemplateBinding SelectionBoxItem}"
-                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              IsHitTestVisible="false" Margin="{TemplateBinding Padding}"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        </Grid>
-                    </local:AirBorder>
+                        <ContentPresenter Grid.Column="0" x:Name="contentPresenter"
+                                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          Content="{TemplateBinding SelectionBoxItem}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          IsHitTestVisible="false" Margin="{TemplateBinding Padding}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <!-- <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true"> -->
                         <!--     <Setter Property="Color" TargetName="shadow" Value="#71000000" /> -->
@@ -113,8 +111,15 @@
                             <Setter Property="Height" TargetName="dropDownBorder" Value="95" />
                         </Trigger>
                         <Trigger Property="IsDropDownOpen" Value="True">
-                            <Setter Property="BorderThickness" Value="1" TargetName="outterBorder"/>
-                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter TargetName="toggleButton" Property="CornerRadius"
+                                    Value="{TemplateBinding CornerRadius,
+                            Converter={convertors:CornerRadius2CornerConverter UseCornerRadius=True},
+                            ConverterParameter=-1|-1|0|0}" />
+                            <Setter TargetName="dropDownBorder" Property="CornerRadius"
+                                    Value="{TemplateBinding CornerRadius,
+                            Converter={convertors:CornerRadius2CornerConverter UseCornerRadius=True},
+                            ConverterParameter=0|0|-1|-1}" />
+
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard Storyboard.TargetName="label"

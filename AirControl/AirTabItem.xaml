@@ -31,7 +31,7 @@
                         </Trigger>
 
                         <DataTrigger Binding="{Binding IsSelected,RelativeSource={RelativeSource Self}}" Value="True">
-                            <Setter Property="TextBlock.Foreground" TargetName="contentPresenter"
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter"
                                     Value="{StaticResource MainBackground}" />
                             <Setter Property="BorderBrush" TargetName="Border" Value="{StaticResource MainBackground}"/>
                         </DataTrigger>
