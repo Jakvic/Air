@@ -8,7 +8,6 @@ using System.Windows.Media.Animation;
 
 namespace AirControl.Convertors
 {
-    [Flags]
     public enum Corner
     {
         TopLeft,
@@ -46,7 +45,7 @@ namespace AirControl.Convertors
 
             if (UseCornerRadius)
             {
-                var radius = (CornerRadius) value;
+                var radius = cornerRadius;
                 var s = (string) parameter;
                 var strings = s.Split('|');
                 var topLeft = System.Convert.ToInt32(strings[0]);

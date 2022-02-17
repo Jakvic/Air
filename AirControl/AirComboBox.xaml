@@ -112,11 +112,11 @@
                         </Trigger>
                         <Trigger Property="IsDropDownOpen" Value="True">
                             <Setter TargetName="toggleButton" Property="CornerRadius"
-                                    Value="{TemplateBinding CornerRadius,
+                                    Value="{Binding CornerRadius ,RelativeSource={RelativeSource TemplatedParent},
                             Converter={convertors:CornerRadius2CornerConverter UseCornerRadius=True},
                             ConverterParameter=-1|-1|0|0}" />
                             <Setter TargetName="dropDownBorder" Property="CornerRadius"
-                                    Value="{TemplateBinding CornerRadius,
+                                    Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent},
                             Converter={convertors:CornerRadius2CornerConverter UseCornerRadius=True},
                             ConverterParameter=0|0|-1|-1}" />
 
