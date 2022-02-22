@@ -119,7 +119,7 @@
                                 <ComboBoxItem Content="La Red" />
                                 <ComboBoxItem Content="OJ!@FDS9023fs" />
                             </ComboBox>
-                            <AirComboBox MaxWidth="180">
+                            <AirComboBox>
                                 <ComboBoxItem Content="LaGea" />
                                 <ComboBoxItem Content="Amelika Dream" />
                             </AirComboBox>

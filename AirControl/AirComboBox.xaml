@@ -10,7 +10,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Label">
-                    <Canvas Width="11" Height="5">
+                    <Canvas Width="10" Height="5">
                         <Path Stroke="{StaticResource DefaultForeground}"
                               StrokeThickness="1.2">
                             <Path.Data>
@@ -50,16 +50,17 @@
                         <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2"
                                IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                Margin="1" Placement="Bottom" PlacementTarget="{Binding ElementName=toggleButton}"
-                               PlacementRectangle="{Binding ElementName=toggleButton}"
+                               PlacementRectangle="{Binding ElementName=toggleButton}" 
                                PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                             <local:AirBorder x:Name="dropDownBorder"
-                                    CornerRadius="{TemplateBinding CornerRadius}"
-                                    Background="LightBlue"
+                                    MinWidth="{Binding ActualWidth,ElementName=toggleButton}"
+                                    Width="{Binding Width,ElementName=PART_Popup}"
+                                    MaxWidth="{TemplateBinding Width}"
                                     BorderBrush="{StaticResource MainLinearGradientBorderBrush}"
                                     BorderThickness="1 0 1 1">
 
                                 <Border.Effect>
-                                    <DropShadowEffect />
+                                    <DropShadowEffect Direction="-90" Color="Black" Opacity="0.2" />
                                 </Border.Effect>
                                 <local:AirScrollViewer x:Name="DropDownScrollViewer">
                                     <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
@@ -67,11 +68,9 @@
                                                 VerticalAlignment="Top"
                                                 Width="0">
                                             <Rectangle x:Name="opaqueRect"
-                                                       Fill="LightPink"
+                                                       Fill="{TemplateBinding Background}"
                                                        Height="{Binding ActualHeight, ElementName=dropDownBorder}"
-                                                       Width="{Binding ActualWidth, ElementName=dropDownBorder}"
-                                                       RadiusX="{TemplateBinding CornerRadius,Converter={convertors:CornerRadius2CornerConverter}}"
-                                                       RadiusY="{Binding Path= RadiusX, RelativeSource={RelativeSource Self}}" />
+                                                       Width="{Binding ActualWidth, ElementName=dropDownBorder}" />
                                         </Canvas>
                                         <ItemsPresenter x:Name="ItemsPresenter"
                                                         KeyboardNavigation.DirectionalNavigation="Contained"
@@ -119,16 +118,24 @@
                         <Trigger Property="IsDropDownOpen" Value="True">
                             <Setter TargetName="dropDownBorder" Property="Width"
                                     Value="{Binding  ActualWidth,ElementName=toggleButton}" />
-                            
+
                             <Setter TargetName="toggleButton" Property="CornerRadius"
                                     Value="{Binding CornerRadius ,RelativeSource={RelativeSource TemplatedParent},
                             Converter={convertors:CornerRadius2CornerConverter UseCornerRadius=True},
                             ConverterParameter=-1|-1|0|0}" />
-                            
+
                             <Setter TargetName="dropDownBorder" Property="CornerRadius"
                                     Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent},
                             Converter={convertors:CornerRadius2CornerConverter UseCornerRadius=True},
                             ConverterParameter=0|0|-1|-1}" />
+
+                            <Setter TargetName="opaqueRect" Property="RadiusX"
+                                    Value="{Binding CornerRadius,
+                            RelativeSource={RelativeSource TemplatedParent},Converter={convertors:CornerRadius2CornerConverter Corner=TopLeft}}" />
+
+                            <Setter TargetName="opaqueRect" Property="RadiusY"
+                                    Value="{Binding CornerRadius,
+                            RelativeSource={RelativeSource TemplatedParent},Converter={convertors:CornerRadius2CornerConverter Corner=TopLeft}}" />
 
                             <Trigger.EnterActions>
                                 <BeginStoryboard>

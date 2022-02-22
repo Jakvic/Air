@@ -43,21 +43,7 @@ namespace AirControl.Convertors
                 return DependencyProperty.UnsetValue;
             }
 
-            if (UseCornerRadius)
-            {
-                var radius = cornerRadius;
-                var s = (string) parameter;
-                var strings = s.Split('|');
-                var topLeft = System.Convert.ToInt32(strings[0]);
-                var topRight = System.Convert.ToInt32(strings[1]);
-                var bottomRight = System.Convert.ToInt32(strings[2]);
-                var bottomLeft = System.Convert.ToInt32(strings[3]);
-                return new CornerRadius(topLeft == -1 ? radius.TopLeft : topLeft,
-                    topRight == -1 ? radius.TopRight : topRight,
-                    bottomRight == -1 ? radius.BottomRight : bottomRight,
-                    bottomLeft == -1 ? radius.BottomLeft : bottomLeft);
-            }
-            else
+            if (!UseCornerRadius)
             {
                 return Corner switch
                 {
@@ -68,6 +54,19 @@ namespace AirControl.Convertors
                     _ => cornerRadius.TopLeft
                 };
             }
+
+            var radius = cornerRadius;
+            var s = (string) parameter;
+            var strings = s.Split('|');
+            var topLeft = System.Convert.ToInt32(strings[0]);
+            var topRight = System.Convert.ToInt32(strings[1]);
+            var bottomRight = System.Convert.ToInt32(strings[2]);
+            var bottomLeft = System.Convert.ToInt32(strings[3]);
+            return new CornerRadius(topLeft == -1 ? radius.TopLeft : topLeft,
+                topRight == -1 ? radius.TopRight : topRight,
+                bottomRight == -1 ? radius.BottomRight : bottomRight,
+                bottomLeft == -1 ? radius.BottomLeft : bottomLeft);
+
         }
 
         public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

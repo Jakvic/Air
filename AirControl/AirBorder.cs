@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input.StylusPlugIns;
 using System.Windows.Media;
 
 namespace AirControl
@@ -12,23 +13,6 @@ namespace AirControl
     public class AirBorder : Border
     {
         private const double DBL_EPSILON = 2.2204460492503131e-016;
-
-        public AirBorder()
-        {
-            SizeChanged += OnSizeChanged;
-            DependencyPropertyDescriptor.FromProperty(CornerRadiusProperty, typeof(AirBorder))
-                .AddValueChanged(this, OnCornerRadiusChanged);
-        }
-
-        private void OnCornerRadiusChanged(object? sender, EventArgs e)
-        {
-            DoClip2();
-        }
-
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            DoClip2();
-        }
 
         private void DoClip2()
         {
@@ -58,11 +42,22 @@ namespace AirControl
             var geometry = Child.Clip as StreamGeometry;
             if (geometry is not null)
             {
+                if (geometry.IsFrozen)
+                {
+                    return;
+                }
+                
                 var radii = new Radii(CornerRadius, BorderThickness, true);
                 using var streamGeometryContext = geometry.Open();
                 GenerateGeometry(streamGeometryContext, new Rect(Child.RenderSize), radii);
                 geometry.Freeze();
             }
+        }
+
+        protected override void OnRender(DrawingContext dc)
+        {
+            base.OnRender(dc);
+            DoClip();
         }
 
         private static bool IsZero(double value)

@@ -43,6 +43,7 @@ namespace AirControl
         Storyboard endStoryboard;
         ScrollBar vsb;
         ScrollBar hsb;
+        
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
