@@ -14,7 +14,10 @@
     <SolidColorBrush x:Key="DefaultForeground" Color="#000000" />
     <SolidColorBrush x:Key="DefaultBorderBrush" Color="#ABADB3" />
 
+    <SolidColorBrush x:Key="LightMainColorHover" Color="#66A6D0FF" />
+    <SolidColorBrush x:Key="LightMainColorHighlighted" Color="#EEA6D0FF" />
 
+    
     <LinearGradientBrush x:Key="MainLinearGradientBorderBrush" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#007FFF" Offset="0"/>
         <GradientStop Color="#6F00FF" Offset="1"/> 

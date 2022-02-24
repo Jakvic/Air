@@ -22,13 +22,14 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style TargetType="local:AirComboBox">
         <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
         <Setter Property="CornerRadius" Value="4" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="4 0" />
+        <Setter Property="Padding" Value="8 " />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
@@ -36,7 +37,32 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <!-- <Setter Property="MinWidth" Value="100" /> -->
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <Border x:Name="Border" BorderThickness="0"
+                                        Background="{StaticResource DefaultBackground}">
+                                    <ContentPresenter Margin="{TemplateBinding Padding}" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" TargetName="Border"
+                                                Value="{StaticResource LightMainColorHover}" />
+                                    </Trigger>
+                                    <Trigger Property="IsHighlighted" Value="True">
+                                        <Setter Property="Background" TargetName="Border"
+                                                Value="{StaticResource LightMainColorHighlighted}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AirComboBox">
@@ -50,14 +76,13 @@
                         <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2"
                                IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                Margin="1" Placement="Bottom" PlacementTarget="{Binding ElementName=toggleButton}"
-                               PlacementRectangle="{Binding ElementName=toggleButton}" 
                                PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                             <local:AirBorder x:Name="dropDownBorder"
-                                    MinWidth="{Binding ActualWidth,ElementName=toggleButton}"
-                                    Width="{Binding Width,ElementName=PART_Popup}"
-                                    MaxWidth="{TemplateBinding Width}"
-                                    BorderBrush="{StaticResource MainLinearGradientBorderBrush}"
-                                    BorderThickness="1 0 1 1">
+                                             MinWidth="{Binding ActualWidth,ElementName=toggleButton}"
+                                             Width="{Binding Width,ElementName=PART_Popup}"
+                                             MaxWidth="{TemplateBinding Width}"
+                                             BorderBrush="{StaticResource MainLinearGradientBorderBrush}"
+                                             BorderThickness="1 0 1 1">
 
                                 <Border.Effect>
                                     <DropShadowEffect Direction="-90" Color="Black" Opacity="0.2" />
@@ -83,6 +108,7 @@
                                                MinWidth="{TemplateBinding MinWidth}"
                                                VerticalContentAlignment="Center"
                                                HorizontalContentAlignment="Left"
+                                               Padding="{TemplateBinding Padding}"
                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                Background="{TemplateBinding Background}"
