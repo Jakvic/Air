@@ -109,7 +109,7 @@
                     </AirTabItem>
                     <AirTabItem Header="ComboBox">
                         <AirPanel Type="Vertical" Space="10">
-                            <ComboBox ItemsSource="{Binding }">
+                            <ComboBox  ItemsSource="{Binding }">
                                 <ComboBoxItem Content="Le Feg" IsSelected="True" />
                                 <ComboBoxItem Content="La Red" />
                                 <ComboBoxItem Content="OJ!@FDS9023fs" />
@@ -123,6 +123,11 @@
                                 <ComboBoxItem Content="LaGea" />
                                 <ComboBoxItem Content="Amelika Dream" />
                             </AirComboBox>
+                            <TestCombobox>
+                                <ComboBoxItem Content="Le Feg" IsSelected="True" />
+                                <ComboBoxItem Content="La Red" />
+                                <ComboBoxItem Content="OJ!@FDS9023fs" />
+                            </TestCombobox>
                             <!-- <Border BorderBrush="LightGray" BorderThickness="1" Margin="10"> -->
                             <!-- -->
                             <!--     <Border.Effect> -->
