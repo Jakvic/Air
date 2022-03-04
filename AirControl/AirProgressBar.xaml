@@ -39,8 +39,9 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Orientation" Value="Vertical">
-                            <Setter Property="LayoutTransform" TargetName="PART_Border">
+                            <Setter Property="LayoutTransform" TargetName="PART_Border" >
                                 <Setter.Value>
+                                    <
                                     <RotateTransform Angle="-90" />
                                 </Setter.Value>
                             </Setter>

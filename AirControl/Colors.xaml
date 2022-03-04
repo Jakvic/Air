@@ -14,6 +14,9 @@
     <SolidColorBrush x:Key="DefaultForeground" Color="#000000" />
     <SolidColorBrush x:Key="DefaultBorderBrush" Color="#ABADB3" />
 
+    <SolidColorBrush x:Key="PopupBackground" Color="#EFEFEF" />
+    <SolidColorBrush x:Key="PopupMouseHover" Color="#E2E2E2" />
+    
     <SolidColorBrush x:Key="LightMainColorHover" Color="#66A6D0FF" />
     <SolidColorBrush x:Key="LightMainColorHighlighted" Color="#EEA6D0FF" />
 

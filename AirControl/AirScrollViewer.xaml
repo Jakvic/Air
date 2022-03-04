@@ -40,7 +40,7 @@
                             Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"
                             CornerRadius="{Binding Path=ScrollBarCornerRadius,RelativeSource={RelativeSource AncestorType=local:AirScrollViewer}}">
                         <Border.LayoutTransform>
-                            <ScaleTransform x:Name="scaleTransform"/>
+                            <ScaleTransform x:Name="scaleTransform" />
                         </Border.LayoutTransform>
                         <Grid x:Name="GridRoot">
                             <Grid.RowDefinitions>

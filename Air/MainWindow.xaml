@@ -123,11 +123,11 @@
                                 <ComboBoxItem Content="LaGea" />
                                 <ComboBoxItem Content="Amelika Dream" />
                             </AirComboBox>
-                            <TestCombobox>
+                            <AirComboBox>
                                 <ComboBoxItem Content="Le Feg" IsSelected="True" />
                                 <ComboBoxItem Content="La Red" />
                                 <ComboBoxItem Content="OJ!@FDS9023fs" />
-                            </TestCombobox>
+                            </AirComboBox>
                             <!-- <Border BorderBrush="LightGray" BorderThickness="1" Margin="10"> -->
                             <!-- -->
                             <!--     <Border.Effect> -->
