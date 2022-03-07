@@ -17,11 +17,7 @@ namespace AirControl
             "ScrollBarWidth", typeof(double), typeof(AirScrollViewer), new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty CanBeWidthProperty = DependencyProperty.Register(
-            "CanBeWidth", typeof(bool), typeof(AirScrollViewer), new PropertyMetadata(default(bool)));
-
-        private Border animationBorder;
-        private Storyboard endStoryboard;
-        private Storyboard startStoryboard;
+            "CanBeWidth", typeof(bool), typeof(AirScrollViewer), new PropertyMetadata(true));
 
         static AirScrollViewer()
         {

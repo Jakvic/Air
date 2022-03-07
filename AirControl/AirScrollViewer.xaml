@@ -79,12 +79,15 @@
                             <Setter TargetName="PART_Track" Property="IsDirectionReversed" Value="False" />
                         </Trigger>
 
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Orientation" Value="Horizontal" />
-                                <Condition Property="IsMouseOver" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.EnterActions>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Orientation,RelativeSource={RelativeSource Self}}" Value="Horizontal"/>
+                                <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition
+                                    Binding="{Binding CanBeWidth,RelativeSource={RelativeSource AncestorType=local:AirScrollViewer}}"
+                                    Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="ScaleY"
@@ -93,8 +96,8 @@
                                                          Duration="0:0:0.1" />
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </MultiTrigger.EnterActions>
-                            <MultiTrigger.ExitActions>
+                            </MultiDataTrigger.EnterActions>
+                            <MultiDataTrigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="ScaleY"
@@ -103,15 +106,18 @@
                                                          Duration="0:0:0.1" />
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </MultiTrigger.ExitActions>
-                        </MultiTrigger>
+                            </MultiDataTrigger.ExitActions>
+                        </MultiDataTrigger>
 
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Orientation" Value="Vertical" />
-                                <Condition Property="IsMouseOver" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.EnterActions>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Orientation,RelativeSource={RelativeSource Self}}" Value="Vertical"/>
+                                <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition
+                                    Binding="{Binding CanBeWidth,RelativeSource={RelativeSource AncestorType=local:AirScrollViewer}}"
+                                    Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="ScaleX"
@@ -120,8 +126,8 @@
                                                          Duration="0:0:0.1" />
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </MultiTrigger.EnterActions>
-                            <MultiTrigger.ExitActions>
+                            </MultiDataTrigger.EnterActions>
+                            <MultiDataTrigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="ScaleX"
@@ -130,8 +136,8 @@
                                                          Duration="0:0:0.1" />
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </MultiTrigger.ExitActions>
-                        </MultiTrigger>
+                            </MultiDataTrigger.ExitActions>
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -142,7 +148,7 @@
         <Setter Property="ScrollBarWidth" Value="5" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:AirScrollViewer}">
+                <ControlTemplate x:Name="AirScrollViewer" TargetType="{x:Type local:AirScrollViewer}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
