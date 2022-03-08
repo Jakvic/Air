@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:AirControl">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Colors.xaml"/>
+        <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="FocusVisual">
@@ -31,25 +31,27 @@
                    PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                 <Border x:Name="shadow" CornerRadius="{TemplateBinding CornerRadius}"
                         MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
-                        Margin="10"
+                        Margin="0"
                         MaxHeight="{TemplateBinding MaxDropDownHeight}">
                     <Border.Effect>
-                        <DropShadowEffect BlurRadius="8" Direction="-90" 
-                                          RenderingBias="Quality" 
+                        <DropShadowEffect BlurRadius="8" Direction="-90"
+                                          RenderingBias="Quality"
                                           ShadowDepth="2"
                                           Opacity="0.4"
                                           Color="Black" />
                     </Border.Effect>
                     <local:AirBorder x:Name="dropDownBorder" CornerRadius="{TemplateBinding CornerRadius}"
-                                     Background="{StaticResource PopupBackground}"
+                                     Background="Red"
                                      BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
                                      BorderThickness="0" Margin="1">
-                        <local:AirScrollViewer x:Name="DropDownScrollViewer" BorderThickness="0">
+                        <ScrollViewer x:Name="DropDownScrollViewer" Background="Blue"
+                                               VerticalScrollBarVisibility="Hidden"
+                                               BorderThickness="0">
                             <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0"
                                         VerticalAlignment="Top"
                                         Width="0">
-                                    <Rectangle x:Name="opaqueRect" Margin="0 40 0 0"
+                                    <Rectangle x:Name="opaqueRect" Margin="0 40 0 0" 
                                                Fill="{Binding Background, ElementName=dropDownBorder}"
                                                Height="{Binding ActualHeight, ElementName=dropDownBorder}"
                                                Width="{Binding ActualWidth, ElementName=dropDownBorder}" />
@@ -58,7 +60,7 @@
                                                 KeyboardNavigation.DirectionalNavigation="Contained"
                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                             </Grid>
-                        </local:AirScrollViewer>
+                        </ScrollViewer>
                     </local:AirBorder>
                 </Border>
             </Popup>
@@ -104,8 +106,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBoxItem">
-                    <Border x:Name="OutBorder" BorderThickness="0"
-                            Padding="{TemplateBinding Padding}">
+                    <Border x:Name="OutBorder" BorderThickness="0">
                         <ContentPresenter
                             Margin="{TemplateBinding Padding}" />
                     </Border>
