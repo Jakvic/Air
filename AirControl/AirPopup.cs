@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace AirControl
 {
@@ -16,28 +19,16 @@ namespace AirControl
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AirPopup), new FrameworkPropertyMetadata(typeof(AirPopup)));
         }
-        public AirPopup()
-        {
-            IsOpenProperty.DefaultMetadata.PropertyChangedCallback += PropertyChangedCallback;
-        }
-
-        private void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if ((bool) e.NewValue is true)
-            {
-                
-            }
-        }
 
         public CornerRadius CornerRadius
         {
-            get => (CornerRadius)GetValue(CornerRadiusProperty);
+            get => (CornerRadius) GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 
         public Brush BorderBrush
         {
-            get => (Brush)GetValue(BorderBrushProperty);
+            get => (Brush) GetValue(BorderBrushProperty);
             set => SetValue(BorderBrushProperty, value);
         }
 
@@ -46,13 +37,17 @@ namespace AirControl
 
         public Thickness BorderThickness
         {
-            get { return (Thickness)GetValue(BorderThicknessProperty); }
+            get { return (Thickness) GetValue(BorderThicknessProperty); }
             set { SetValue(BorderThicknessProperty, value); }
         }
 
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
+            drawingContext.DrawImage(
+                new BitmapImage(new Uri(
+                    @"C:\Users\Administrator\Documents\Tencent Files\3034736566\Image\Group\$0@Z}$]9JQD{GFL1COJ2IQM.jpg",
+                    UriKind.RelativeOrAbsolute)), new Rect(0, 0, base.Width, base.Height));
         }
     }
 }
