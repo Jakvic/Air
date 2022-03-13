@@ -138,11 +138,18 @@
                             <!-- </Border> -->
                         </AirPanel>
                     </AirTabItem>
-                    
+
                     <AirTabItem Header="TreeViewItem">
-                        
+
                     </AirTabItem>
                 </AirTabControl>
+
+                <AirPanel HorizontalAlignment="Center">
+                    <TreeView Style="{DynamicResource TreeViewStyle1}"  >
+                        <TreeViewItem Header="SDHGF:S"/>
+                        <TreeViewItem Header="SDHGF:S"/>
+                    </TreeView>
+                </AirPanel>
 
             </AirPanel>
             <AirTabControl Grid.Column="1" Margin="20" TabStripPlacement="Bottom">

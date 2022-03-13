@@ -10,5 +10,6 @@
         <ResourceDictionary Source="AirControl;component/AirRadioButton.xaml" />
         <ResourceDictionary Source="AirControl;component/AirComboBox.xaml" />
         <ResourceDictionary Source="AirControl;component/AirToggleButton.xaml" />
+        <ResourceDictionary Source="AirControl;component/AirTreeView.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
