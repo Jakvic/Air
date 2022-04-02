@@ -101,15 +101,15 @@
 
                             </AirPanel>
                             <AirPanel Type="Horizontal" Space="10">
-                                <ToggleButton Content="asdf"/>
-                                <AirToggleButton Width="100" 
-                                    Content="{Binding IsChecked,RelativeSource={RelativeSource Self}}"/>
+                                <ToggleButton Content="asdf" />
+                                <AirToggleButton Width="100"
+                                                 Content="{Binding IsChecked,RelativeSource={RelativeSource Self}}" />
                             </AirPanel>
                         </AirPanel>
                     </AirTabItem>
                     <AirTabItem Header="ComboBox">
                         <AirPanel Type="Vertical" Space="10">
-                            <ComboBox  ItemsSource="{Binding }">
+                            <ComboBox ItemsSource="{Binding }">
                                 <ComboBoxItem Content="Le Feg" IsSelected="True" />
                                 <ComboBoxItem Content="La Red" />
                                 <ComboBoxItem Content="OJ!@FDS9023fs" />
@@ -145,9 +145,9 @@
                 </AirTabControl>
 
                 <AirPanel HorizontalAlignment="Center">
-                    <TreeView Style="{DynamicResource TreeViewStyle1}"  >
-                        <TreeViewItem Header="SDHGF:S"/>
-                        <TreeViewItem Header="SDHGF:S"/>
+                    <TreeView Style="{DynamicResource TreeViewStyle1}">
+                        <TreeViewItem Header="SDHGF:S" />
+                        <TreeViewItem Header="SDHGF:S" />
                     </TreeView>
                 </AirPanel>
 
@@ -171,7 +171,6 @@
                 </AirTabItem>
 
             </AirTabControl>
-
             <AirTabControl Grid.Column="2" Margin="20" TabStripPlacement="Right">
                 <AirTabControl.Resources>
                     <Style TargetType="AirTabItem">
@@ -180,7 +179,17 @@
                     </Style>
                 </AirTabControl.Resources>
                 <AirTabItem Header="Switzerland">
-                    <ContentPresenter Content="Shaqiri" />
+                    <AirScrollViewer HorizontalScrollBarVisibility="Auto"
+                                     VerticalScrollBarVisibility="Hidden" Width="200">
+                        <AirPanel Type="Horizontal" Space="10">
+                            <AirButton Content="Hakavida" />
+                            <AirButton Content="Yeosuo" />
+                            <AirButton Content="Popma" />
+                            <AirButton Content="Bojiner" />
+                            <AirProgressBar Value="40" Width="100" 
+                                            Height="8"/>
+                        </AirPanel>
+                    </AirScrollViewer>
                 </AirTabItem>
 
                 <AirTabItem Header="France" IsEnabled="False">

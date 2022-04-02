@@ -14,10 +14,11 @@
                         <Rectangle Width="Auto" Height="Auto"
                                    HorizontalAlignment="Stretch" Fill="Transparent"
                                    VerticalAlignment="Stretch" />
-                        <Border x:Name="PART_Border" CornerRadius="4"
+                        <Border x:Name="PART_Border"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 Width="Auto" Height="Auto"
+                                CornerRadius="{Binding Path=ScrollBarCornerRadius,RelativeSource={RelativeSource AncestorType=local:AirScrollViewer}}"
                                 Background="{TemplateBinding Background}" />
                     </Grid>
                 </ControlTemplate>
@@ -27,7 +28,7 @@
 
     <!-- ScrollBars -->
     <Style x:Key="BarStyle" TargetType="{x:Type ScrollBar}">
-        <Setter Property="Opacity" Value="0.78" />
+        <Setter Property="Opacity" Value="0.66" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Foreground" Value="{StaticResource MainDisableBackground}" />
         <Setter Property="Background" Value="{StaticResource MainDisableBackground}" />
@@ -150,31 +151,22 @@
             <Setter.Value>
                 <ControlTemplate x:Name="AirScrollViewer" TargetType="{x:Type local:AirScrollViewer}">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Border Grid.Column="0" Grid.Row="0" Background="{TemplateBinding Background}">
+                        <Border Background="{TemplateBinding Background}">
                             <ScrollContentPresenter CanContentScroll="{TemplateBinding CanContentScroll}" />
                         </Border>
 
                         <ScrollBar x:Name="PART_VerticalScrollBar"
+                                   HorizontalAlignment="Right"
                                    Style="{StaticResource BarStyle}"
-                                   Grid.Row="0" Grid.Column="1"
                                    Value="{TemplateBinding VerticalOffset}"
                                    Maximum="{TemplateBinding ScrollableHeight}"
                                    ViewportSize="{TemplateBinding ViewportHeight}"
                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
 
                         <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                   VerticalAlignment="Bottom"
                                    Style="{StaticResource BarStyle}"
                                    Orientation="Horizontal"
-                                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                                    Value="{TemplateBinding HorizontalOffset}"
                                    Maximum="{TemplateBinding ScrollableWidth}"
                                    ViewportSize="{TemplateBinding ViewportWidth}"
