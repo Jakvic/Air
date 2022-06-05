@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace AirControl
 {
@@ -18,6 +19,12 @@ namespace AirControl
         {
             get => (CornerRadius) GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+            
         }
     }
 }

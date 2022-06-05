@@ -93,19 +93,7 @@
                     </AirTabItem>
 
                     <AirTabItem Header="RadioButton">
-                        <AirPanel Type="Vertical" Space="10">
-                            <AirPanel Type="Horizontal" Space="10">
-                                <AirRadioButton Content="asdf" />
-                                <AirRadioButton Content="ZXCV" />
-                                <AirRadioButton Content="Enable" IsEnabled="False" />
-
-                            </AirPanel>
-                            <AirPanel Type="Horizontal" Space="10">
-                                <ToggleButton Content="asdf" />
-                                <AirToggleButton Width="100"
-                                                 Content="{Binding IsChecked,RelativeSource={RelativeSource Self}}" />
-                            </AirPanel>
-                        </AirPanel>
+                        <ComboBox Width="120"/>
                     </AirTabItem>
                     <AirTabItem Header="ComboBox">
                         <AirPanel Type="Vertical" Space="10">

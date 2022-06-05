@@ -25,7 +25,7 @@
                                       CanContentScroll="false" Focusable="false"
                                       HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                                       Padding="{TemplateBinding Padding}"
-                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                       VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
                             <ItemsPresenter />
                         </ScrollViewer>
@@ -33,7 +33,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Background" TargetName="Bd"
-                                    Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                                    Value="{StaticResource DefaultDisableBorderBrush}" />
                         </Trigger>
                         <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
                             <Setter Property="CanContentScroll" TargetName="_tv_scrollviewer_" Value="true" />

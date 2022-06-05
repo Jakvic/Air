@@ -46,7 +46,7 @@
                    VerticalOffset="2"
                    PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                 <local:AirBorder x:Name="dropDownBorder" CornerRadius="{TemplateBinding CornerRadius}"
-                                 BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
+                                 BorderBrush="{StaticResource DefaultBorderBrush}"
                                  BorderThickness="0.5" Margin="1">
                     <local:AirScrollViewer x:Name="DropDownScrollViewer" BorderThickness="0"> 
                         <ItemsPresenter x:Name="ItemsPresenter"
@@ -76,7 +76,7 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="4" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
