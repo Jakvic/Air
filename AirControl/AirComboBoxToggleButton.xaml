@@ -4,8 +4,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style TargetType="local:AirToggleButton">
-        <Setter Property="CornerRadius" Value="4" />
+    <Style TargetType="local:AirComboBoxToggleButton">
+        <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius}" />
         <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource MainLinearGradientBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
@@ -15,7 +15,7 @@
         <Setter Property="Padding" Value="8" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:AirToggleButton">
+                <ControlTemplate TargetType="local:AirComboBoxToggleButton">
                     <Border x:Name="border" Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}"
                             BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">

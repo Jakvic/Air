@@ -4,15 +4,15 @@ using System.Windows.Controls.Primitives;
 
 namespace AirControl
 {
-    public class AirToggleButton : ToggleButton
+    public class AirComboBoxToggleButton : ToggleButton
     {
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-            "CornerRadius", typeof(CornerRadius), typeof(AirToggleButton), new PropertyMetadata(default(CornerRadius)));
+            "CornerRadius", typeof(CornerRadius), typeof(AirComboBoxToggleButton), new PropertyMetadata(default(CornerRadius)));
 
-        static AirToggleButton()
+        static AirComboBoxToggleButton()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirToggleButton),
-                new FrameworkPropertyMetadata(typeof(AirToggleButton)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirComboBoxToggleButton),
+                new FrameworkPropertyMetadata(typeof(AirComboBoxToggleButton)));
         }
 
         public CornerRadius CornerRadius

@@ -17,15 +17,17 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type local:AirComboBox}">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
          
 
             <!-- toggle button -->
-            <local:AirToggleButton Grid.Column="0"
+            <local:AirComboBoxToggleButton Grid.Column="0"
                                    x:Name="toggleButton" Background="{TemplateBinding Background}"
                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                   BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2"
+                                   CornerRadius="{TemplateBinding CornerRadius}"
+                                   BorderThickness="{TemplateBinding BorderThickness}"
                                    IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
 
             <!-- toggle button content -->

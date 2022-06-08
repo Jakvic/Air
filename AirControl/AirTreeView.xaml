@@ -5,6 +5,7 @@
         <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+   
     <Style TargetType="local:AirTreeView">
         <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
@@ -20,12 +21,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeView}">
                     <local:AirBorder x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                                     BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                         <ScrollViewer x:Name="_tv_scrollviewer_" Background="{TemplateBinding Background}"
                                       CanContentScroll="false" Focusable="false"
                                       HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                                       Padding="{TemplateBinding Padding}"
-                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                       VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
                             <ItemsPresenter />
                         </ScrollViewer>
