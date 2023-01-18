@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -28,29 +27,10 @@ namespace AirControl
         public static readonly DependencyProperty ProgressValueProperty = DependencyProperty.Register(
             "ProgressValue", typeof(double), typeof(Loading), new PropertyMetadata(40d, PropertyChangedCallback));
 
-        private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var loading = d as Loading;
+        private Ellipse ellipse;
 
-            var lineLength = loading.perimeter * (loading.ProgressValue / 100);
-            var gapLength = loading.perimeter - lineLength;
-            loading.ellipse.StrokeDashArray = new DoubleCollection(new[]
-            {
-                lineLength / loading.BorderThickness, gapLength / loading.BorderThickness + loading.BorderThickness
-            });
-            if (Math.Floor(loading.ProgressValue) is 100 or 0)
-            {
-                loading.storyboard?.Stop();
-            }
-            else
-            {
-                var state = loading.storyboard.GetCurrentState();
-                if (state is ClockState.Stopped)
-                {
-                    loading.storyboard?.Begin();
-                }
-            }
-        }
+        private double perimeter;
+        private Storyboard storyboard;
 
         static Loading()
         {
@@ -88,9 +68,30 @@ namespace AirControl
             set => SetValue(BorderBrushProperty, value);
         }
 
-        private double perimeter;
-        private Ellipse ellipse;
-        private Storyboard storyboard;
+        private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var loading = d as Loading;
+
+            var lineLength = loading.perimeter * (loading.ProgressValue / 100);
+            var gapLength = loading.perimeter - lineLength;
+            loading.ellipse.StrokeDashArray = new DoubleCollection(new[]
+            {
+                lineLength / loading.BorderThickness, gapLength / loading.BorderThickness + loading.BorderThickness
+            });
+            if (Math.Floor(loading.ProgressValue) is 100 or 0)
+            {
+                loading.storyboard?.Stop();
+            }
+            else
+            {
+                var state = loading.storyboard.GetCurrentState();
+                if (state is ClockState.Stopped)
+                {
+                    loading.storyboard?.Begin();
+                }
+            }
+        }
+
         private void DoAnimation()
         {
             storyboard = new Storyboard
@@ -107,6 +108,7 @@ namespace AirControl
             storyboard.Children.Add(animation);
             storyboard.Begin();
         }
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

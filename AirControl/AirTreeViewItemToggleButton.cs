@@ -3,11 +3,12 @@ using System.Windows.Controls.Primitives;
 
 namespace AirControl
 {
-    public class AirTreeViewItemToggleButton:ToggleButton
+    public class AirTreeViewItemToggleButton : ToggleButton
     {
-        static  AirTreeViewItemToggleButton()
+        static AirTreeViewItemToggleButton()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirTreeViewItemToggleButton), new FrameworkPropertyMetadata(typeof(AirTreeViewItemToggleButton)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirTreeViewItemToggleButton),
+                new FrameworkPropertyMetadata(typeof(AirTreeViewItemToggleButton)));
         }
     }
 }

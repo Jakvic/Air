@@ -5,7 +5,6 @@
         <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="local:AirComboBoxToggleButton">
-        <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius}" />
         <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource MainLinearGradientBorderBrush}" />
         <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />

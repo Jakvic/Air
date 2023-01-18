@@ -6,7 +6,7 @@
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="local:AirTreeViewItemToggleButton">
         <!-- Toggle Button -->
-        <Setter Property="Focusable" Value="False"></Setter>
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">

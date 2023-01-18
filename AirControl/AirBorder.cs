@@ -1,8 +1,6 @@
 using System;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input.StylusPlugIns;
 using System.Windows.Media;
 
 namespace AirControl
@@ -26,7 +24,7 @@ namespace AirControl
             if (rectangleGeometry is not null)
             {
                 rectangleGeometry.RadiusX = rectangleGeometry.RadiusY =
-                    Math.Max(0.0, CornerRadius.TopLeft - (BorderThickness.Left * 0.5));
+                    Math.Max(0.0, CornerRadius.TopLeft - BorderThickness.Left * 0.5);
                 rectangleGeometry.Rect = new Rect(Child.RenderSize);
             }
         }
@@ -46,7 +44,7 @@ namespace AirControl
                 {
                     return;
                 }
-                
+
                 var radii = new Radii(CornerRadius, BorderThickness, true);
                 using var streamGeometryContext = geometry.Open();
                 GenerateGeometry(streamGeometryContext, new Rect(Child.RenderSize), radii);

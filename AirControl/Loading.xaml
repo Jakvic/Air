@@ -23,7 +23,7 @@
                              Visibility="{TemplateBinding IsLoading,Converter={convertors:Bool2VisibilityConverter}}"
                              RenderTransformOrigin="0.5,0.5">
                         <Ellipse.RenderTransform>
-                            <RotateTransform/>
+                            <RotateTransform />
                         </Ellipse.RenderTransform>
                     </Ellipse>
                 </ControlTemplate>

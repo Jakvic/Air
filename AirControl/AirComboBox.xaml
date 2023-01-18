@@ -17,18 +17,18 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type local:AirComboBox}">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
-         
+
 
             <!-- toggle button -->
             <local:AirComboBoxToggleButton Grid.Column="0"
-                                   x:Name="toggleButton" Background="{TemplateBinding Background}"
-                                   BorderBrush="{TemplateBinding BorderBrush}"
-                                   CornerRadius="{TemplateBinding CornerRadius}"
-                                   BorderThickness="{TemplateBinding BorderThickness}"
-                                   IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                           x:Name="toggleButton" Background="{TemplateBinding Background}"
+                                           BorderBrush="{TemplateBinding BorderBrush}"
+                                           CornerRadius="{TemplateBinding CornerRadius}"
+                                           BorderThickness="{TemplateBinding BorderThickness}"
+                                           IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
 
             <!-- toggle button content -->
             <ContentPresenter Grid.Column="0" x:Name="contentPresenter"
@@ -40,7 +40,7 @@
                               IsHitTestVisible="false" Margin="{TemplateBinding Padding}"
                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-            
+
             <!-- popup -->
             <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2"
                    IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
@@ -50,13 +50,13 @@
                 <local:AirBorder x:Name="dropDownBorder" CornerRadius="{TemplateBinding CornerRadius}"
                                  BorderBrush="{StaticResource DefaultBorderBrush}"
                                  BorderThickness="0.5" Margin="1">
-                    <local:AirScrollViewer x:Name="DropDownScrollViewer" BorderThickness="0"> 
+                    <local:AirScrollViewer x:Name="DropDownScrollViewer" BorderThickness="0">
                         <ItemsPresenter x:Name="ItemsPresenter"
                                         KeyboardNavigation.DirectionalNavigation="Contained"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </local:AirScrollViewer>
                 </local:AirBorder>
-                
+
             </Popup>
         </Grid>
         <ControlTemplate.Triggers>

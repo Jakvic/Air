@@ -7,7 +7,8 @@ namespace AirControl
     {
         static AirTabItem()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirTabItem), new FrameworkPropertyMetadata(typeof(AirTabItem)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirTabItem),
+                new FrameworkPropertyMetadata(typeof(AirTabItem)));
         }
     }
 }

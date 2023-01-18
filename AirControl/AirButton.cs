@@ -27,13 +27,13 @@ namespace AirControl
 
         public CornerRadius CornerRadius
         {
-            get => (CornerRadius) GetValue(CornerRadiusProperty);
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 
         public AirButtonType Type
         {
-            get => (AirButtonType) GetValue(TypeProperty);
+            get => (AirButtonType)GetValue(TypeProperty);
             set => SetValue(TypeProperty, value);
         }
     }

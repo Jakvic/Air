@@ -16,13 +16,13 @@
 
     <SolidColorBrush x:Key="PopupBackground" Color="#EFEFEF" />
     <SolidColorBrush x:Key="PopupMouseHover" Color="#E2E2E2" />
-    
+
     <SolidColorBrush x:Key="LightMainColorHover" Color="#66A6D0FF" />
     <SolidColorBrush x:Key="LightMainColorHighlighted" Color="#EEA6D0FF" />
 
-    
+
     <LinearGradientBrush x:Key="MainLinearGradientBorderBrush" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#007FFF" Offset="0"/>
-        <GradientStop Color="#6F00FF" Offset="1"/> 
+        <GradientStop Color="#007FFF" Offset="0" />
+        <GradientStop Color="#6F00FF" Offset="1" />
     </LinearGradientBrush>
 </ResourceDictionary>

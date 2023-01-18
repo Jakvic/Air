@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 
-namespace Air
+namespace Air;
+
+public abstract class ViewModel : Model
 {
-    public abstract class ViewModel : Model
+    protected Command GetCommand(Action action, Func<bool>? canAction = null)
     {
-        protected Command GetCommand(Action action, Func<bool>? canAction = null
-        ,[CallerMemberName] string? propertyName = null)
-        {
-            return GetValue(() => new Command(action, canAction), propertyName);
-        }
+        return new Command(action, canAction);
+    }
+
+    protected Command<T> GetCommand<T>(Action<T?> action, Func<bool>? canAction = null)
+    {
+        return new Command<T>(action, canAction);
     }
 }

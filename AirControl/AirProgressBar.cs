@@ -37,21 +37,21 @@ namespace AirControl
             };
         }
 
-        new public double Value
+        public new double Value
         {
-            get => (double) GetValue(ValueProperty);
+            get => (double)GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
         }
 
         public new bool IsIndeterminate
         {
-            get => (bool) GetValue(IsIndeterminateProperty);
+            get => (bool)GetValue(IsIndeterminateProperty);
             set => SetValue(IsIndeterminateProperty, value);
         }
 
         public CornerRadius CornerRadius
         {
-            get => (CornerRadius) GetValue(CornerRadiusProperty);
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 
@@ -111,7 +111,7 @@ namespace AirControl
             }
 
             indicator.Width = ActualWidth / 4;
-            Storyboard sb = new() {RepeatBehavior = RepeatBehavior.Forever};
+            Storyboard sb = new() { RepeatBehavior = RepeatBehavior.Forever };
             var thicknessAnimation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromMilliseconds(2000)),

@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
 
 namespace AirControl
 {
@@ -27,19 +26,19 @@ namespace AirControl
 
         public CornerRadius ScrollBarCornerRadius
         {
-            get => (CornerRadius) GetValue(ScrollBarCornerRadiusProperty);
+            get => (CornerRadius)GetValue(ScrollBarCornerRadiusProperty);
             set => SetValue(ScrollBarCornerRadiusProperty, value);
         }
 
         public double ScrollBarWidth
         {
-            get => (double) GetValue(ScrollBarWidthProperty);
+            get => (double)GetValue(ScrollBarWidthProperty);
             set => SetValue(ScrollBarWidthProperty, value);
         }
 
         public bool CanBeWidth
         {
-            get => (bool) GetValue(CanBeWidthProperty);
+            get => (bool)GetValue(CanBeWidthProperty);
             set => SetValue(CanBeWidthProperty, value);
         }
     }

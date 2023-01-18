@@ -11,45 +11,46 @@
                 <ControlTemplate TargetType="local:AirTreeViewItem">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition MinWidth="19" Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition MinWidth="19" Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
-                        
+
                         <!-- Connecting lines -->
-                        
+
                         <!-- Horizontal lines-->
-                        <Rectangle x:Name="HorizontalLine" 
-                                   Margin="9 1 0 0" Height="1" Stroke="#DCDCDC" 
-                                   SnapsToDevicePixels="True"/>
-                        
+                        <Rectangle x:Name="HorizontalLine"
+                                   Margin="9 1 0 0" Height="1" Stroke="#DCDCDC"
+                                   SnapsToDevicePixels="True" />
+
                         <!-- Vertical lines -->
                         <Rectangle Grid.Column="0" Grid.Row="0"
-                                   x:Name="VerticalLine" Width="1" Stroke="#DCDCDC" 
-                                   Margin="0 0 1 0" SnapsToDevicePixels="True" 
-                                   Fill="White"  Grid.RowSpan="2"  />
-                        
+                                   x:Name="VerticalLine" Width="1" Stroke="#DCDCDC"
+                                   Margin="0 0 1 0" SnapsToDevicePixels="True"
+                                   Fill="White" Grid.RowSpan="2" />
+
                         <!-- Insert Toggle Button -->
                         <local:AirTreeViewItemToggleButton x:Name="Expander" Margin="-1 0 0 0"
-                            Grid.Column="0" Grid.Row="0"
-                            IsChecked="{Binding IsExpanded,
-                            RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press" />
-                        
+                                                           Grid.Column="0" Grid.Row="0"
+                                                           IsChecked="{Binding IsExpanded,
+                            RelativeSource={RelativeSource TemplatedParent}}"
+                                                           ClickMode="Press" />
+
                         <Border Grid.Row="0" x:Name="Border" Grid.Column="1"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
-                            <ContentPresenter x:Name="PART_Header"  ContentSource="Header"
+                            <ContentPresenter x:Name="PART_Header" ContentSource="Header"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              MinWidth="20"/>
+                                              MinWidth="20" />
                         </Border>
-                        <ItemsPresenter Grid.Column="1" Grid.Row="1" 
-                                        x:Name="ItemsHost" Grid.ColumnSpan="2"/>
+                        <ItemsPresenter Grid.Column="1" Grid.Row="1"
+                                        x:Name="ItemsHost" Grid.ColumnSpan="2" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

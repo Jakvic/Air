@@ -25,13 +25,13 @@ namespace AirControl
 
         public PanelType Type
         {
-            get => (PanelType) GetValue(TypeProperty);
+            get => (PanelType)GetValue(TypeProperty);
             set => SetValue(TypeProperty, value);
         }
 
         public double Space
         {
-            get => (double) GetValue(SpaceProperty);
+            get => (double)GetValue(SpaceProperty);
             set => SetValue(SpaceProperty, value);
         }
 
@@ -85,6 +85,7 @@ namespace AirControl
                 {
                     continue;
                 }
+
                 child.Measure(new Size(availableSize.Width, availableSize.Height));
                 height = Math.Max(height, child.DesiredSize.Height);
                 width += child.DesiredSize.Width + Space;
@@ -108,6 +109,7 @@ namespace AirControl
                 {
                     continue;
                 }
+
                 child.Measure(new Size(availableSize.Width, availableSize.Height));
                 height = Math.Max(height, child.DesiredSize.Height);
                 width += child.DesiredSize.Width + Space;
@@ -129,6 +131,7 @@ namespace AirControl
                 {
                     continue;
                 }
+
                 rcChild.X += previousChildSize + (previousChildSize == 0 ? 0 : Space);
                 previousChildSize = child.DesiredSize.Width;
                 rcChild.Width = previousChildSize;
@@ -149,7 +152,7 @@ namespace AirControl
                 {
                     continue;
                 }
-                
+
                 child.Measure(new Size(availableSize.Width, availableSize.Height));
                 width = Math.Max(width, child.DesiredSize.Width);
                 height += child.DesiredSize.Height + Space;
@@ -173,7 +176,7 @@ namespace AirControl
                 {
                     continue;
                 }
-                
+
                 child.Measure(new Size(availableSize.Width, availableSize.Height));
                 width = Math.Max(width, child.DesiredSize.Width);
                 height += child.DesiredSize.Height + Space;
@@ -195,7 +198,7 @@ namespace AirControl
                 {
                     continue;
                 }
-                
+
                 rcChild.Y += previousChildSize + (previousChildSize == 0 ? 0 : Space);
                 previousChildSize = child.DesiredSize.Height;
                 rcChild.Height = previousChildSize;

@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:AirControl">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Colors.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
@@ -82,8 +82,10 @@
 
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Orientation,RelativeSource={RelativeSource Self}}" Value="Horizontal"/>
-                                <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding Orientation,RelativeSource={RelativeSource Self}}"
+                                           Value="Horizontal" />
+                                <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
                                 <Condition
                                     Binding="{Binding CanBeWidth,RelativeSource={RelativeSource AncestorType=local:AirScrollViewer}}"
                                     Value="True" />
@@ -112,8 +114,10 @@
 
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Orientation,RelativeSource={RelativeSource Self}}" Value="Vertical"/>
-                                <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding Orientation,RelativeSource={RelativeSource Self}}"
+                                           Value="Vertical" />
+                                <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
                                 <Condition
                                     Binding="{Binding CanBeWidth,RelativeSource={RelativeSource AncestorType=local:AirScrollViewer}}"
                                     Value="True" />

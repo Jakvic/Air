@@ -16,9 +16,8 @@ namespace AirControl
 
         public CornerRadius CornerRadius
         {
-            get => (CornerRadius) GetValue(CornerRadiusProperty);
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
-            
         }
     }
 }

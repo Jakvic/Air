@@ -1,10 +1,8 @@
 ﻿using System;
-using System.ComponentModel.Design;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
-using System.Windows.Media.Animation;
 
 namespace AirControl.Convertors
 {
@@ -23,13 +21,8 @@ namespace AirControl.Convertors
 
         public Corner Corner { get; set; } = Corner.TopLeft;
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
-
         /// <summary>
-        /// Covert CornerRadius to 1 Corner, or Corner
+        ///     Covert CornerRadius to 1 Corner, or Corner
         /// </summary>
         /// <param name="value">CorneRadius</param>
         /// <param name="targetType">who cares</param>
@@ -56,7 +49,7 @@ namespace AirControl.Convertors
             }
 
             var radius = cornerRadius;
-            var s = (string) parameter;
+            var s = (string)parameter;
             var strings = s.Split('|');
             var topLeft = System.Convert.ToInt32(strings[0]);
             var topRight = System.Convert.ToInt32(strings[1]);
@@ -66,12 +59,16 @@ namespace AirControl.Convertors
                 topRight == -1 ? radius.TopRight : topRight,
                 bottomRight == -1 ? radius.BottomRight : bottomRight,
                 bottomLeft == -1 ? radius.BottomLeft : bottomLeft);
-
         }
 
         public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return default;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
         }
     }
 }

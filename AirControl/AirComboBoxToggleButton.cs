@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
 namespace AirControl
@@ -7,7 +6,8 @@ namespace AirControl
     public class AirComboBoxToggleButton : ToggleButton
     {
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-            "CornerRadius", typeof(CornerRadius), typeof(AirComboBoxToggleButton), new PropertyMetadata(default(CornerRadius)));
+            "CornerRadius", typeof(CornerRadius), typeof(AirComboBoxToggleButton),
+            new PropertyMetadata(default(CornerRadius)));
 
         static AirComboBoxToggleButton()
         {
@@ -17,9 +17,8 @@ namespace AirControl
 
         public CornerRadius CornerRadius
         {
-            get => (CornerRadius) GetValue(CornerRadiusProperty);
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
-
     }
 }

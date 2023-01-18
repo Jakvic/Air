@@ -11,12 +11,6 @@ namespace AirControl.Convertors
         public bool UseHidden { get; set; }
         public bool Reversed { get; set; }
 
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is bool flag)
@@ -28,15 +22,19 @@ namespace AirControl.Convertors
 
                 return flag ? Visibility.Visible : UseHidden ? Visibility.Hidden : Visibility.Collapsed;
             }
-            else
-            {
-                return UseHidden ? Visibility.Hidden : Visibility.Collapsed;
-            }
+
+            return UseHidden ? Visibility.Hidden : Visibility.Collapsed;
         }
 
         public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return default;
+        }
+
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
         }
     }
 }
