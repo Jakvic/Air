@@ -3,29 +3,83 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Air"
-        mc:Ignorable="d"
-        Title="MainWindow" d:DataContext="{d:DesignInstance local:Person}">
+        xmlns:local="clr-namespace:Air" mc:Ignorable="d"
+        Title="MainWindow" d:DataContext="{d:DesignInstance local:Person}"
+        Width="1000" Height="650">
     <Window.DataContext>
         <local:Person Gender="Male" Name="Jakvic" />
     </Window.DataContext>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <AirPanel Type="Vertical" Space="10" Margin="10">
-                <AirButton Content="Button" Type="Main" />
-                <AirButton Content="AirPanel" Type="Main" />
-            </AirPanel>
-        </Grid>
-        <Grid Grid.Column="1">
-            <AirBorder BorderBrush="LightGray" Margin="10"
-                       BorderThickness="1" CornerRadius="8">
-                
-            </AirBorder>
-        </Grid>
-        <Grid Grid.Column="1" />
+    <Grid Margin="10">
+        <AirTabControl>
+            <AirTabItem Header="Button">
+                <AirPanel Type="VerticalFull" Space="10" Margin="10">
+                    <AirPanel Type="Horizontal" Space="10"
+                              VerticalAlignment="Center">
+                        <AirButton Type="Default"
+                                   Content="{x:Static AirButtonType.Default}" />
+
+                        <AirButton Content="{x:Static AirButtonType.Main}" />
+
+                    </AirPanel>
+
+                    <AirPanel Type="Vertical" Space="5">
+                        <AirRadioButton Content="Kvaratskhelia" />
+                        <AirRadioButton Content="Mbape" />
+                        <AirRadioButton Content="Haland" />
+                    </AirPanel>
+
+                </AirPanel>
+            </AirTabItem>
+
+            <AirTabItem Header="ComboBox">
+
+                <AirComboBox Margin="10">
+                    <ComboBoxItem Content="Old Pine" />
+                    <ComboBoxItem Content="Only Love" />
+                    <ComboBoxItem Content="Broken" IsSelected="True" />
+                </AirComboBox>
+
+            </AirTabItem>
+
+            <AirTabItem Header="Panel">
+                <AirPanel Margin="10" Space="10">
+                    <AirRadioButton x:Name="radioButton1" Content="{x:Static PanelType.Horizontal}" />
+                    <AirRadioButton x:Name="radioButton2" Content="{x:Static PanelType.HorizontalFull}" />
+                    <AirRadioButton x:Name="radioButton3" Content="{x:Static PanelType.Vertical}" />
+                    <AirRadioButton x:Name="radioButton4" Content="{x:Static PanelType.VerticalFull}" />
+                    <AirPanel.Style>
+                        <Style TargetType="AirPanel">
+                            <Style.Triggers>
+                                <Trigger Property="{Binding IsChecked, ElementName=radioButton1}" Value="true">
+                                    <Setter Property="Type" Value="Horizontal" />
+                                </Trigger>
+
+                                <Trigger Property="{Binding IsChecked, ElementName=radioButton2}" Value="true">
+                                    <Setter Property="Type" Value="HorizontalFull" />
+                                </Trigger>
+
+                                <Trigger Property="{Binding IsChecked, ElementName=radioButton3}" Value="true">
+                                    <Setter Property="Type" Value="Vertical" />
+                                </Trigger>
+                                <Trigger Property="{Binding IsChecked, ElementName=radioButton4}" Value="true">
+                                    <Setter Property="Type" Value="VerticalFull" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                    </AirPanel.Style>
+                </AirPanel>
+            </AirTabItem>
+
+            <AirTabItem Header="Progress">
+            </AirTabItem>
+
+            <AirTabItem Header="ScrollViewer">
+            </AirTabItem>
+            <AirTabItem Header="TextBox">
+            </AirTabItem>
+            <AirTabItem Header="Loading">
+            </AirTabItem>
+        </AirTabControl>
     </Grid>
 </Window>

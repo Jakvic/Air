@@ -44,11 +44,12 @@
             <!-- popup -->
             <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2"
                    IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                   Margin="1"
+                   Margin="1" 
                    VerticalOffset="2"
                    PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                 <local:AirBorder x:Name="dropDownBorder" CornerRadius="{TemplateBinding CornerRadius}"
                                  BorderBrush="{StaticResource DefaultBorderBrush}"
+                                 Width="{Binding ActualWidth,RelativeSource={RelativeSource AncestorType=local:AirComboBox}}"
                                  BorderThickness="0.5" Margin="1">
                     <local:AirScrollViewer x:Name="DropDownScrollViewer" BorderThickness="0">
                         <ItemsPresenter x:Name="ItemsPresenter"

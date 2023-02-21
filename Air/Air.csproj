@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AirControl\AirControl.csproj"/>
+        <ProjectReference Include="..\AirControl\AirControl.csproj" />
     </ItemGroup>
 
 </Project>

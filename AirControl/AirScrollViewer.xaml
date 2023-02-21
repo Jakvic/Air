@@ -84,7 +84,7 @@
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Orientation,RelativeSource={RelativeSource Self}}"
                                            Value="Horizontal" />
-                                <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"
+                                <Condition Binding="{Binding   IsMouseOver,RelativeSource={RelativeSource Self}}"
                                            Value="True" />
                                 <Condition
                                     Binding="{Binding CanBeWidth,RelativeSource={RelativeSource AncestorType=local:AirScrollViewer}}"
