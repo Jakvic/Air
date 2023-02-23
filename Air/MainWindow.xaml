@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Air" mc:Ignorable="d"
         Title="MainWindow" d:DataContext="{d:DesignInstance local:Person}"
-        Width="1000" Height="650">
+        Width="800" Height="560">
     <Window.DataContext>
         <local:Person Gender="Male" Name="Jakvic" />
     </Window.DataContext>
@@ -42,36 +42,38 @@
             </AirTabItem>
 
             <AirTabItem Header="Panel">
-                <AirPanel Margin="10" Space="10">
-                    <AirRadioButton x:Name="radioButton1" Content="{x:Static PanelType.Horizontal}" />
-                    <AirRadioButton x:Name="radioButton2" Content="{x:Static PanelType.HorizontalFull}" />
-                    <AirRadioButton x:Name="radioButton3" Content="{x:Static PanelType.Vertical}" />
-                    <AirRadioButton x:Name="radioButton4" Content="{x:Static PanelType.VerticalFull}" />
-                    <AirPanel.Style>
-                        <Style TargetType="AirPanel">
-                            <Style.Triggers>
-                                <Trigger Property="{Binding IsChecked, ElementName=radioButton1}" Value="true">
-                                    <Setter Property="Type" Value="Horizontal" />
-                                </Trigger>
+                <AirPanel Type="Vertical">
+                    <AirPanel Margin="10" Type="Horizontal" Space="10">
+                        <AirRadioButton Content="Horizontal 1"/>
+                        <AirRadioButton Content="Horizontal 2"/>
+                        <AirRadioButton Content="Horizontal 3"/>
+                        <AirRadioButton Content="Horizontal 4"/>
+                    </AirPanel>
 
-                                <Trigger Property="{Binding IsChecked, ElementName=radioButton2}" Value="true">
-                                    <Setter Property="Type" Value="HorizontalFull" />
-                                </Trigger>
+                    <AirPanel Type="HorizontalFull" Space="10">
+                        <AirPanel Margin="10" Type="Vertical" Space="10" >
+                            <AirRadioButton Content="Vertical 1"/>
+                            <AirRadioButton Content="Vertical 2"/>
+                            <AirRadioButton Content="Vertical 3"/>
+                            <AirRadioButton Content="Vertical 4"/>
+                        </AirPanel>
 
-                                <Trigger Property="{Binding IsChecked, ElementName=radioButton3}" Value="true">
-                                    <Setter Property="Type" Value="Vertical" />
-                                </Trigger>
-                                <Trigger Property="{Binding IsChecked, ElementName=radioButton4}" Value="true">
-                                    <Setter Property="Type" Value="VerticalFull" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-
-                    </AirPanel.Style>
+                        <AirPanel Margin="10" Type="Vertical" Space="10">
+                            <AirButton Type="Default" Content="AirButton 1"/>
+                            <AirButton Content="AirButton 2"/>
+                            <AirButton Type="Default" Content="AirButton 3"/>
+                            <AirButton Content="AirButton 4"/>
+                        </AirPanel>
+                    </AirPanel>
                 </AirPanel>
             </AirTabItem>
 
             <AirTabItem Header="Progress">
+                <AirPanel Type="Vertical" Space="10">
+                    <AirProgressBar Width="100" Height="20" Value="30" IsIndeterminate="True"/>
+                    <AirProgressBar Width="100" Height="20" Value="50" IsIndeterminate="False"/>
+                    <AirProgressBar Width="100" Height="20" Value="60" IsIndeterminate="False"/>
+                </AirPanel>
             </AirTabItem>
 
             <AirTabItem Header="ScrollViewer">
