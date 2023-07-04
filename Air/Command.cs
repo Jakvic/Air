@@ -1,47 +1,52 @@
 ﻿using System;
+using System.Windows.Input;
 
 namespace Air;
 
-public class Command : CommandBase
+public class Command :ICommand
 {
-    private readonly Action? action;
-    private readonly Func<bool>? canAction;
+    private readonly Action _action;
+    private readonly Predicate<object?>? _canExecute;
 
-    public Command(Action action, Func<bool>? canAction = null)
+    public Command(Action action,Predicate<object?>? canExecute)
     {
-        this.action = action;
-        this.canAction = canAction;
+        _action = action;
+        _canExecute = canExecute;
     }
 
-    public override bool CanExecute(object? parameter)
+    public event EventHandler? CanExecuteChanged;
+
+    public bool CanExecute(object? parameter)
     {
-        return canAction?.Invoke() != false;
+        return _canExecute?.Invoke(parameter) is not false;
     }
 
-    public override void Execute(object? parameter)
+    public void Execute(object? parameter)
     {
-        action?.Invoke();
+        _action();
     }
 }
 
-public class Command<T> : CommandBase
+public class Command<T>
 {
-    private readonly Action<T?> action;
-    private readonly Func<bool>? canAction;
+    private readonly Action<T?> _action;
+    private readonly Predicate<object?>? _canExecute;
 
-    public Command(Action<T?> action, Func<bool>? canAction = null)
+    public Command(Action<T?> action, Predicate<object?>? canExecute)
     {
-        this.action = action;
-        this.canAction = canAction;
+        _action = action;
+        _canExecute = canExecute;
     }
 
-    public override bool CanExecute(object? parameter)
+    public event EventHandler? CanExecuteChanged;
+
+    public bool CanExecute(object? parameter)
     {
-        return canAction?.Invoke() != false;
+        return _canExecute?.Invoke(parameter) is not false;
     }
 
-    public override void Execute(object? parameter)
+    public void Execute(object? parameter)
     {
-        action?.Invoke((T?)parameter);
+        _action?.Invoke((T?)parameter);
     }
 }

@@ -1,16 +1,33 @@
-﻿using System;
+﻿namespace Air;
 
-namespace Air;
-
-public abstract class ViewModel : Model
+public abstract class ViewModel<TUserControl> : CommandModel, IViewModel
+    where TUserControl : View, new()
 {
-    protected Command GetCommand(Action action, Func<bool>? canAction = null)
+    TUserControl? _view;
+    public View CreateView()
     {
-        return new Command(action, canAction);
+        if (_view is not null)
+        {
+            return _view;
+        }
+
+        _view = new()
+        {
+            DataContext = this
+        };
+
+        OnInitialized(_view);
+
+        return _view;
     }
 
-    protected Command<T> GetCommand<T>(Action<T?> action, Func<bool>? canAction = null)
+    void IViewModel.InnerOnInitialized(View view)
     {
-        return new Command<T>(action, canAction);
+        OnInitialized((TUserControl)view);
+    }
+
+    protected virtual void OnInitialized(TUserControl view)
+    {
+
     }
 }

@@ -1,22 +1,18 @@
-锘縰sing System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-#pragma warning disable CS8603
-#pragma warning disable CS8625
-
 namespace Air;
 
+//INotifyPropertyChanged是如何被加载、触发的  https://zhuanlan.zhihu.com/p/464381909
+
+//PropertyChangedEventManager
+//https://referencesource.microsoft.com/#WindowsBase/Base/System/ComponentModel/PropertyChangedEventManager.cs,8862db7b374f076b
 public abstract class Model : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    public bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
     {
         if (EqualityComparer<T>.Default.Equals(field, value))
         {
@@ -27,4 +23,10 @@ public abstract class Model : INotifyPropertyChanged
         OnPropertyChanged(propertyName);
         return true;
     }
+
+    protected void OnPropertyChanged(string? propertyName)
+    {
+        PropertyChanged?.Invoke(this, new(propertyName));
+    }
+
 }

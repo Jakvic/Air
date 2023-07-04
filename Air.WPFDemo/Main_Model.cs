@@ -2,13 +2,14 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace Air;
+namespace Air.WPFDemo;
 
-public class Person : ViewModel
+public class Main_Model : WindowModel<Main>
 {
-    private string _gender;
-    private string _name;
+    private string _gender = "gg";
+    private string _name = "name";
 
+    public override string Title => "Main";
     public string Name
     {
         get => _name;
