@@ -10,22 +10,22 @@ namespace AirControl;
 public class Loading : Control
 {
     public static readonly DependencyProperty IsLoadingProperty =
-        DependencyProperty.Register("IsLoading", typeof(bool), typeof(Loading), new PropertyMetadata(true));
+        DependencyProperty.Register(nameof(IsLoading), typeof(bool), typeof(Loading), new PropertyMetadata(true));
 
     public new static readonly DependencyProperty BorderThicknessProperty =
-        DependencyProperty.Register("BorderThickness", typeof(double), typeof(Loading),
+        DependencyProperty.Register(nameof(BorderThickness), typeof(double), typeof(Loading),
             new PropertyMetadata(default));
 
     public new static readonly DependencyProperty BorderBrushProperty =
-        DependencyProperty.Register("BorderBrush", typeof(SolidColorBrush), typeof(Loading),
+        DependencyProperty.Register(nameof(BorderBrush), typeof(SolidColorBrush), typeof(Loading),
             new PropertyMetadata(default));
 
 
     public static readonly DependencyProperty DiameterProperty = DependencyProperty.Register(
-        "Diameter", typeof(double), typeof(Loading), new PropertyMetadata(default(double)));
+        nameof(Diameter), typeof(double), typeof(Loading), new PropertyMetadata(default(double)));
 
     public static readonly DependencyProperty ProgressValueProperty = DependencyProperty.Register(
-        "ProgressValue", typeof(double), typeof(Loading), new PropertyMetadata(40d, PropertyChangedCallback));
+        nameof(ProgressValue), typeof(double), typeof(Loading), new PropertyMetadata(40d, PropertyChangedCallback));
 
     private Ellipse ellipse;
 

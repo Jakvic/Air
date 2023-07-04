@@ -6,7 +6,7 @@ namespace AirControl;
 public class AirComboBox : ComboBox
 {
     public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-        "CornerRadius", typeof(CornerRadius), typeof(AirComboBox), new PropertyMetadata(default(CornerRadius)));
+        nameof(CornerRadius), typeof(CornerRadius), typeof(AirComboBox), new PropertyMetadata(default(CornerRadius)));
 
     static AirComboBox()
     {

@@ -6,7 +6,7 @@ namespace AirControl;
 public class AirComboBoxToggleButton : ToggleButton
 {
     public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-        "CornerRadius", typeof(CornerRadius), typeof(AirComboBoxToggleButton),
+        nameof(CornerRadius), typeof(CornerRadius), typeof(AirComboBoxToggleButton),
         new PropertyMetadata(default(CornerRadius)));
 
     static AirComboBoxToggleButton()

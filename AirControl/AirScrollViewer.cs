@@ -9,14 +9,14 @@ public class AirScrollViewer : ScrollViewer
     //Custom ScrollBar not works ? the answer in this link
 
     public static readonly DependencyProperty ScrollBarCornerRadiusProperty = DependencyProperty.Register(
-        "ScrollBarCornerRadius", typeof(CornerRadius), typeof(AirScrollViewer),
+        nameof(ScrollBarCornerRadius), typeof(CornerRadius), typeof(AirScrollViewer),
         new PropertyMetadata(default(CornerRadius)));
 
     public static readonly DependencyProperty ScrollBarWidthProperty = DependencyProperty.Register(
-        "ScrollBarWidth", typeof(double), typeof(AirScrollViewer), new PropertyMetadata(default(double)));
+        nameof(ScrollBarWidth), typeof(double), typeof(AirScrollViewer), new PropertyMetadata(default(double)));
 
     public static readonly DependencyProperty CanBeWidthProperty = DependencyProperty.Register(
-        "CanBeWidth", typeof(bool), typeof(AirScrollViewer), new PropertyMetadata(true));
+        nameof(CanBeWidth), typeof(bool), typeof(AirScrollViewer), new PropertyMetadata(true));
 
     static AirScrollViewer()
     {

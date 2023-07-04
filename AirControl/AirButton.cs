@@ -12,10 +12,10 @@ public enum AirButtonType
 public class AirButton : Button
 {
     public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-        "CornerRadius", typeof(CornerRadius), typeof(AirButton), new PropertyMetadata(default(CornerRadius)));
+        nameof(CornerRadius), typeof(CornerRadius), typeof(AirButton), new PropertyMetadata(default(CornerRadius)));
 
     public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
-        "Type", typeof(AirButtonType), typeof(AirButton), new PropertyMetadata(default(AirButtonType)));
+        nameof(Type), typeof(AirButtonType), typeof(AirButton), new PropertyMetadata(default(AirButtonType)));
 
     static AirButton()
     {

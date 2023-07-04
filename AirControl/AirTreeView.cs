@@ -7,7 +7,7 @@ namespace AirControl;
 public class AirTreeView : TreeView
 {
     public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-        "CornerRadius", typeof(CornerRadius), typeof(AirTreeView), new PropertyMetadata(default(CornerRadius)));
+        nameof(CornerRadius), typeof(CornerRadius), typeof(AirTreeView), new PropertyMetadata(default(CornerRadius)));
 
     static AirTreeView()
     {

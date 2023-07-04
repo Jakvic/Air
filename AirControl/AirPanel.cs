@@ -16,10 +16,10 @@ public enum PanelType
 public class AirPanel : Panel
 {
     public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
-        "Type", typeof(PanelType), typeof(AirPanel), new PropertyMetadata(default(PanelType)));
+        nameof(Type), typeof(PanelType), typeof(AirPanel), new PropertyMetadata(default(PanelType)));
 
     public static readonly DependencyProperty SpaceProperty = DependencyProperty.Register(
-        "Space", typeof(double), typeof(AirPanel),
+        nameof(Space), typeof(double), typeof(AirPanel),
         new FrameworkPropertyMetadata(0d,
             FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
 

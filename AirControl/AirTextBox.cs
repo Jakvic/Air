@@ -6,10 +6,10 @@ namespace AirControl;
 public class AirTextBox : TextBox
 {
     public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-        "CornerRadius", typeof(CornerRadius), typeof(AirTextBox), new PropertyMetadata(default(CornerRadius)));
+        nameof(CornerRadius), typeof(CornerRadius), typeof(AirTextBox), new PropertyMetadata(default(CornerRadius)));
 
     public static readonly DependencyProperty HelpTextProperty = DependencyProperty.Register(
-        "HelpText", typeof(string), typeof(AirTextBox), new PropertyMetadata(default(string)));
+        nameof(HelpText), typeof(string), typeof(AirTextBox), new PropertyMetadata(default(string)));
 
     static AirTextBox()
     {

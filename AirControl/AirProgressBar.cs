@@ -8,15 +8,15 @@ namespace AirControl;
 public class AirProgressBar : ProgressBar
 {
     public static readonly DependencyProperty CornerRadiusProperty =
-        DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(AirProgressBar),
+        DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(AirProgressBar),
             new PropertyMetadata(default(CornerRadius)));
 
     public new static readonly DependencyProperty IsIndeterminateProperty = DependencyProperty.Register(
-        "IsIndeterminate", typeof(bool), typeof(AirProgressBar),
+        nameof(IsIndeterminate), typeof(bool), typeof(AirProgressBar),
         new PropertyMetadata(default(bool), PropertyChangedCallback));
 
     public new static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-        "Value", typeof(double), typeof(AirProgressBar),
+        nameof(Value), typeof(double), typeof(AirProgressBar),
         new PropertyMetadata(default(double), ProgressValueChanged));
 
     private Border border;
