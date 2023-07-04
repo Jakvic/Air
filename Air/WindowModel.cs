@@ -5,11 +5,24 @@ namespace Air;
 
 public abstract class WindowModel<TUserControl> : ViewModel<TUserControl> where TUserControl : View, new()
 {
-    public abstract string Title { get; }
+    private Window? _current;
+    private TaskCompletionSource? _taskCompletionSource;
+    protected abstract string Title { get; }
+
+    public bool Ok { get; private set; }
+
+    public Command CloseCommand => GetCommand(async () =>
+    {
+        Ok = true;
+        if (_current is null) return;
+
+        await UIThread.InvokeAsync(() => _current.Close()).ConfigureAwait(false);
+        ;
+    });
 
     protected virtual Window CreateWindowOverride()
     {
-        return new();
+        return new Window();
     }
 
     public Window CreateWindow()
@@ -21,29 +34,22 @@ public abstract class WindowModel<TUserControl> : ViewModel<TUserControl> where 
         return window;
     }
 
-    Window? _current;
-    TaskCompletionSource? _taskCompletionSource;
-
     protected virtual void OnWindowInitialized(Window window)
     {
         _current = window;
-        _current.Closed += delegate
-        {
-            _taskCompletionSource?.SetResult();
-        };
+        _current.Closed += delegate { _taskCompletionSource?.SetResult(); };
     }
-
 
     public async Task ShowAsync()
     {
-        _taskCompletionSource = new();
+        _taskCompletionSource = new TaskCompletionSource();
         await UIThread.InvokeAsync(() => { CreateWindow().Show(); }).ConfigureAwait(false);
         await _taskCompletionSource.Task.ConfigureAwait(false);
     }
 
     public async Task ShowModelAsync(Window owner)
     {
-        _taskCompletionSource = new();
+        _taskCompletionSource = new TaskCompletionSource();
         await UIThread.InvokeAsync(() =>
         {
             var window = CreateWindow();
@@ -53,18 +59,4 @@ public abstract class WindowModel<TUserControl> : ViewModel<TUserControl> where 
 
         await _taskCompletionSource.Task.ConfigureAwait(false);
     }
-
-    public bool Ok { get; private set; }
-
-    public Command CloseCommand => GetCommand(async () =>
-    {
-        Ok = true;
-        if (_current is null)
-        {
-            return;
-        }
-
-        await UIThread.InvokeAsync(() => _current.Close()).ConfigureAwait(false); ;
-    });
-
 }

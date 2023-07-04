@@ -3,12 +3,12 @@ using System.Windows.Input;
 
 namespace Air;
 
-public class Command :ICommand
+public class Command : ICommand
 {
     private readonly Action _action;
     private readonly Predicate<object?>? _canExecute;
 
-    public Command(Action action,Predicate<object?>? canExecute)
+    public Command(Action action, Predicate<object?>? canExecute)
     {
         _action = action;
         _canExecute = canExecute;

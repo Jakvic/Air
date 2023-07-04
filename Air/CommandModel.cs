@@ -1,6 +1,7 @@
 ﻿using System;
 
 namespace Air;
+
 public abstract class CommandModel : Model
 {
     public Command GetCommand(Action action, Predicate<object?>? predicate = default)

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Air;
 
-//INotifyPropertyChanged是如何被加载、触发的  https://zhuanlan.zhihu.com/p/464381909
+//INotifyPropertyChanged鏄浣曡鍔犺浇銆佽Е鍙戠殑  https://zhuanlan.zhihu.com/p/464381909
 
 //PropertyChangedEventManager
 //https://referencesource.microsoft.com/#WindowsBase/Base/System/ComponentModel/PropertyChangedEventManager.cs,8862db7b374f076b
@@ -14,10 +14,7 @@ public abstract class Model : INotifyPropertyChanged
 
     public bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
     {
-        if (EqualityComparer<T>.Default.Equals(field, value))
-        {
-            return false;
-        }
+        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
 
         field = value;
         OnPropertyChanged(propertyName);
@@ -26,7 +23,6 @@ public abstract class Model : INotifyPropertyChanged
 
     protected void OnPropertyChanged(string? propertyName)
     {
-        PropertyChanged?.Invoke(this, new(propertyName));
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-
 }

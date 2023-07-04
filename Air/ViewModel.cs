@@ -3,15 +3,13 @@
 public abstract class ViewModel<TUserControl> : CommandModel, IViewModel
     where TUserControl : View, new()
 {
-    TUserControl? _view;
+    private TUserControl? _view;
+
     public View CreateView()
     {
-        if (_view is not null)
-        {
-            return _view;
-        }
+        if (_view is not null) return _view;
 
-        _view = new()
+        _view = new TUserControl
         {
             DataContext = this
         };
@@ -28,6 +26,5 @@ public abstract class ViewModel<TUserControl> : CommandModel, IViewModel
 
     protected virtual void OnInitialized(TUserControl view)
     {
-
     }
 }

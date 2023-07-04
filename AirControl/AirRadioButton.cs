@@ -1,14 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace AirControl
+namespace AirControl;
+
+public class AirRadioButton : RadioButton
 {
-    public class AirRadioButton : RadioButton
+    static AirRadioButton()
     {
-        static AirRadioButton()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirRadioButton),
-                new FrameworkPropertyMetadata(typeof(AirRadioButton)));
-        }
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(AirRadioButton),
+            new FrameworkPropertyMetadata(typeof(AirRadioButton)));
     }
 }

@@ -1,4 +1,5 @@
 ﻿namespace Air;
+
 public interface IViewModel
 {
     View CreateView();

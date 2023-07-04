@@ -1,7 +1,5 @@
-﻿namespace AirControl
+﻿namespace AirControl;
+
+public class AirCaption
 {
-    public class AirCaption
-    {
-        
-    }
 }

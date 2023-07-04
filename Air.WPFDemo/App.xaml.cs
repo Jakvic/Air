@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using Air.WPFDemo.Services;
 
-namespace Air.WPFDemo
+namespace Air.WPFDemo;
+
+/// <summary>
+///     Interaction logic for App.xaml
+/// </summary>
+public partial class App
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    protected override void OnStartup(StartupEventArgs e)
     {
+        base.OnStartup(e);
+        var mainModel = new Main_Model().CreateWindow();
+
+        Service.Register(new AppService(mainModel));
+        MainWindow = mainModel;
+        MainWindow.Show();
     }
 }

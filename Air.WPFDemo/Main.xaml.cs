@@ -1,9 +1,7 @@
-﻿using System.Windows;
-
-namespace Air.WPFDemo;
+﻿namespace Air.WPFDemo;
 
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+///     Interaction logic for MainWindow.xaml
 /// </summary>
 public partial class Main
 {

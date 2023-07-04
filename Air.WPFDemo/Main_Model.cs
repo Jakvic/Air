@@ -1,33 +1,33 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+using System.Windows;
+using Air.WPFDemo.Services;
 
 namespace Air.WPFDemo;
 
 public class Main_Model : WindowModel<Main>
 {
-    private string _gender = "gg";
-    private string _name = "name";
+    private readonly Lazy<AppService> _appService = Service.GetLazy<AppService>();
 
-    public override string Title => "Main";
-    public string Name
+    private string? _message;
+    protected override string Title => "Main";
+
+    public string? Message
     {
-        get => _name;
-        set => SetField(ref _name, value);
+        get => _message;
+        private set => SetField(ref _message, value);
     }
 
-    public string Gender
+    protected override void OnInitialized(Main view)
     {
-        get => _gender;
-        set => SetField(ref _gender, value);
+        base.OnInitialized(view);
+        Message = "The Air.WPFDemo";
     }
 
-    public Command Eat => GetCommand(async () =>
+    protected override void OnWindowInitialized(Window window)
     {
-        Debug.WriteLine("Am Eating..." + DateTime.Now);
-        await Task.Delay(2000).ConfigureAwait(false);
-        Debug.WriteLine("Done" + DateTime.Now);
-        //DeadLockDemo.Test();
-        //DeadLockDemo.TestNotFullyAsync();
-    });
+        base.OnWindowInitialized(window);
+        window.Width = 800;
+        window.Height = 560;
+        window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+    }
 }

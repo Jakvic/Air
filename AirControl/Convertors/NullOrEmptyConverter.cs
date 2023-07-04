@@ -3,31 +3,30 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace AirControl.Convertors
+namespace AirControl.Convertors;
+
+public class NullOrEmptyConverter : MarkupExtension, IValueConverter
 {
-    public class NullOrEmptyConverter : MarkupExtension, IValueConverter
+    public bool Reversed { get; set; }
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        public bool Reversed { get; set; }
-
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        if (value is string str)
         {
-            if (value is string str)
-            {
-                var nullOrEmpty = !string.IsNullOrWhiteSpace(str);
-                return Reversed ? !nullOrEmpty : nullOrEmpty;
-            }
-
-            return true;
+            var nullOrEmpty = !string.IsNullOrWhiteSpace(str);
+            return Reversed ? !nullOrEmpty : nullOrEmpty;
         }
 
-        public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return default;
-        }
+        return true;
+    }
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
+    public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return default;
+    }
+
+    public override object ProvideValue(IServiceProvider serviceProvider)
+    {
+        return this;
     }
 }

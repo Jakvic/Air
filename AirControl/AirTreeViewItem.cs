@@ -1,14 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace AirControl
+namespace AirControl;
+
+public class AirTreeViewItem : TreeViewItem
 {
-    public class AirTreeViewItem : TreeViewItem
+    static AirTreeViewItem()
     {
-        static AirTreeViewItem()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirTreeViewItem),
-                new FrameworkPropertyMetadata(typeof(AirTreeViewItem)));
-        }
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(AirTreeViewItem),
+            new FrameworkPropertyMetadata(typeof(AirTreeViewItem)));
     }
 }

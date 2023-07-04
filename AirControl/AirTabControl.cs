@@ -1,14 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace AirControl
+namespace AirControl;
+
+public class AirTabControl : TabControl
 {
-    public class AirTabControl : TabControl
+    static AirTabControl()
     {
-        static AirTabControl()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AirTabControl),
-                new FrameworkPropertyMetadata(typeof(AirTabControl)));
-        }
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(AirTabControl),
+            new FrameworkPropertyMetadata(typeof(AirTabControl)));
     }
 }

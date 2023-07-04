@@ -3,208 +3,189 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace AirControl
+namespace AirControl;
+
+public enum PanelType
 {
-    public enum PanelType
+    Horizontal,
+    HorizontalFull,
+    Vertical,
+    VerticalFull
+}
+
+public class AirPanel : Panel
+{
+    public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
+        "Type", typeof(PanelType), typeof(AirPanel), new PropertyMetadata(default(PanelType)));
+
+    public static readonly DependencyProperty SpaceProperty = DependencyProperty.Register(
+        "Space", typeof(double), typeof(AirPanel),
+        new FrameworkPropertyMetadata(0d,
+            FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
+
+    public PanelType Type
     {
-        Horizontal,
-        HorizontalFull,
-        Vertical,
-        VerticalFull
+        get => (PanelType)GetValue(TypeProperty);
+        set => SetValue(TypeProperty, value);
     }
 
-    public class AirPanel : Panel
+    public double Space
     {
-        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
-            "Type", typeof(PanelType), typeof(AirPanel), new PropertyMetadata(default(PanelType)));
+        get => (double)GetValue(SpaceProperty);
+        set => SetValue(SpaceProperty, value);
+    }
 
-        public static readonly DependencyProperty SpaceProperty = DependencyProperty.Register(
-            "Space", typeof(double), typeof(AirPanel),
-            new FrameworkPropertyMetadata(0d,
-                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
-
-        public PanelType Type
+    protected override Size MeasureOverride(Size availableSize)
+    {
+        Size size;
+        switch (Type)
         {
-            get => (PanelType)GetValue(TypeProperty);
-            set => SetValue(TypeProperty, value);
+            case PanelType.Horizontal:
+                size = HorizontalMeasure(availableSize);
+                break;
+            case PanelType.HorizontalFull:
+                size = HorizontalFullMeasure(availableSize);
+                break;
+            case PanelType.Vertical:
+                size = VerticalMeasure(availableSize);
+                break;
+            case PanelType.VerticalFull:
+                size = VerticalFullMeasure(availableSize);
+                break;
         }
 
-        public double Space
+        return size;
+    }
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        switch (Type)
         {
-            get => (double)GetValue(SpaceProperty);
-            set => SetValue(SpaceProperty, value);
+            case PanelType.Horizontal:
+            case PanelType.HorizontalFull:
+                HorizontalArrange(finalSize);
+                break;
+            case PanelType.Vertical:
+            case PanelType.VerticalFull:
+                VerticalArrange(finalSize);
+                break;
         }
 
-        protected override Size MeasureOverride(Size availableSize)
-        {
-            Size size;
-            switch (Type)
-            {
-                case PanelType.Horizontal:
-                    size = HorizontalMeasure(availableSize);
-                    break;
-                case PanelType.HorizontalFull:
-                    size = HorizontalFullMeasure(availableSize);
-                    break;
-                case PanelType.Vertical:
-                    size = VerticalMeasure(availableSize);
-                    break;
-                case PanelType.VerticalFull:
-                    size = VerticalFullMeasure(availableSize);
-                    break;
-            }
+        return finalSize;
+    }
 
-            return size;
+    private Size HorizontalMeasure(Size availableSize)
+    {
+        var width = 0d;
+        var height = 0d;
+        var size = new Size();
+        foreach (UIElement child in InternalChildren)
+        {
+            if (child is Popup) continue;
+
+            child.Measure(new Size(availableSize.Width, availableSize.Height));
+            height = Math.Max(height, child.DesiredSize.Height);
+            width += child.DesiredSize.Width + Space;
         }
 
-        protected override Size ArrangeOverride(Size finalSize)
-        {
-            switch (Type)
-            {
-                case PanelType.Horizontal:
-                case PanelType.HorizontalFull:
-                    HorizontalArrange(finalSize);
-                    break;
-                case PanelType.Vertical:
-                case PanelType.VerticalFull:
-                    VerticalArrange(finalSize);
-                    break;
-            }
+        width -= Space;
+        size.Width = Math.Min(width, availableSize.Width);
+        size.Height = Math.Min(height, availableSize.Height);
+        //size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
+        return size;
+    }
 
-            return finalSize;
+    private Size HorizontalFullMeasure(Size availableSize)
+    {
+        var width = 0d;
+        var height = 0d;
+        var size = new Size();
+        foreach (UIElement child in InternalChildren)
+        {
+            if (child is Popup) continue;
+
+            child.Measure(new Size(availableSize.Width, availableSize.Height));
+            height = Math.Max(height, child.DesiredSize.Height);
+            width += child.DesiredSize.Width + Space;
         }
 
-        private Size HorizontalMeasure(Size availableSize)
+        width -= Space;
+        size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
+        size.Height = Math.Min(height, availableSize.Height);
+        return size;
+    }
+
+    private void HorizontalArrange(Size finalSize)
+    {
+        var rcChild = new Rect(finalSize);
+        var previousChildSize = 0d;
+        foreach (UIElement child in InternalChildren)
         {
-            var width = 0d;
-            var height = 0d;
-            var size = new Size();
-            foreach (UIElement child in InternalChildren)
-            {
-                if (child is Popup)
-                {
-                    continue;
-                }
+            if (child is Popup) continue;
 
-                child.Measure(new Size(availableSize.Width, availableSize.Height));
-                height = Math.Max(height, child.DesiredSize.Height);
-                width += child.DesiredSize.Width + Space;
-            }
+            rcChild.X += previousChildSize + (previousChildSize == 0 ? 0 : Space);
+            previousChildSize = child.DesiredSize.Width;
+            rcChild.Width = previousChildSize;
+            rcChild.Height = Math.Max(finalSize.Height, child.DesiredSize.Height);
 
-            width -= Space;
-            size.Width = Math.Min(width, availableSize.Width);
-            size.Height = Math.Min(height, availableSize.Height);
-            //size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
-            return size;
+            child.Arrange(rcChild);
+        }
+    }
+
+    private Size VerticalMeasure(Size availableSize)
+    {
+        var width = 0d;
+        var height = 0d;
+        var size = new Size();
+        foreach (UIElement child in InternalChildren)
+        {
+            if (child is Popup) continue;
+
+            child.Measure(new Size(availableSize.Width, availableSize.Height));
+            width = Math.Max(width, child.DesiredSize.Width);
+            height += child.DesiredSize.Height + Space;
         }
 
-        private Size HorizontalFullMeasure(Size availableSize)
+        height -= Space;
+        //size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
+        size.Width = Math.Min(width, availableSize.Width);
+        size.Height = Math.Min(height, availableSize.Height);
+        return size;
+    }
+
+    private Size VerticalFullMeasure(Size availableSize)
+    {
+        var width = 0d;
+        var height = 0d;
+        var size = new Size();
+        foreach (UIElement child in InternalChildren)
         {
-            var width = 0d;
-            var height = 0d;
-            var size = new Size();
-            foreach (UIElement child in InternalChildren)
-            {
-                if (child is Popup)
-                {
-                    continue;
-                }
+            if (child is Popup) continue;
 
-                child.Measure(new Size(availableSize.Width, availableSize.Height));
-                height = Math.Max(height, child.DesiredSize.Height);
-                width += child.DesiredSize.Width + Space;
-            }
-
-            width -= Space;
-            size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
-            size.Height = Math.Min(height, availableSize.Height);
-            return size;
+            child.Measure(new Size(availableSize.Width, availableSize.Height));
+            width = Math.Max(width, child.DesiredSize.Width);
+            height += child.DesiredSize.Height + Space;
         }
 
-        private void HorizontalArrange(Size finalSize)
+        height -= Space;
+        size.Width = Math.Min(width, availableSize.Width);
+        size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
+        return size;
+    }
+
+    private void VerticalArrange(Size finalSize)
+    {
+        var rcChild = new Rect(finalSize);
+        var previousChildSize = 0d;
+        foreach (UIElement child in InternalChildren)
         {
-            var rcChild = new Rect(finalSize);
-            var previousChildSize = 0d;
-            foreach (UIElement child in InternalChildren)
-            {
-                if (child is Popup)
-                {
-                    continue;
-                }
+            if (child is Popup) continue;
 
-                rcChild.X += previousChildSize + (previousChildSize == 0 ? 0 : Space);
-                previousChildSize = child.DesiredSize.Width;
-                rcChild.Width = previousChildSize;
-                rcChild.Height = Math.Max(finalSize.Height, child.DesiredSize.Height);
-
-                child.Arrange(rcChild);
-            }
-        }
-
-        private Size VerticalMeasure(Size availableSize)
-        {
-            var width = 0d;
-            var height = 0d;
-            var size = new Size();
-            foreach (UIElement child in InternalChildren)
-            {
-                if (child is Popup)
-                {
-                    continue;
-                }
-
-                child.Measure(new Size(availableSize.Width, availableSize.Height));
-                width = Math.Max(width, child.DesiredSize.Width);
-                height += child.DesiredSize.Height + Space;
-            }
-
-            height -= Space;
-            //size.Width = double.IsPositiveInfinity(availableSize.Width) ? width : availableSize.Width;
-            size.Width = Math.Min(width, availableSize.Width);
-            size.Height = Math.Min(height, availableSize.Height);
-            return size;
-        }
-
-        private Size VerticalFullMeasure(Size availableSize)
-        {
-            var width = 0d;
-            var height = 0d;
-            var size = new Size();
-            foreach (UIElement child in InternalChildren)
-            {
-                if (child is Popup)
-                {
-                    continue;
-                }
-
-                child.Measure(new Size(availableSize.Width, availableSize.Height));
-                width = Math.Max(width, child.DesiredSize.Width);
-                height += child.DesiredSize.Height + Space;
-            }
-
-            height -= Space;
-            size.Width = Math.Min(width, availableSize.Width);
-            size.Height = double.IsPositiveInfinity(availableSize.Height) ? height : availableSize.Height;
-            return size;
-        }
-
-        private void VerticalArrange(Size finalSize)
-        {
-            var rcChild = new Rect(finalSize);
-            var previousChildSize = 0d;
-            foreach (UIElement child in InternalChildren)
-            {
-                if (child is Popup)
-                {
-                    continue;
-                }
-
-                rcChild.Y += previousChildSize + (previousChildSize == 0 ? 0 : Space);
-                previousChildSize = child.DesiredSize.Height;
-                rcChild.Height = previousChildSize;
-                rcChild.Width = Math.Max(finalSize.Width, child.DesiredSize.Width);
-                child.Arrange(rcChild);
-            }
+            rcChild.Y += previousChildSize + (previousChildSize == 0 ? 0 : Space);
+            previousChildSize = child.DesiredSize.Height;
+            rcChild.Height = previousChildSize;
+            rcChild.Width = Math.Max(finalSize.Width, child.DesiredSize.Width);
+            child.Arrange(rcChild);
         }
     }
 }
