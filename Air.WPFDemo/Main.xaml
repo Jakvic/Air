@@ -5,19 +5,50 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:local="clr-namespace:Air.WPFDemo" mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:Main_Model}">
+
+    <View.Resources>
+        <Style x:Key="MinMaxButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="LightCyan" />
+            <Setter Property="BorderThickness" Value="0" />
+            <!-- <Setter Property="Width" Value="{TemplateBinding SystemButtonWidth}" /> -->
+            <Setter Property="Width" Value="46" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Focusable="False" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightCoral" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </View.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <AirCaption>
-                <AirPanel Type="Horizontal" Space="5" HorizontalAlignment="Left">
-                    <AirButton Type="Default" Content="{Binding }" />
-                    <AirButton Content="{x:Static SystemCommands.CloseWindowCommand }" />
+            <AirCaption Background="LightCyan">
+                <AirPanel Type="Horizontal" Space="10"
+                          HorizontalAlignment="Left">
+                    <AirButton Type="Default" Content="Buzz" />
+                    <AirButton Content="Open" />
                 </AirPanel>
             </AirCaption>
         </Grid>
+
         <Grid Grid.Row="1">
             <AirTabControl Background="LightGray">
                 <AirTabItem Header="Button">
