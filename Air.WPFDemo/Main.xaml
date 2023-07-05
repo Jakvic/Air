@@ -11,7 +11,12 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <AirCaption/>
+            <AirCaption>
+                <AirPanel Type="Horizontal" Space="5" HorizontalAlignment="Left">
+                    <AirButton Type="Default" Content="{Binding }" />
+                    <AirButton Content="{x:Static SystemCommands.CloseWindowCommand }" />
+                </AirPanel>
+            </AirCaption>
         </Grid>
         <Grid Grid.Row="1">
             <AirTabControl Background="LightGray">

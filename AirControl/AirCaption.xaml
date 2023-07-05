@@ -7,15 +7,20 @@
 
     <Style x:Key="MinMaxButtonStyle" TargetType="Button">
         <Setter Property="Focusable" Value="False" />
-        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Background" Value="LightGray" />
+        <Setter Property="BorderThickness" Value="0"/>
         <!-- <Setter Property="Width" Value="{TemplateBinding SystemButtonWidth}" /> -->
         <Setter Property="Width" Value="46" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border>
-                        <ContentPresenter RecognizesAccessKey="False"
-                                          Margin="{TemplateBinding Padding}" />
+                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                          Focusable="False" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
