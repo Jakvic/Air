@@ -19,6 +19,8 @@
 
     <SolidColorBrush x:Key="LightMainColorHover" Color="#66A6D0FF" />
     <SolidColorBrush x:Key="LightMainColorHighlighted" Color="#EEA6D0FF" />
+    
+    <SolidColorBrush x:Key="ErrorRed" Color="#FFFF3333" />
 
 
     <LinearGradientBrush x:Key="MainLinearGradientBorderBrush" StartPoint="0,0" EndPoint="1,1">

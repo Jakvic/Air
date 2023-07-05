@@ -6,90 +6,99 @@
       xmlns:local="clr-namespace:Air.WPFDemo" mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:Main_Model}">
     <Grid>
-        <AirTabControl Background="LightGray">
-            <AirTabItem Header="Button">
-                <AirPanel Type="VerticalFull" Space="10" Margin="10">
-                    <AirPanel Type="Horizontal" Space="10"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <AirCaption/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <AirTabControl Background="LightGray">
+                <AirTabItem Header="Button">
+                    <AirPanel Type="VerticalFull" Space="10" Margin="10">
+                        <AirPanel Type="Horizontal" Space="10"
                                   VerticalAlignment="Center">
-                        <AirButton Type="Default"
+                            <AirButton Type="Default"
                                        Content="{x:Static AirButtonType.Default}" />
 
-                        <AirButton Content="{x:Static AirButtonType.Main}" />
+                            <AirButton Content="{x:Static AirButtonType.Main}" />
 
-                    </AirPanel>
-
-                    <AirPanel Type="Vertical" Space="5">
-                        <AirRadioButton Content="Kvaratskhelia" />
-                        <AirRadioButton Content="Mbape" />
-                        <AirRadioButton Content="Haland" />
-                    </AirPanel>
-
-                </AirPanel>
-            </AirTabItem>
-
-            <AirTabItem Header="ComboBox">
-
-                <AirPanel Type="Vertical" Space="10">
-                    <AirComboBox>
-                        <ComboBoxItem Content="2418902461" />
-                        <ComboBoxItem Content="ADHFL:@*(#TFH@" />
-                        <ComboBoxItem Content="LKQ$TH@$T@" />
-                        <ComboBoxItem Content="DF132" />
-                        <ComboBoxItem Content="DF" />
-                        <ComboBoxItem Content="DF" />
-                    </AirComboBox>
-
-                    <ComboBox>
-                        <ComboBoxItem Content="Jp1%^" />
-                        <ComboBoxItem Content="Q!JF" />
-                        <ComboBoxItem Content="!#)(JHFDSALH" />
-                    </ComboBox>
-                </AirPanel>
-
-            </AirTabItem>
-
-            <AirTabItem Header="Panel">
-                <AirPanel Type="Vertical">
-                    <AirPanel Margin="10" Type="Horizontal" Space="10">
-                        <AirRadioButton Content="Horizontal 1" />
-                        <AirRadioButton Content="Horizontal 2" />
-                        <AirRadioButton Content="Horizontal 3" />
-                        <AirRadioButton Content="Horizontal 4" />
-                    </AirPanel>
-
-                    <AirPanel Type="HorizontalFull" Space="10">
-                        <AirPanel Margin="10" Type="Vertical" Space="10">
-                            <AirRadioButton Content="Vertical 1" />
-                            <AirRadioButton Content="Vertical 2" />
-                            <AirRadioButton Content="Vertical 3" />
-                            <AirRadioButton Content="Vertical 4" />
                         </AirPanel>
 
-                        <AirPanel Margin="10" Type="Vertical" Space="10">
-                            <AirButton Type="Default" Content="AirButton 1" />
-                            <AirButton Content="AirButton 2" />
-                            <AirButton Type="Default" Content="AirButton 3" />
-                            <AirButton Content="AirButton 4" />
+                        <AirPanel Type="Vertical" Space="5">
+                            <AirRadioButton Content="Kvaratskhelia" />
+                            <AirRadioButton Content="Mbape" />
+                            <AirRadioButton Content="Haland" />
+                        </AirPanel>
+
+                    </AirPanel>
+                </AirTabItem>
+
+                <AirTabItem Header="ComboBox">
+
+                    <AirPanel Type="Vertical" Space="10">
+                        <AirComboBox>
+                            <ComboBoxItem Content="2418902461" />
+                            <ComboBoxItem Content="ADHFL:@*(#TFH@" />
+                            <ComboBoxItem Content="LKQ$TH@$T@" />
+                            <ComboBoxItem Content="DF132" />
+                            <ComboBoxItem Content="DF" />
+                            <ComboBoxItem Content="DF" />
+                        </AirComboBox>
+
+                        <ComboBox>
+                            <ComboBoxItem Content="Jp1%^" />
+                            <ComboBoxItem Content="Q!JF" />
+                            <ComboBoxItem Content="!#)(JHFDSALH" />
+                        </ComboBox>
+                    </AirPanel>
+
+                </AirTabItem>
+
+                <AirTabItem Header="Panel">
+                    <AirPanel Type="Vertical">
+                        <AirPanel Margin="10" Type="Horizontal" Space="10">
+                            <AirRadioButton Content="Horizontal 1" />
+                            <AirRadioButton Content="Horizontal 2" />
+                            <AirRadioButton Content="Horizontal 3" />
+                            <AirRadioButton Content="Horizontal 4" />
+                        </AirPanel>
+
+                        <AirPanel Type="HorizontalFull" Space="10">
+                            <AirPanel Margin="10" Type="Vertical" Space="10">
+                                <AirRadioButton Content="Vertical 1" />
+                                <AirRadioButton Content="Vertical 2" />
+                                <AirRadioButton Content="Vertical 3" />
+                                <AirRadioButton Content="Vertical 4" />
+                            </AirPanel>
+
+                            <AirPanel Margin="10" Type="Vertical" Space="10">
+                                <AirButton Type="Default" Content="AirButton 1" />
+                                <AirButton Content="AirButton 2" />
+                                <AirButton Type="Default" Content="AirButton 3" />
+                                <AirButton Content="AirButton 4" />
+                            </AirPanel>
                         </AirPanel>
                     </AirPanel>
-                </AirPanel>
-            </AirTabItem>
+                </AirTabItem>
 
-            <AirTabItem Header="Progress">
-                <AirPanel Type="Vertical" Space="10">
-                    <AirProgressBar Width="100" Height="20" Value="30" IsIndeterminate="True" />
-                    <AirProgressBar Width="100" Height="20" Value="50" IsIndeterminate="False" />
-                    <AirProgressBar Width="100" Height="20" Value="60" IsIndeterminate="False" />
-                </AirPanel>
-            </AirTabItem>
+                <AirTabItem Header="Progress">
+                    <AirPanel Type="Vertical" Space="10">
+                        <AirProgressBar Width="100" Height="20" Value="30" IsIndeterminate="True" />
+                        <AirProgressBar Width="100" Height="20" Value="50" IsIndeterminate="False" />
+                        <AirProgressBar Width="100" Height="20" Value="60" IsIndeterminate="False" />
+                    </AirPanel>
+                </AirTabItem>
 
-            <AirTabItem Header="ScrollViewer">
-                <AirCaptionMenuItem Background="LightBlue" />
-            </AirTabItem>
-            <AirTabItem Header="TextBox">
-                <TextBlock Text="{Binding }" />
-            </AirTabItem>
-            <AirTabItem Header="Loading" />
-        </AirTabControl>
+                <AirTabItem Header="ScrollViewer">
+                    <AirCaption />
+                </AirTabItem>
+                <AirTabItem Header="TextBox">
+                    <TextBlock Text="{Binding }" />
+                </AirTabItem>
+                <AirTabItem Header="Loading" />
+            </AirTabControl>
+        </Grid>
     </Grid>
 </View>

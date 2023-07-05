@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="AirControl;component/AirButton.xaml" />
-        <ResourceDictionary Source="AirControl;component/AirCaptionMenuItem.xaml" />
+        <ResourceDictionary Source="AirControl;component/AirCaption.xaml" />
         <ResourceDictionary Source="AirControl;component/AirTextBox.xaml" />
         <ResourceDictionary Source="AirControl;component/AirProgressBar.xaml" />
         <ResourceDictionary Source="AirControl;component/AirScrollViewer.xaml" />
