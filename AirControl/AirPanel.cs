@@ -21,7 +21,8 @@ public class AirPanel : Panel
     public static readonly DependencyProperty SpaceProperty = DependencyProperty.Register(
         nameof(Space), typeof(double), typeof(AirPanel),
         new FrameworkPropertyMetadata(0d,
-            FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            FrameworkPropertyMetadataOptions.AffectsArrange |
+            FrameworkPropertyMetadataOptions.AffectsMeasure));
 
     public PanelType Type
     {

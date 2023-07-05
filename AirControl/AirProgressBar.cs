@@ -19,8 +19,8 @@ public class AirProgressBar : ProgressBar
         nameof(Value), typeof(double), typeof(AirProgressBar),
         new PropertyMetadata(default(double), ProgressValueChanged));
 
-    private Border border;
-    private Border indicator;
+    private Border? _border;
+    private Border? _indicator;
 
     static AirProgressBar()
     {
@@ -30,7 +30,7 @@ public class AirProgressBar : ProgressBar
 
     public AirProgressBar()
     {
-        SizeChanged += (sender, args) =>
+        SizeChanged += (_, _) =>
         {
             DoAnimation();
             CalcWidth();
@@ -58,7 +58,7 @@ public class AirProgressBar : ProgressBar
     private static void ProgressValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var airProgressBar = d as AirProgressBar;
-        airProgressBar.CalcWidth();
+        airProgressBar?.CalcWidth();
     }
 
     private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -71,43 +71,65 @@ public class AirProgressBar : ProgressBar
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        border = (GetTemplateChild("PART_Border") as Border)!;
-        indicator = (GetTemplateChild("PART_Indicator") as Border)!;
-        if (border.CornerRadius is { } radius && radius.TopLeft >= 1)
-            indicator.CornerRadius = new CornerRadius(CornerRadius.TopLeft - BorderThickness.Left,
+        _border = (GetTemplateChild("PART_Border") as Border)!;
+        _indicator = (GetTemplateChild("PART_Indicator") as Border)!;
+        if (_border.CornerRadius is { TopLeft: >= 1 })
+        {
+            _indicator.CornerRadius = new CornerRadius(CornerRadius.TopLeft - BorderThickness.Left,
                 CornerRadius.TopRight - BorderThickness.Top,
                 CornerRadius.BottomRight - BorderThickness.Right, CornerRadius.BottomLeft - BorderThickness.Bottom);
+        }
     }
 
     private void CalcWidth()
     {
-        if (IsIndeterminate) return;
+        if (IsIndeterminate)
+        {
+            return;
+        }
 
-        if (border is null) return;
+        if (_border is null)
+        {
+            return;
+        }
 
         Value = Math.Max(0d, Value);
         var percentage = Value / 100;
-        indicator.Width = border.ActualWidth * percentage;
+        if (_indicator != null)
+        {
+            _indicator.Width = _border.ActualWidth * percentage;
+        }
     }
 
     private void DoAnimation()
     {
-        if (IsIndeterminate is false) return;
+        if (IsIndeterminate is false)
+        {
+            return;
+        }
 
-        if (border is null) return;
+        if (_border is null)
+        {
+            return;
+        }
 
-        indicator.Width = ActualWidth / 4;
+        if (_indicator is null)
+        {
+            return;
+        }
+
+        _indicator.Width = ActualWidth / 4;
         Storyboard sb = new() { RepeatBehavior = RepeatBehavior.Forever };
         var thicknessAnimation = new ThicknessAnimation
         {
             Duration = new Duration(TimeSpan.FromMilliseconds(2000)),
-            From = new Thickness(-indicator.Width, indicator.Margin.Top,
-                indicator.Margin.Right, indicator.Margin.Bottom),
-            To = new Thickness(Width, indicator.Margin.Top,
-                -indicator.Width, indicator.Margin.Bottom)
+            From = new Thickness(-_indicator.Width, _indicator.Margin.Top,
+                _indicator.Margin.Right, _indicator.Margin.Bottom),
+            To = new Thickness(Width, _indicator.Margin.Top,
+                -_indicator.Width, _indicator.Margin.Bottom)
         };
         Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath("Margin"));
         sb.Children.Add(thicknessAnimation);
-        sb.Begin(indicator);
+        sb.Begin(_indicator);
     }
 }

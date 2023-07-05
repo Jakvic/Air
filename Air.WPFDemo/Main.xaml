@@ -29,11 +29,22 @@
 
             <AirTabItem Header="ComboBox">
 
-                <AirComboBox Margin="10">
-                    <ComboBoxItem Content="Old Pine" />
-                    <ComboBoxItem Content="Only Love" />
-                    <ComboBoxItem Content="Broken" IsSelected="True" />
-                </AirComboBox>
+                <AirPanel Type="Vertical" Space="10">
+                    <AirComboBox>
+                        <ComboBoxItem Content="2418902461" />
+                        <ComboBoxItem Content="ADHFL:@*(#TFH@" />
+                        <ComboBoxItem Content="LKQ$TH@$T@"/>
+                        <ComboBoxItem Content="DF132"/>
+                        <ComboBoxItem Content="DF"/>
+                        <ComboBoxItem Content="DF"/>
+                    </AirComboBox>
+
+                    <ComboBox>
+                        <ComboBoxItem Content="Jp1%^" />
+                        <ComboBoxItem Content="Q!JF" />
+                        <ComboBoxItem Content="!#)(JHFDSALH" />
+                    </ComboBox>
+                </AirPanel>
 
             </AirTabItem>
 

@@ -27,14 +27,19 @@ public class Loading : Control
     public static readonly DependencyProperty ProgressValueProperty = DependencyProperty.Register(
         nameof(ProgressValue), typeof(double), typeof(Loading), new PropertyMetadata(40d, PropertyChangedCallback));
 
-    private Ellipse ellipse;
+    private Ellipse? _ellipse;
 
-    private double perimeter;
-    private Storyboard storyboard;
+    private double _perimeter;
+    private Storyboard _storyboard;
 
     static Loading()
     {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(Loading), new FrameworkPropertyMetadata(typeof(Loading)));
+    }
+
+    public Loading(Storyboard storyboard)
+    {
+        _storyboard = storyboard;
     }
 
     public double ProgressValue
@@ -70,28 +75,39 @@ public class Loading : Control
 
     private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var loading = d as Loading;
+        if (d is not Loading loading)
+        {
+            return;
+        }
 
-        var lineLength = loading.perimeter * (loading.ProgressValue / 100);
-        var gapLength = loading.perimeter - lineLength;
-        loading.ellipse.StrokeDashArray = new DoubleCollection(new[]
+        if (loading._ellipse is null)
+        {
+            return;
+        }
+
+        var lineLength = loading._perimeter * (loading.ProgressValue / 100);
+        var gapLength = loading._perimeter - lineLength;
+        loading._ellipse.StrokeDashArray = new DoubleCollection(new[]
         {
             lineLength / loading.BorderThickness, gapLength / loading.BorderThickness + loading.BorderThickness
         });
         if (Math.Floor(loading.ProgressValue) is 100 or 0)
         {
-            loading.storyboard?.Stop();
+            loading._storyboard.Stop();
         }
         else
         {
-            var state = loading.storyboard.GetCurrentState();
-            if (state is ClockState.Stopped) loading.storyboard?.Begin();
+            var state = loading._storyboard.GetCurrentState();
+            if (state is ClockState.Stopped)
+            {
+                loading._storyboard.Begin();
+            }
         }
     }
 
     private void DoAnimation()
     {
-        storyboard = new Storyboard
+        _storyboard = new Storyboard
         {
             RepeatBehavior = RepeatBehavior.Forever
         };
@@ -101,22 +117,25 @@ public class Loading : Control
             To = 359.99
         };
         Storyboard.SetTargetProperty(animation, new PropertyPath("RenderTransform.Angle"));
-        Storyboard.SetTarget(animation, ellipse);
-        storyboard.Children.Add(animation);
-        storyboard.Begin();
+        Storyboard.SetTarget(animation, _ellipse);
+        _storyboard.Children.Add(animation);
+        _storyboard.Begin();
     }
 
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        ellipse = GetTemplateChild("PART_Ellipse") as Ellipse;
-        perimeter = Math.PI * Diameter;
+        _ellipse = GetTemplateChild("PART_Ellipse") as Ellipse;
+        _perimeter = Math.PI * Diameter;
 
-        if (!(Diameter >= 0) && !(BorderThickness >= 0)) return;
+        if (!(Diameter >= 0) && !(BorderThickness >= 0))
+        {
+            return;
+        }
 
-        var lineLength = perimeter * (ProgressValue / 100);
-        var gapLength = perimeter - lineLength;
-        ellipse!.StrokeDashArray = new DoubleCollection(new[]
+        var lineLength = _perimeter * (ProgressValue / 100);
+        var gapLength = _perimeter - lineLength;
+        _ellipse!.StrokeDashArray = new DoubleCollection(new[]
         {
             lineLength / BorderThickness, gapLength / BorderThickness
         });

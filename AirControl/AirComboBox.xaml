@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:AirControl">
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml" />
         <ResourceDictionary Source="AirComboBoxItem.xaml" />
@@ -21,7 +22,6 @@
     <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type local:AirComboBox}">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
 
-
             <!-- toggle button -->
             <local:AirComboBoxToggleButton Grid.Column="0"
                                            x:Name="toggleButton" Background="{TemplateBinding Background}"
@@ -31,33 +31,41 @@
                                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
 
             <!-- toggle button content -->
-            <ContentPresenter Grid.Column="0" x:Name="contentPresenter"
-                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                              Content="{TemplateBinding SelectionBoxItem}"
-                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              IsHitTestVisible="false" Margin="{TemplateBinding Padding}"
-                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            <local:AirPanel Type="Horizontal" Space="10">
+                <ContentPresenter x:Name="contentPresenter"
+                                  ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                  Content="{TemplateBinding SelectionBoxItem}"
+                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  IsHitTestVisible="false" Margin="{TemplateBinding Padding}"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                <!--toggle button icon (the right side)-->
+                <Path Stroke="Black" StrokeThickness="1"
+                      Margin="5 0" VerticalAlignment="Center">
+                    <Path.Data>
+                        <PathGeometry>M 0 0 L 3.5 4 L 7 0</PathGeometry>
+                    </Path.Data>
+                </Path>
+            </local:AirPanel>
 
             <!-- popup -->
-            <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2"
+            <Popup x:Name="PART_Popup" AllowsTransparency="true"
                    IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                   Margin="1"
-                   VerticalOffset="2"
+                   VerticalOffset="1"
                    PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                 <local:AirBorder x:Name="dropDownBorder" CornerRadius="{TemplateBinding CornerRadius}"
                                  BorderBrush="{StaticResource DefaultBorderBrush}"
-                                 Width="{Binding ActualWidth,RelativeSource={RelativeSource AncestorType=local:AirComboBox}}"
+                                 MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                 MaxHeight="{Binding MaxDropDownHeight,RelativeSource={RelativeSource TemplatedParent}}"
                                  BorderThickness="0.5" Margin="1">
-                    <local:AirScrollViewer x:Name="DropDownScrollViewer" BorderThickness="0">
+                    <ScrollViewer x:Name="DropDownScrollViewer">
                         <ItemsPresenter x:Name="ItemsPresenter"
-                                        KeyboardNavigation.DirectionalNavigation="Contained"
-                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                    </local:AirScrollViewer>
+                                        KeyboardNavigation.DirectionalNavigation="Contained" />
+                    </ScrollViewer>
                 </local:AirBorder>
-
             </Popup>
         </Grid>
         <ControlTemplate.Triggers>
@@ -74,7 +82,6 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-
     <Style TargetType="local:AirComboBox">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
@@ -82,9 +89,9 @@
         <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Padding" Value="8" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-        <Setter Property="Padding" Value="8" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
