@@ -34,20 +34,32 @@ public sealed class ViewModelHost : ContentControl
 
     private static void OnViewModelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not ViewModelHost viewModelHost) return;
+        if (d is not ViewModelHost viewModelHost)
+        {
+            return;
+        }
 
         viewModelHost.Content = (e.NewValue as IViewModel)?.CreateView();
     }
 
     private static void OnViewModelTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not ViewModelHost viewModelHost) return;
+        if (d is not ViewModelHost viewModelHost)
+        {
+            return;
+        }
 
         if (e.NewValue is not Type type)
+        {
             viewModelHost.ViewModel = null;
+        }
         else if (Activator.CreateInstance(type) is IViewModel viewModel)
+        {
             viewModelHost.ViewModel = viewModel;
+        }
         else
+        {
             viewModelHost.ViewModel = null;
+        }
     }
 }

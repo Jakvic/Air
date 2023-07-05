@@ -15,14 +15,20 @@ public class ClipConverter : MarkupExtension, IMultiValueConverter
     {
         if (values.Length > 1 && values[0] is double width && values[1] is double height)
         {
-            if (width < 1.0 || height < 1.0) return Geometry.Empty;
+            if (width < 1.0 || height < 1.0)
+            {
+                return Geometry.Empty;
+            }
 
             CornerRadius cornerRadius = default;
             Thickness borderThickness = default;
             if (values.Length > 2 && values[2] is CornerRadius radius)
             {
                 cornerRadius = radius;
-                if (values.Length > 3 && values[3] is Thickness thickness) borderThickness = thickness;
+                if (values.Length > 3 && values[3] is Thickness thickness)
+                {
+                    borderThickness = thickness;
+                }
             }
 
             // var geometry = GetRoundRectangle(new Rect(0, 0, width, height), borderThickness, cornerRadius);
@@ -132,7 +138,9 @@ public class ClipConverter : MarkupExtension, IMultiValueConverter
         var radiusY = rightTop.Y - rect.TopRight.Y;
         if (!IsZero(radiusX)
             || !IsZero(radiusY))
+        {
             ctx.ArcTo(rightTop, new Size(radiusX, radiusY), 0, false, SweepDirection.Clockwise, true, false);
+        }
 
         // Right line
         ctx.LineTo(rightBottom, true /* is stroked */, false /* is smooth join */);
@@ -142,7 +150,9 @@ public class ClipConverter : MarkupExtension, IMultiValueConverter
         radiusY = rect.BottomRight.Y - rightBottom.Y;
         if (!IsZero(radiusX)
             || !IsZero(radiusY))
+        {
             ctx.ArcTo(bottomRight, new Size(radiusX, radiusY), 0, false, SweepDirection.Clockwise, true, false);
+        }
 
         // Bottom line
         ctx.LineTo(bottomLeft, true /* is stroked */, false /* is smooth join */);
@@ -152,7 +162,9 @@ public class ClipConverter : MarkupExtension, IMultiValueConverter
         radiusY = rect.BottomLeft.Y - leftBottom.Y;
         if (!IsZero(radiusX)
             || !IsZero(radiusY))
+        {
             ctx.ArcTo(leftBottom, new Size(radiusX, radiusY), 0, false, SweepDirection.Clockwise, true, false);
+        }
 
         // Left line
         ctx.LineTo(leftTop, true /* is stroked */, false /* is smooth join */);
@@ -162,7 +174,9 @@ public class ClipConverter : MarkupExtension, IMultiValueConverter
         radiusY = leftTop.Y - rect.TopLeft.Y;
         if (!IsZero(radiusX)
             || !IsZero(radiusY))
+        {
             ctx.ArcTo(topLeft, new Size(radiusX, radiusY), 0, false, SweepDirection.Clockwise, true, false);
+        }
     }
 
     private struct Radii

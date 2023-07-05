@@ -8,7 +8,6 @@
     <Style TargetType="local:AirTabItem">
         <Setter Property="Padding" Value="8 4" />
         <Setter Property="BorderThickness" Value="0 0 0 1.5" />
-        <!-- <Setter Property="BorderBrush" Value="{StaticResource MainBackground}"/> -->
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
@@ -31,7 +30,9 @@
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
                         </Trigger>
 
-                        <DataTrigger Binding="{Binding IsSelected,RelativeSource={RelativeSource Self}}" Value="True">
+                        <DataTrigger
+                            Binding="{Binding IsSelected,RelativeSource={RelativeSource Self}}"
+                            Value="True">
                             <Setter Property="TextElement.Foreground" TargetName="contentPresenter"
                                     Value="{StaticResource MainBackground}" />
                             <Setter Property="BorderBrush" TargetName="Border" Value="{StaticResource MainBackground}" />

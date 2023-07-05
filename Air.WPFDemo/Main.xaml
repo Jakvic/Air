@@ -5,14 +5,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:local="clr-namespace:Air.WPFDemo" mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:Main_Model}">
-    <Grid Margin="10">
-        <AirTabControl>
+    <Grid>
+        <AirTabControl Background="LightGray">
             <AirTabItem Header="Button">
                 <AirPanel Type="VerticalFull" Space="10" Margin="10">
                     <AirPanel Type="Horizontal" Space="10"
-                              VerticalAlignment="Center">
+                                  VerticalAlignment="Center">
                         <AirButton Type="Default"
-                                   Content="{x:Static AirButtonType.Default}" />
+                                       Content="{x:Static AirButtonType.Default}" />
 
                         <AirButton Content="{x:Static AirButtonType.Main}" />
 
@@ -33,10 +33,10 @@
                     <AirComboBox>
                         <ComboBoxItem Content="2418902461" />
                         <ComboBoxItem Content="ADHFL:@*(#TFH@" />
-                        <ComboBoxItem Content="LKQ$TH@$T@"/>
-                        <ComboBoxItem Content="DF132"/>
-                        <ComboBoxItem Content="DF"/>
-                        <ComboBoxItem Content="DF"/>
+                        <ComboBoxItem Content="LKQ$TH@$T@" />
+                        <ComboBoxItem Content="DF132" />
+                        <ComboBoxItem Content="DF" />
+                        <ComboBoxItem Content="DF" />
                     </AirComboBox>
 
                     <ComboBox>
@@ -83,7 +83,9 @@
                 </AirPanel>
             </AirTabItem>
 
-            <AirTabItem Header="ScrollViewer" />
+            <AirTabItem Header="ScrollViewer">
+                <AirCaptionMenuItem Background="LightBlue" />
+            </AirTabItem>
             <AirTabItem Header="TextBox">
                 <TextBlock Text="{Binding }" />
             </AirTabItem>

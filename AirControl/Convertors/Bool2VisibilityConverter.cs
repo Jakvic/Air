@@ -15,7 +15,10 @@ public class Bool2VisibilityConverter : MarkupExtension, IValueConverter
     {
         if (value is bool flag)
         {
-            if (Reversed) flag = !flag;
+            if (Reversed)
+            {
+                flag = !flag;
+            }
 
             return flag ? Visibility.Visible : UseHidden ? Visibility.Hidden : Visibility.Collapsed;
         }

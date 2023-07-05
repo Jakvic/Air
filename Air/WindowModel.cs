@@ -14,7 +14,10 @@ public abstract class WindowModel<TUserControl> : ViewModel<TUserControl> where 
     public Command CloseCommand => GetCommand(async () =>
     {
         Ok = true;
-        if (_current is null) return;
+        if (_current is null)
+        {
+            return;
+        }
 
         await UIThread.InvokeAsync(() => _current.Close()).ConfigureAwait(false);
         ;

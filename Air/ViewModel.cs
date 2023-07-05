@@ -7,7 +7,10 @@ public abstract class ViewModel<TUserControl> : CommandModel, IViewModel
 
     public View CreateView()
     {
-        if (_view is not null) return _view;
+        if (_view is not null)
+        {
+            return _view;
+        }
 
         _view = new TUserControl
         {

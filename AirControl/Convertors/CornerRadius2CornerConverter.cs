@@ -30,9 +30,13 @@ public class CornerRadius2CornerConverter : MarkupExtension, IValueConverter
     /// <returns></returns>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is not CornerRadius cornerRadius) return DependencyProperty.UnsetValue;
+        if (value is not CornerRadius cornerRadius)
+        {
+            return DependencyProperty.UnsetValue;
+        }
 
         if (!UseCornerRadius)
+        {
             return Corner switch
             {
                 Corner.TopLeft => cornerRadius.TopLeft,
@@ -41,6 +45,7 @@ public class CornerRadius2CornerConverter : MarkupExtension, IValueConverter
                 Corner.BottomRight => cornerRadius.BottomRight,
                 _ => cornerRadius.TopLeft
             };
+        }
 
         var radius = cornerRadius;
         var s = (string)parameter;

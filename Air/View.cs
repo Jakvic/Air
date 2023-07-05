@@ -12,7 +12,10 @@ public abstract class View : UserControl
 
     protected View()
     {
-        if (_isDesign is false) return;
+        if (_isDesign is false)
+        {
+            return;
+        }
 
         DependencyPropertyDescriptor.FromProperty(DataContextProperty, typeof(View))
             .AddValueChanged(this, OnDataContextChanged);
@@ -20,6 +23,9 @@ public abstract class View : UserControl
 
     private void OnDataContextChanged(object? sender, EventArgs e)
     {
-        if (DataContext is IViewModel viewModel) viewModel.InnerOnInitialized(this);
+        if (DataContext is IViewModel viewModel)
+        {
+            viewModel.InnerOnInitialized(this);
+        }
     }
 }

@@ -82,7 +82,10 @@ public class AirPanel : Panel
         var size = new Size();
         foreach (UIElement child in InternalChildren)
         {
-            if (child is Popup) continue;
+            if (child is Popup)
+            {
+                continue;
+            }
 
             child.Measure(new Size(availableSize.Width, availableSize.Height));
             height = Math.Max(height, child.DesiredSize.Height);
@@ -103,7 +106,10 @@ public class AirPanel : Panel
         var size = new Size();
         foreach (UIElement child in InternalChildren)
         {
-            if (child is Popup) continue;
+            if (child is Popup)
+            {
+                continue;
+            }
 
             child.Measure(new Size(availableSize.Width, availableSize.Height));
             height = Math.Max(height, child.DesiredSize.Height);
@@ -122,7 +128,10 @@ public class AirPanel : Panel
         var previousChildSize = 0d;
         foreach (UIElement child in InternalChildren)
         {
-            if (child is Popup) continue;
+            if (child is Popup)
+            {
+                continue;
+            }
 
             rcChild.X += previousChildSize + (previousChildSize == 0 ? 0 : Space);
             previousChildSize = child.DesiredSize.Width;
@@ -140,7 +149,10 @@ public class AirPanel : Panel
         var size = new Size();
         foreach (UIElement child in InternalChildren)
         {
-            if (child is Popup) continue;
+            if (child is Popup)
+            {
+                continue;
+            }
 
             child.Measure(new Size(availableSize.Width, availableSize.Height));
             width = Math.Max(width, child.DesiredSize.Width);
@@ -161,7 +173,10 @@ public class AirPanel : Panel
         var size = new Size();
         foreach (UIElement child in InternalChildren)
         {
-            if (child is Popup) continue;
+            if (child is Popup)
+            {
+                continue;
+            }
 
             child.Measure(new Size(availableSize.Width, availableSize.Height));
             width = Math.Max(width, child.DesiredSize.Width);
@@ -180,7 +195,10 @@ public class AirPanel : Panel
         var previousChildSize = 0d;
         foreach (UIElement child in InternalChildren)
         {
-            if (child is Popup) continue;
+            if (child is Popup)
+            {
+                continue;
+            }
 
             rcChild.Y += previousChildSize + (previousChildSize == 0 ? 0 : Space);
             previousChildSize = child.DesiredSize.Height;
