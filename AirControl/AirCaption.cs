@@ -12,11 +12,11 @@ namespace AirControl;
 [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
 public class AirCaption : ContentControl
 {
-    private const int NCLBUTTONDOWN = 0x000000A1;
+    private const int BUTTONDOWN = 0x000000A1;
     private const uint CAPTION = 2;
 
-    public static readonly DependencyProperty SystemButtonWidthProperty = DependencyProperty.Register(
-        nameof(SystemButtonWidth), typeof(double), typeof(AirCaption), new PropertyMetadata(default(double)));
+    private Window? _window;
+
 
     private Grid? PART_Grid;
 
@@ -25,31 +25,94 @@ public class AirCaption : ContentControl
         DefaultStyleKeyProperty.OverrideMetadata(typeof(AirCaption), new FrameworkPropertyMetadata(typeof(AirCaption)));
     }
 
-    public double SystemButtonWidth
+    public AirCaption()
     {
-        get => (double)GetValue(SystemButtonWidthProperty);
-        set => SetValue(SystemButtonWidthProperty, value);
+        CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, MinimizeWindow));
+        CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, MaximizeWindow));
+        CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, CloseWindow));
+    }
+
+    private void MinimizeWindow(object sender, ExecutedRoutedEventArgs e)
+    {
+        if (_window is null)
+        {
+            return;
+        }
+
+        SystemCommands.MinimizeWindow(_window);
+    }
+
+    private void MaximizeWindow(object sender, ExecutedRoutedEventArgs e)
+    {
+        if (_window is null)
+        {
+            return;
+        }
+
+        if (_window.WindowState is WindowState.Maximized)
+        {
+            SystemCommands.RestoreWindow(_window);
+        }
+        else
+        {
+            SystemCommands.MaximizeWindow(_window);
+            //_window.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+        }
+    }
+
+    private void CloseWindow(object sender, ExecutedRoutedEventArgs e)
+    {
+        if (_window is null)
+        {
+            return;
+        }
+
+        SystemCommands.CloseWindow(_window);
     }
 
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
+        _window = Window.GetWindow(this);
         PART_Grid = GetTemplateChild("PART_Grid") as Grid;
-        if (PART_Grid is null) return;
+        if (PART_Grid is null)
+        {
+            return;
+        }
 
         PART_Grid.MouseLeftButtonDown += OnMouseLeftButtonDown;
     }
 
     private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        if (PART_Grid is null) return;
+        if (PART_Grid is null)
+        {
+            return;
+        }
 
-        var window = Window.GetWindow(PART_Grid);
-        if (window is null) return;
+        if (_window is null)
+        {
+            return;
+        }
 
-        var handle = new WindowInteropHelper(window).Handle;
+        if (e.ClickCount == 2)
+        {
+            if (_window.WindowState is WindowState.Normal)
+            {
+                _window.WindowState = WindowState.Maximized;
+                //_window.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            }
+            else
+            {
+                _window.WindowState = WindowState.Normal;
+            }
+        }
+        else
+        {
+            var handle = new WindowInteropHelper(_window).Handle;
 
-        NativeMethods.SendMessage(handle, NCLBUTTONDOWN, (IntPtr)CAPTION, IntPtr.Zero);
+            NativeMethods.SendMessage(handle, BUTTONDOWN, (IntPtr)CAPTION, IntPtr.Zero);
+        }
     }
 }

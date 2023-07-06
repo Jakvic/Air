@@ -14,10 +14,10 @@ public partial class App
         WindowChrome.SetWindowChrome(mainModel, new WindowChrome
         {
             CaptionHeight = 0,
-            GlassFrameThickness = new Thickness(0),
-            UseAeroCaptionButtons = true
+            UseAeroCaptionButtons = true,
+            GlassFrameThickness = new Thickness(4)
         });
-        
+
         //如果这里不指定Application.MainWindow，WPF默认会用NavigationWindow作为父窗体
         Service.Register(new AppService(mainModel));
         MainWindow = mainModel;

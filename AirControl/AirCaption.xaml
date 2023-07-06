@@ -6,10 +6,10 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="MinMaxButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
-        <!-- <Setter Property="Width" Value="{TemplateBinding SystemButtonWidth}" /> -->
         <Setter Property="Width" Value="46" />
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -23,7 +23,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource DefaultBackgroundHover}" />
+                            <Setter Property="Background" Value="{StaticResource LightMainColorHover}" />
                             <Setter Property="Cursor" Value="Hand" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -45,9 +45,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AirCaption">
-                    <Grid Background="{TemplateBinding Background}">
+                    <Grid Background="{TemplateBinding Background}" x:Name="PART_Grid">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
@@ -56,18 +55,12 @@
                             <ContentPresenter />
                         </Grid>
 
-                        <!--for drag move-->
-                        <!--不设置背景将无法被鼠标命中，所以这里要绑定背景色，且父级控件也必须设置背景色-->
-                        <Grid Grid.Column="1" x:Name="PART_Grid" Background="{TemplateBinding Background}" />
 
-                        <!--绑定系统命令后，会使按钮Disable，TODO-->
-                        <local:AirPanel Grid.Column="2">
-                            <Button Content="No Command" />
-
-                            <Button Content="With Command" Margin="5 0 0 0"
-                                    Command="{x:Static ApplicationCommands.Close}" />
-
-                            <Button Style="{StaticResource MinMaxButtonStyle}">
+                        <local:AirPanel Grid.Column="1">
+                            <Button Style="{StaticResource MinMaxButtonStyle}"
+                                    AutomationProperties.AutomationId="Minimize"
+                                    AutomationProperties.Name="Minimize"
+                                    Command="{x:Static SystemCommands.MinimizeWindowCommand}">
                                 <Path Width="10"
                                       Height="10"
                                       HorizontalAlignment="Center"
@@ -78,11 +71,11 @@
                                       SnapsToDevicePixels="True"
                                       Stretch="Uniform" />
                             </Button>
-
-                            <Button Style="{StaticResource MinMaxButtonStyle}">
-                                <Path x:Name="PART_MaxPath"
-                                      Width="10"
-                                      Height="10"
+                            <Button Style="{StaticResource MinMaxButtonStyle}"
+                                    AutomationProperties.AutomationId="MaximizeRestore"
+                                    AutomationProperties.Name="Maximize"
+                                    Command="{x:Static SystemCommands.MaximizeWindowCommand}">
+                                <Path Width="10" Height="10"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"
                                       Data="M1,1L1,11 11,11 11,1z M0,0L12,0 12,12 0,12z"
@@ -91,7 +84,10 @@
                                       SnapsToDevicePixels="True"
                                       Stretch="Uniform" />
                             </Button>
-                            <Button Style="{StaticResource CloseButtonStyle}">
+                            <Button Style="{StaticResource CloseButtonStyle}"
+                                    AutomationProperties.AutomationId="Close"
+                                    AutomationProperties.Name="Close"
+                                    Command="{x:Static SystemCommands.CloseWindowCommand}">
                                 <Path Width="10"
                                       Height="10"
                                       HorizontalAlignment="Center"
@@ -103,7 +99,6 @@
                                       Stretch="Uniform" />
                             </Button>
                         </local:AirPanel>
-
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

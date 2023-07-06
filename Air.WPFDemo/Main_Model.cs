@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using Air.WPFDemo.Services;
 
@@ -30,4 +31,13 @@ public class Main_Model : WindowModel<Main>
         window.Height = 560;
         window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
+
+    public ObservableCollection<string> Names =>
+        new()
+        {
+            "阿斯蒂芬",
+            "哦萨的吧",
+            "Paul Desmond",
+            "Yann Sommer"
+        };
 }
