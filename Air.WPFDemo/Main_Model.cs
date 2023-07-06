@@ -32,6 +32,7 @@ public class Main_Model : WindowModel<Main>
         window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
 
+
     public ObservableCollection<string> Names =>
         new()
         {
@@ -40,4 +41,12 @@ public class Main_Model : WindowModel<Main>
             "Paul Desmond",
             "Brawler"
         };
+
+    private Table_Model _tableModel = new();
+
+    public Table_Model TableModel
+    {
+        get => _tableModel;
+        set => SetField(ref _tableModel, value);
+    }
 }
