@@ -7,8 +7,9 @@
 
     <Style TargetType="local:AirMenuItem">
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}"></Setter>
         <Setter Property="CornerRadius" Value="5" />
-        <Setter Property="Padding" Value="2 4"></Setter>
+        <Setter Property="Padding" Value="2 6"></Setter>
         <Setter Property="Background" Value="{StaticResource DefaultBackground}"></Setter>
         <Setter Property="Template">
             <Setter.Value>
@@ -16,8 +17,7 @@
                     <local:AirBorder BorderThickness="{TemplateBinding BorderThickness}"
                                      BorderBrush="{TemplateBinding BorderBrush}"
                                      CornerRadius="{TemplateBinding CornerRadius}"
-                                     Background="{TemplateBinding Background}"
-                                     Margin="{TemplateBinding Padding}">
+                                     Background="{TemplateBinding Background}">
                         <Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -48,16 +48,15 @@
                             </Grid>
 
                             <Popup x:Name="PART_Popup" Focusable="False" AllowsTransparency="True"
+                                   Placement="MousePoint"
                                    PopupAnimation="Slide" HorizontalOffset="-2" VerticalOffset="-2"
                                    IsOpen="{Binding Path=IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}">
                                 <local:AirBorder MinWidth="150"
+                                                 BorderThickness="1"
                                                  Background="{TemplateBinding Background}"
                                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                                 BorderThickness="{TemplateBinding BorderThickness}"
                                                  CornerRadius="{TemplateBinding CornerRadius}">
-                                    <Border.Effect>
-                                        <DropShadowEffect BlurRadius="20" Direction="0" Opacity="0.4" ShadowDepth="10" />
-                                    </Border.Effect>
+
                                     <ItemsPresenter Grid.IsSharedSizeScope="True" Margin="2"
                                                     KeyboardNavigation.TabNavigation="Cycle"
                                                     KeyboardNavigation.DirectionalNavigation="Cycle" />
