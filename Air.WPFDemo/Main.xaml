@@ -63,7 +63,10 @@
                             <AirRadioButton Content="Nothing" />
                             <AirRadioButton Content="Work" />
                         </AirPanel>
-
+                        <AirPanel Type="Vertical" Space="10">
+                            <ViewModelHost ViewModelType="local:Table_Model"  HorizontalAlignment="Left"/>
+                            <ViewModelHost ViewModel="{Binding TableModel }" />
+                        </AirPanel>
                     </AirPanel>
                 </AirTabItem>
 
@@ -71,7 +74,7 @@
 
                     <AirPanel Type="Vertical" Space="10">
                         <AirComboBox>
-                            <ComboBoxItem Content="2418902461" />
+                            <ComboBoxItem Content="2418902461" IsSelected="True" />
                             <ComboBoxItem Content="SDFSJLKFDH" />
                             <ComboBoxItem Content="@#$@%#^$#^" />
                             <ComboBoxItem Content="DF132" />

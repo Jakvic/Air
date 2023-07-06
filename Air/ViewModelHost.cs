@@ -14,6 +14,10 @@ public sealed class ViewModelHost : ContentControl
         DependencyProperty.Register(nameof(ViewModelType), typeof(Type), typeof(ViewModelHost),
             new PropertyMetadata(null, OnViewModelTypeChanged));
 
+    public ViewModelHost()
+    {
+        
+    }
     public ViewModelHost(IViewModel viewModel)
     {
         ViewModel = viewModel;
