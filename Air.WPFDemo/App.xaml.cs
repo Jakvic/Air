@@ -10,7 +10,7 @@ public partial class App
     {
         base.OnStartup(e);
         var mainModel = new Main_Model().CreateWindow();
-        mainModel.WindowStyle = WindowStyle.None;
+        mainModel.WindowStyle = WindowStyle.SingleBorderWindow;
         WindowChrome.SetWindowChrome(mainModel, new WindowChrome
         {
             CaptionHeight = 0,

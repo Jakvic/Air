@@ -7,7 +7,7 @@ public abstract class WindowModel<TUserControl> : ViewModel<TUserControl> where 
 {
     private Window? _current;
     private TaskCompletionSource? _taskCompletionSource;
-    protected abstract string Title { get; }
+    public abstract string Title { get; }
 
     public bool Ok { get; private set; }
 

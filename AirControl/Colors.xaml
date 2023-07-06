@@ -7,9 +7,9 @@
     <SolidColorBrush x:Key="MainForeground" Color="#FFFFFF" />
 
     <SolidColorBrush x:Key="DefaultBackground" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="DefaultBackgroundHover" Color="#FAFAFA" />
-    <SolidColorBrush x:Key="DefaultBackgroundClicked" Color="#F5F5F5" />
-    <SolidColorBrush x:Key="DefaultDisableBorderBrush" Color="#E1E1E1" />
+    <SolidColorBrush x:Key="DefaultBackgroundHover" Color="#F5F5F5" />
+    <SolidColorBrush x:Key="DefaultBackgroundClicked" Color="#EAEAEA" />
+    <SolidColorBrush x:Key="DefaultDisableBorderBrush" Color="#DDDDDD" />
     <SolidColorBrush x:Key="DefaultDisableForeground" Color="#9F9F9F" />
     <SolidColorBrush x:Key="DefaultForeground" Color="#000000" />
     <SolidColorBrush x:Key="DefaultBorderBrush" Color="#ABADB3" />

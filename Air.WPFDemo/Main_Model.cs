@@ -10,7 +10,7 @@ public class Main_Model : WindowModel<Main>
     private readonly Lazy<AppService> _appService = Service.GetLazy<AppService>();
 
     private string? _message;
-    protected override string Title => "Main";
+    public override string Title => "Main";
 
     public string? Message
     {
@@ -27,17 +27,17 @@ public class Main_Model : WindowModel<Main>
     protected override void OnWindowInitialized(Window window)
     {
         base.OnWindowInitialized(window);
-        window.Width = 800;
-        window.Height = 560;
+        window.Width = 1000;
+        window.Height = 760;
         window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
 
     public ObservableCollection<string> Names =>
         new()
         {
-            "阿斯蒂芬",
-            "哦萨的吧",
+            "Archer",
+            "White",
             "Paul Desmond",
-            "Yann Sommer"
+            "Brawler"
         };
 }

@@ -6,22 +6,41 @@
       xmlns:local="clr-namespace:Air.WPFDemo" mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:Main_Model}">
 
+    <View.Resources>
+        <LinearGradientBrush x:Key="MainLinearGradientBorderBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#E1E2E3" Offset="0" />
+            <GradientStop Color="#F7F8F9" Offset="1" />
+        </LinearGradientBrush>
+    </View.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <AirCaption Background="Transparent">
-                <AirPanel Type="Horizontal" Space="10" Margin="10 8 0 2"
+            <AirCaption Background="{StaticResource ResourceKey= MainLinearGradientBorderBrush}">
+                <AirPanel Type="Horizontal" Space="10" Margin="10 5 0 5"
                           HorizontalAlignment="Left">
-                    <TextBlock Text="AirDemo" VerticalAlignment="Center" FontWeight="Bold" />
-                    <AirButton Type="Default" Content="Buzz" />
-                    <AirButton Content="Open" />
+                    <TextBlock Text="{Binding Title}" VerticalAlignment="Center" FontWeight="Bold" />
+                    <AirMenu VerticalAlignment="Center">
+                        <AirMenuItem Header="The Menu 1">
+                            <AirMenuItem Header="The Menu 1.1" />
+                            <AirMenuItem Header="The Menu 1.2">
+                                <AirMenuItem Header="The Menu 1.2.1" />
+                                <AirMenuItem Header="The Menu 1.2.2" />
+                            </AirMenuItem>
+                            <AirMenuItem Header="The Menu 1.3" />
+
+                            <AirMenuItem Header="The Menu 1.4">
+                                <AirMenuItem Header="The Menu 1.4.1" />
+                                <AirMenuItem Header="The Menu 1.4.2" />
+                            </AirMenuItem>
+                        </AirMenuItem>
+
+                    </AirMenu>
                     <AirComboBox ItemsSource="{Binding Names}"
                                  SelectedIndex="1"
-                                 VerticalAlignment="Center">
-                    </AirComboBox>
+                                 VerticalAlignment="Center" />
                 </AirPanel>
             </AirCaption>
         </Grid>
@@ -40,9 +59,9 @@
                         </AirPanel>
 
                         <AirPanel Type="Vertical" Space="5">
-                            <AirRadioButton Content="Kvaratskhelia" />
-                            <AirRadioButton Content="Mbape" />
-                            <AirRadioButton Content="Haland" />
+                            <AirRadioButton Content="Doing" />
+                            <AirRadioButton Content="Nothing" />
+                            <AirRadioButton Content="Work" />
                         </AirPanel>
 
                     </AirPanel>
@@ -53,20 +72,11 @@
                     <AirPanel Type="Vertical" Space="10">
                         <AirComboBox>
                             <ComboBoxItem Content="2418902461" />
-                            <ComboBoxItem Content="ADHFL:@*(#TFH@" />
-                            <ComboBoxItem Content="LKQ$TH@$T@" />
+                            <ComboBoxItem Content="SDFSJLKFDH" />
+                            <ComboBoxItem Content="@#$@%#^$#^" />
                             <ComboBoxItem Content="DF132" />
-                            <ComboBoxItem Content="DF" />
-                            <ComboBoxItem Content="DF" />
                         </AirComboBox>
-
-                        <ComboBox>
-                            <ComboBoxItem Content="Jp1%^" />
-                            <ComboBoxItem Content="Q!JF" />
-                            <ComboBoxItem Content="!#)(JHFDSALH" />
-                        </ComboBox>
                     </AirPanel>
-
                 </AirTabItem>
 
                 <AirTabItem Header="Panel">

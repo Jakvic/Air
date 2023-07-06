@@ -1,0 +1,103 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:AirControl">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="local:AirMenuItem">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Padding" Value="2 4"></Setter>
+        <Setter Property="Background" Value="{StaticResource DefaultBackground}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:AirMenuItem">
+                    <local:AirBorder BorderThickness="{TemplateBinding BorderThickness}"
+                                     BorderBrush="{TemplateBinding BorderBrush}"
+                                     CornerRadius="{TemplateBinding CornerRadius}"
+                                     Background="{TemplateBinding Background}"
+                                     Margin="{TemplateBinding Padding}">
+                        <Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--Background Rectangle,for Animation-->
+                                <Rectangle x:Name="BackgroundRect" Grid.Column="0" Grid.ColumnSpan="3"
+                                           Fill="{StaticResource DefaultBackgroundHover}" Opacity="0"
+                                           RadiusX="5"
+                                           RadiusY="5" />
+
+                                <!--ICON-->
+                                <ContentPresenter Grid.Column="0" ContentSource="{TemplateBinding Icon}" />
+                                <!--Text-->
+                                <TextBlock Grid.Column="1" Margin="{TemplateBinding Padding}"
+                                           Text="{TemplateBinding Header}" />
+
+                                <!--SubMenu Mark-->
+
+                                <Polyline x:Name="MarkLine" Grid.Column="2" Points="0,0 5,5 0,10" StrokeThickness="1"
+                                          VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0"
+                                          Stroke="{StaticResource DefaultForeground}" />
+
+
+                            </Grid>
+
+                            <Popup x:Name="PART_Popup" Focusable="False" AllowsTransparency="True"
+                                   PopupAnimation="Slide" HorizontalOffset="-2" VerticalOffset="-2"
+                                   IsOpen="{Binding Path=IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}">
+                                <local:AirBorder MinWidth="150"
+                                                 Background="{TemplateBinding Background}"
+                                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                                 BorderThickness="{TemplateBinding BorderThickness}"
+                                                 CornerRadius="{TemplateBinding CornerRadius}">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="20" Direction="0" Opacity="0.4" ShadowDepth="10" />
+                                    </Border.Effect>
+                                    <ItemsPresenter Grid.IsSharedSizeScope="True" Margin="2"
+                                                    KeyboardNavigation.TabNavigation="Cycle"
+                                                    KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                </local:AirBorder>
+                            </Popup>
+                        </Grid>
+                    </local:AirBorder>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="Role" Value="TopLevelHeader">
+                            <Setter TargetName="MarkLine" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+
+                        <Trigger Property="Role" Value="SubmenuItem">
+                            <Setter TargetName="MarkLine" Property="Visibility" Value="Collapsed"></Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BackgroundRect"
+                                                         Storyboard.TargetProperty="Opacity" To="1"
+                                                         Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BackgroundRect"
+                                                         Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

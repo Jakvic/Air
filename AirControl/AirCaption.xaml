@@ -58,8 +58,6 @@
 
                         <local:AirPanel Grid.Column="1">
                             <Button Style="{StaticResource MinMaxButtonStyle}"
-                                    AutomationProperties.AutomationId="Minimize"
-                                    AutomationProperties.Name="Minimize"
                                     Command="{x:Static SystemCommands.MinimizeWindowCommand}">
                                 <Path Width="10"
                                       Height="10"
@@ -72,8 +70,6 @@
                                       Stretch="Uniform" />
                             </Button>
                             <Button Style="{StaticResource MinMaxButtonStyle}"
-                                    AutomationProperties.AutomationId="MaximizeRestore"
-                                    AutomationProperties.Name="Maximize"
                                     Command="{x:Static SystemCommands.MaximizeWindowCommand}">
                                 <Path Width="10" Height="10"
                                       HorizontalAlignment="Center"
@@ -85,8 +81,6 @@
                                       Stretch="Uniform" />
                             </Button>
                             <Button Style="{StaticResource CloseButtonStyle}"
-                                    AutomationProperties.AutomationId="Close"
-                                    AutomationProperties.Name="Close"
                                     Command="{x:Static SystemCommands.CloseWindowCommand}">
                                 <Path Width="10"
                                       Height="10"

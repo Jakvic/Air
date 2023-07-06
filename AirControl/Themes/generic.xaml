@@ -15,5 +15,7 @@
         <ResourceDictionary Source="AirControl;component/AirTreeView.xaml" />
         <ResourceDictionary Source="AirControl;component/AirTreeViewItem.xaml" />
         <ResourceDictionary Source="AirControl;component/AirTreeViewItemToggleButton.xaml" />
+        <ResourceDictionary Source="AirControl;component/AirMenu.xaml" />
+        <ResourceDictionary Source="AirControl;component/AirMenuItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
