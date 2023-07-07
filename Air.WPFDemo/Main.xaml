@@ -23,34 +23,20 @@
                           HorizontalAlignment="Left">
                     <TextBlock Text="{Binding Title}" VerticalAlignment="Center" FontWeight="Bold" />
                     <AirMenu VerticalAlignment="Center">
-                        <AirMenuItem Header="The Menu 1">
-                            <AirMenuItem Header="The Menu 1.1" />
-                            <AirMenuItem Header="The Menu 1.2">
-                                <AirMenuItem Header="The Menu 1.2.1" />
-                                <AirMenuItem Header="The Menu 1.2.2" />
+                        <AirMenuItem Header="File" Padding="15 5">
+                            <AirMenuItem Header="New">
+                                <AirMenuItem Header="Folder" />
+                                <AirMenuItem Header="Blank File" />
                             </AirMenuItem>
-                            <AirMenuItem Header="The Menu 1.3" />
 
-                            <AirMenuItem Header="The Menu 1.4">
-                                <AirMenuItem Header="The Menu 1.4.1" />
-                                <AirMenuItem Header="The Menu 1.4.2" />
-                            </AirMenuItem>
-                        </AirMenuItem>
+                            <AirMenuItem Header="Open" />
 
-                    </AirMenu>
-                    <AirMenu VerticalAlignment="Center">
-                        <AirMenuItem Header="The Menu 1">
-                            <AirMenuItem Header="The Menu 1.1" />
-                            <AirMenuItem Header="The Menu 1.2">
-                                <AirMenuItem Header="The Menu 1.2.1" />
-                                <AirMenuItem Header="The Menu 1.2.2" />
+                            <AirMenuItem Header="Setting">
+                                <AirMenuItem Header="Font Size" />
+                                <AirMenuItem Header="Theme" />
+                                
                             </AirMenuItem>
-                            <AirMenuItem Header="The Menu 1.3" />
-
-                            <AirMenuItem Header="The Menu 1.4">
-                                <AirMenuItem Header="The Menu 1.4.1" />
-                                <AirMenuItem Header="The Menu 1.4.2" />
-                            </AirMenuItem>
+                            <AirMenuItem Header="Delete" />
                         </AirMenuItem>
 
                     </AirMenu>
