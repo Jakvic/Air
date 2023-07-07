@@ -101,7 +101,7 @@ public class AirCaption : ContentControl
             if (_window.WindowState is WindowState.Normal)
             {
                 _window.WindowState = WindowState.Maximized;
-                
+
                 //_window.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             }
             else

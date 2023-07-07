@@ -1,13 +1,12 @@
-﻿namespace Air.WPFDemo
+﻿namespace Air.WPFDemo;
+
+/// <summary>
+///     Table.xaml 的交互逻辑
+/// </summary>
+public partial class Table
 {
-    /// <summary>
-    /// Table.xaml 的交互逻辑
-    /// </summary>
-    public partial class Table 
+    public Table()
     {
-        public Table()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

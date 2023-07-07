@@ -16,8 +16,8 @@ public sealed class ViewModelHost : ContentControl
 
     public ViewModelHost()
     {
-        
     }
+
     public ViewModelHost(IViewModel viewModel)
     {
         ViewModel = viewModel;

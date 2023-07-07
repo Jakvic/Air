@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AirControl\AirControl.csproj" />
-        <ProjectReference Include="..\Air\Air.csproj" />
+        <ProjectReference Include="..\AirControl\AirControl.csproj"/>
+        <ProjectReference Include="..\Air\Air.csproj"/>
     </ItemGroup>
 </Project>

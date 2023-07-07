@@ -10,12 +10,30 @@ public class Main_Model : WindowModel<Main>
     private readonly Lazy<AppService> _appService = Service.GetLazy<AppService>();
 
     private string? _message;
+
+    private Table_Model _tableModel = new();
     public override string Title => "Main";
 
     public string? Message
     {
         get => _message;
         private set => SetField(ref _message, value);
+    }
+
+
+    public ObservableCollection<string> Names =>
+        new()
+        {
+            "Archer",
+            "White",
+            "Paul Desmond",
+            "Brawler"
+        };
+
+    public Table_Model TableModel
+    {
+        get => _tableModel;
+        set => SetField(ref _tableModel, value);
     }
 
     protected override void OnInitialized(Main view)
@@ -30,23 +48,5 @@ public class Main_Model : WindowModel<Main>
         window.Width = 1000;
         window.Height = 760;
         window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-    }
-
-
-    public ObservableCollection<string> Names =>
-        new()
-        {
-            "Archer",
-            "White",
-            "Paul Desmond",
-            "Brawler"
-        };
-
-    private Table_Model _tableModel = new();
-
-    public Table_Model TableModel
-    {
-        get => _tableModel;
-        set => SetField(ref _tableModel, value);
     }
 }
