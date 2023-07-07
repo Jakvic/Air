@@ -7,10 +7,9 @@
 
     <Style TargetType="local:AirMenuItem">
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
         <Setter Property="CornerRadius" Value="5" />
-        <Setter Property="Padding" Value="2 6"></Setter>
-        <Setter Property="Background" Value="{StaticResource DefaultBackground}"></Setter>
+        <Setter Property="Padding" Value="2 6" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AirMenuItem">
@@ -33,14 +32,16 @@
                                            RadiusY="5" />
 
                                 <!--ICON-->
-                                <ContentPresenter Grid.Column="0" ContentSource="{TemplateBinding Icon}" />
+                                <ContentPresenter x:Name="Icon" Width="15"
+                                                  Grid.Column="0" ContentSource="{TemplateBinding Icon}" />
                                 <!--Text-->
                                 <TextBlock Grid.Column="1" Margin="{TemplateBinding Padding}"
                                            Text="{TemplateBinding Header}" />
 
                                 <!--SubMenu Mark-->
 
-                                <Polyline x:Name="MarkLine" Grid.Column="2" Points="0,0 5,5 0,10" StrokeThickness="1"
+                                <Polyline x:Name="MarkLine" Grid.Column="2" Points="0,0 5,5 0,10"
+                                          StrokeThickness="1"
                                           VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0"
                                           Stroke="{StaticResource DefaultForeground}" />
 
@@ -48,12 +49,12 @@
                             </Grid>
 
                             <Popup x:Name="PART_Popup" Focusable="False" AllowsTransparency="True"
-                                   Placement="MousePoint"
+                                   Placement="Right"
                                    PopupAnimation="Slide" HorizontalOffset="-2" VerticalOffset="-2"
                                    IsOpen="{Binding Path=IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}">
                                 <local:AirBorder MinWidth="150"
                                                  BorderThickness="1"
-                                                 Background="{TemplateBinding Background}"
+                                                 Background="{StaticResource DefaultBackground}"
                                                  BorderBrush="{TemplateBinding BorderBrush}"
                                                  CornerRadius="{TemplateBinding CornerRadius}">
 
@@ -66,12 +67,21 @@
                     </local:AirBorder>
                     <ControlTemplate.Triggers>
 
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Icon" Value="{x:Null}" />
+                                <Condition Property="Role" Value="TopLevelHeader" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Icon" Property="Width" Value="0" />
+                        </MultiTrigger>
+
                         <Trigger Property="Role" Value="TopLevelHeader">
                             <Setter TargetName="MarkLine" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_Popup" Property="Placement" Value="Bottom" />
                         </Trigger>
 
                         <Trigger Property="Role" Value="SubmenuItem">
-                            <Setter TargetName="MarkLine" Property="Visibility" Value="Collapsed"></Setter>
+                            <Setter TargetName="MarkLine" Property="Visibility" Value="Collapsed" />
                         </Trigger>
 
                         <Trigger Property="IsMouseOver" Value="True">
@@ -99,4 +109,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

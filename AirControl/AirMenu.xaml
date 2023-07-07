@@ -8,18 +8,17 @@
     <Style TargetType="local:AirMenu">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="CornerRadius" Value="5" />
         <Setter Property="Template">
             <Setter.Value>
 
                 <ControlTemplate TargetType="local:AirMenu">
 
-                    <local:AirBorder Background="{TemplateBinding Background}"
-                                     BorderBrush="{TemplateBinding BorderBrush}"
-                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                     CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
                         <ItemsPresenter />
-                    </local:AirBorder>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

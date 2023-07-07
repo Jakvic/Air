@@ -38,6 +38,22 @@
                         </AirMenuItem>
 
                     </AirMenu>
+                    <AirMenu VerticalAlignment="Center">
+                        <AirMenuItem Header="The Menu 1">
+                            <AirMenuItem Header="The Menu 1.1" />
+                            <AirMenuItem Header="The Menu 1.2">
+                                <AirMenuItem Header="The Menu 1.2.1" />
+                                <AirMenuItem Header="The Menu 1.2.2" />
+                            </AirMenuItem>
+                            <AirMenuItem Header="The Menu 1.3" />
+
+                            <AirMenuItem Header="The Menu 1.4">
+                                <AirMenuItem Header="The Menu 1.4.1" />
+                                <AirMenuItem Header="The Menu 1.4.2" />
+                            </AirMenuItem>
+                        </AirMenuItem>
+
+                    </AirMenu>
                     <AirComboBox ItemsSource="{Binding Names}"
                                  SelectedIndex="1"
                                  VerticalAlignment="Center" />
