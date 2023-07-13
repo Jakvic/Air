@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:AirControl">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Styles.xaml" />
         <ResourceDictionary Source="AirComboBoxItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
 

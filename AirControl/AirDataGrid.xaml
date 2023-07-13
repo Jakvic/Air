@@ -3,7 +3,8 @@
                     xmlns:local="clr-namespace:AirControl"
                     xmlns:system="clr-namespace:System;assembly=System.Runtime">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Styles.xaml" />
+        <ResourceDictionary Source="Themes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <!--RowHeaderGripperStyle-->
@@ -137,7 +138,7 @@
                 <ControlTemplate TargetType="DataGridRowHeader">
                     <Grid HorizontalAlignment="Center">
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent"
+                                BorderThickness="{TemplateBinding BorderThickness}" Background="Khaki"
                                 Padding="{TemplateBinding Padding}">
                             <StackPanel Orientation="Horizontal">
                                 <ContentPresenter RecognizesAccessKey="True"
@@ -222,15 +223,17 @@
     <!--DataGridColumnHeaderStyle-->
     <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{StaticResource PopupBackground}" />
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-        <Setter Property="Padding" Value="4,0" />
+        <Setter Property="Padding" Value="8,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridColumnHeader">
                     <Grid>
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{StaticResource DefaultBackground}"
+                                Background="{TemplateBinding Background}"
                                 Padding="{TemplateBinding Padding}">
                             <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
@@ -240,7 +243,6 @@
                                 </Grid.ColumnDefinitions>
                                 <ContentPresenter Grid.Column="0" RecognizesAccessKey="True" VerticalAlignment="Center"
                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                <TextBlock Grid.Column="1" Text="ASDF" FontWeight="Bold"/>
                                 <ToggleButton Grid.Column="1" VerticalAlignment="Center"
                                               Height="{x:Static system:Double.NaN}" Padding="4,0" Width="20"
                                               IsEnabled="False" Opacity="1"
@@ -277,6 +279,7 @@
         </Style.Triggers>
     </Style>
 
+
     <Style TargetType="local:AirDataGrid">
         <Setter Property="Background" Value="{StaticResource DefaultBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
@@ -295,22 +298,93 @@
         <Setter Property="RowHeaderStyle" Value="{StaticResource DataGridRowHeaderStyle}" />
         <Setter Property="RowStyle" Value="{StaticResource DataGridRowStyle}" />
         <Setter Property="CellStyle" Value="{StaticResource DataGridCellStyle}" />
-        <Setter Property="Padding" Value="6" />
         <Setter Property="RowHeight" Value="44" />
         <Setter Property="ColumnHeaderHeight" Value="44" />
-        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="CornerRadius" Value="4" />
         <Setter Property="IsReadOnly" Value="True" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AirDataGrid">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="StoryboardMouseEnter">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                           Storyboard.TargetName="PART_VerticalScrollBar">
+                                <EasingDoubleKeyFrame KeyTime="0:0:.2" Value=".8" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                           Storyboard.TargetName="PART_HorizontalScrollBar">
+                                <EasingDoubleKeyFrame KeyTime="0:0:.2" Value=".8" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardMouseLeave">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                           Storyboard.TargetName="PART_VerticalScrollBar">
+                                <EasingDoubleKeyFrame KeyTime="0:0:.2" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                           Storyboard.TargetName="PART_HorizontalScrollBar">
+                                <EasingDoubleKeyFrame KeyTime="0:0:.2" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+
                     <local:AirBorder
                         CornerRadius="{TemplateBinding CornerRadius}"
                         BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                         Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
                         SnapsToDevicePixels="True">
-                        <local:AirScrollViewer x:Name="DG_ScrollViewer" Focusable="False">
+                        <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
+                            <ScrollViewer.Template>
+                                <ControlTemplate TargetType="ScrollViewer">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter"
+                                                                        Grid.ColumnSpan="2" Grid.Row="0"
+                                                                        Grid.Column="1"
+                                                                        Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                                                CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                                Grid.ColumnSpan="3"
+                                                                Grid.Column="0" Grid.Row="1"
+                                                                VerticalAlignment="Stretch"
+                                                                HorizontalAlignment="Stretch" />
+
+                                        <ScrollBar Style="{StaticResource ScrollBarBaseStyle}" Opacity="0"
+                                                   x:Name="PART_VerticalScrollBar" Grid.Column="2"
+                                                   Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical"
+                                                   Grid.Row="1"
+                                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   ViewportSize="{TemplateBinding ViewportHeight}" />
+                                        <ScrollBar Style="{StaticResource ScrollBarBaseStyle}" Opacity="0"
+                                                   x:Name="PART_HorizontalScrollBar" Grid.Column="1"
+                                                   Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal"
+                                                   VerticalAlignment="Bottom" Grid.Row="1"
+                                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                                   Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   ViewportSize="{TemplateBinding ViewportWidth}" />
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <BeginStoryboard Storyboard="{StaticResource StoryboardMouseEnter}" />
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="MouseLeave">
+                                            <BeginStoryboard Storyboard="{StaticResource StoryboardMouseLeave}" />
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </ScrollViewer.Template>
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </local:AirScrollViewer>
+                        </ScrollViewer>
                     </local:AirBorder>
                 </ControlTemplate>
             </Setter.Value>

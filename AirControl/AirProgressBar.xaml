@@ -4,7 +4,7 @@
                     xmlns:convertors="clr-namespace:AirControl.Convertors">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Styles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type local:AirProgressBar}">

@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:AirControl"
                     xmlns:convertors="clr-namespace:AirControl.Convertors">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Styles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="local:Loading">
