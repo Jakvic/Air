@@ -235,37 +235,16 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
                                 Padding="{TemplateBinding Padding}">
-                            <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <ContentPresenter Grid.Column="0" RecognizesAccessKey="True" VerticalAlignment="Center"
+                            <ContentPresenter Grid.Column="0" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  RecognizesAccessKey="True" VerticalAlignment="Center"
                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                <ToggleButton Grid.Column="1" VerticalAlignment="Center"
-                                              Height="{x:Static system:Double.NaN}" Padding="4,0" Width="20"
-                                              IsEnabled="False" Opacity="1"
-                                              Foreground="{StaticResource DefaultForeground}"
-                                              x:Name="ToggleButtonSortDirection" />
-                            </Grid>
                         </Border>
                         <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left"
                                Style="{StaticResource ColumnHeaderGripperStyle}" />
                         <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right"
                                Style="{StaticResource ColumnHeaderGripperStyle}" />
                     </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="SortDirection" Value="{x:Null}">
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="ToggleButtonSortDirection" />
-                        </Trigger>
-                        <Trigger Property="SortDirection" Value="Ascending">
-                            <Setter Property="IsChecked" Value="True" TargetName="ToggleButtonSortDirection" />
-                        </Trigger>
-                        <Trigger Property="SortDirection" Value="Descending">
-                            <Setter Property="IsChecked" Value="False" TargetName="ToggleButtonSortDirection" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
