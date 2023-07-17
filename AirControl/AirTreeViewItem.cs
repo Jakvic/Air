@@ -10,4 +10,15 @@ public class AirTreeViewItem : TreeViewItem
         DefaultStyleKeyProperty.OverrideMetadata(typeof(AirTreeViewItem),
             new FrameworkPropertyMetadata(typeof(AirTreeViewItem)));
     }
+
+
+    public CornerRadius CornerRadius
+    {
+        get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+        set { SetValue(CornerRadiusProperty, value); }
+    }
+
+    public static readonly DependencyProperty CornerRadiusProperty =
+        DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(AirTreeViewItem), new PropertyMetadata(0));
+
 }

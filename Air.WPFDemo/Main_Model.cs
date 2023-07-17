@@ -20,6 +20,12 @@ public class Main_Model : WindowModel<Main>
         private set => SetField(ref _message, value);
     }
 
+    private TimeSpan _timeSpan = TimeSpan.Parse("00:00:37.3500000");
+    public TimeSpan TimeSpan
+    {
+        get => _timeSpan;
+        set => SetField(ref _timeSpan, value);
+    }
 
     public ObservableCollection<string> Names =>
         new()

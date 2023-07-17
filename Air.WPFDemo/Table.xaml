@@ -6,10 +6,8 @@
       xmlns:local="clr-namespace:Air.WPFDemo"
       mc:Ignorable="d" d:DataContext="{d:DesignInstance local:Table_Model}">
     <AirPanel Space="10">
-        <AirDataGrid ItemsSource="{Binding Users}" 
-                     HeadersVisibility="All" >
+        <AirDataGrid ItemsSource="{Binding Users}"
+                     HeadersVisibility="All">
         </AirDataGrid>
-        <DataGrid ItemsSource="{Binding Users}" >
-        </DataGrid>
     </AirPanel>
 </View>

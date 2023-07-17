@@ -15,7 +15,7 @@ public partial class App
         {
             CaptionHeight = 0,
             UseAeroCaptionButtons = true,
-            GlassFrameThickness = new Thickness(4)
+            GlassFrameThickness = new Thickness(10)
         });
 
         //如果这里不指定Application.MainWindow，WPF默认会用NavigationWindow作为父窗体

@@ -1,0 +1,33 @@
+﻿<View x:Class="Air.WPFDemo.TreeView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Air.WPFDemo"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance local:TreeView_Model}">
+    <View.DataContext>
+        <local:TreeView_Model />
+    </View.DataContext>
+    <Grid>
+        <AirPanel Type="Vertical" Space="10" Margin="10">
+            <TextBlock Text="Oh Nasty" FontSize="16" FontWeight="Bold"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <AirTreeView ItemsSource="{Binding Items}">
+                <AirTreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Rooms}">
+                        <TextBlock Text="{Binding Name}" />
+                    </HierarchicalDataTemplate>
+                </AirTreeView.ItemTemplate>
+            </AirTreeView>
+
+            <TreeView ItemsSource="{Binding Items}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Rooms}">
+                        <TextBlock Text="{Binding Name}"/>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </AirPanel>
+    </Grid>
+</View>

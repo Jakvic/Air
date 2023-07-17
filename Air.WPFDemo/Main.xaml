@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:local="clr-namespace:Air.WPFDemo" mc:Ignorable="d" 
+      xmlns:local="clr-namespace:Air.WPFDemo" mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:Main_Model}">
 
     <View.Resources>
@@ -34,7 +34,7 @@
                             <AirMenuItem Header="Setting">
                                 <AirMenuItem Header="Font Size" />
                                 <AirMenuItem Header="Theme" />
-                                
+
                             </AirMenuItem>
                             <AirMenuItem Header="Delete" />
                         </AirMenuItem>
@@ -49,27 +49,46 @@
 
         <Grid Grid.Row="1">
             <AirTabControl>
+
                 <AirTabItem Header="Button">
-                    <AirPanel Type="VerticalFull" Space="10" Margin="10">
-                        <AirPanel Type="Horizontal" Space="10"
-                                  VerticalAlignment="Center">
-                            <AirButton Type="Default"
-                                       Content="{x:Static AirButtonType.Default}" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                            <AirButton Content="{x:Static AirButtonType.Main}" />
+                        <AirPanel Grid.Row="0" Type="Vertical" Space="10" Margin="10">
+                            <AirPanel Type="Horizontal" Space="10"
+                                      VerticalAlignment="Center">
+                                <AirButton Type="Default"
+                                           Content="{x:Static AirButtonType.Default}" />
+
+                                <AirButton Content="{x:Static AirButtonType.Main}" />
+
+                                <TextBlock Text="{Binding TimeSpan,StringFormat=g}" />
+
+                            </AirPanel>
+
+                            <AirPanel Type="Vertical" Space="5">
+                                <AirRadioButton Content="Doing" />
+                                <AirRadioButton Content="Nothing" />
+                                <AirRadioButton Content="Work" />
+                            </AirPanel>
 
                         </AirPanel>
 
-                        <AirPanel Type="Vertical" Space="5">
-                            <AirRadioButton Content="Doing" />
-                            <AirRadioButton Content="Nothing" />
-                            <AirRadioButton Content="Work" />
-                        </AirPanel>
-                        <AirPanel Type="Vertical" Space="10">
-                            <ViewModelHost ViewModelType="local:Table_Model" HorizontalAlignment="Left"/>
+                        <AirPanel Grid.Row="1" Type="Vertical" Space="10">
                             <ViewModelHost ViewModel="{Binding TableModel }" />
                         </AirPanel>
-                    </AirPanel>
+
+                        <TextBlock Grid.Row="2" Text="I'm Good" Margin="10" HorizontalAlignment="Center" />
+                    </Grid>
+
+                </AirTabItem>
+
+                <AirTabItem Header="TreeView">
+                    <ViewModelHost ViewModelType="local:TreeView_Model" HorizontalAlignment="Left" Margin="10"/>
                 </AirTabItem>
 
                 <AirTabItem Header="ComboBox">
