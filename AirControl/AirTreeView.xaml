@@ -3,6 +3,7 @@
                     xmlns:local="clr-namespace:AirControl">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Styles.xaml" />
+        <ResourceDictionary Source="Themes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="local:AirTreeView">
@@ -17,20 +18,21 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource AirTreeViewItemStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AirTreeView">
-                    <local:AirBorder x:Name="Bd" 
-                                     CornerRadius="{TemplateBinding CornerRadius}" 
-                                     BorderBrush="{TemplateBinding BorderBrush}" 
-                                     Background="{TemplateBinding Background}" 
-                                     BorderThickness="{TemplateBinding BorderThickness}" 
+                    <local:AirBorder x:Name="Bd"
+                                     CornerRadius="{TemplateBinding CornerRadius}"
+                                     BorderBrush="{TemplateBinding BorderBrush}"
+                                     Background="{TemplateBinding Background}"
+                                     BorderThickness="{TemplateBinding BorderThickness}"
                                      SnapsToDevicePixels="true">
 
-                        <local:AirScrollViewer CanContentScroll="false" Focusable="false" 
-                                               HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" 
-                                               Padding="{TemplateBinding Padding}" 
-                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                        <local:AirScrollViewer CanContentScroll="false" Focusable="false"
+                                               HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                               Padding="{TemplateBinding Padding}"
+                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
                             <ItemsPresenter />
                         </local:AirScrollViewer>

@@ -7,36 +7,44 @@ namespace Air.WPFDemo
     {
         public List<Room> Items { get; set; } = new()
         {
-            new ()
+            new()
             {
                 Name = "Star",
-                Size= 10,
+                Size = 10,
                 Rooms = new()
                 {
-                    new ()
+                    new()
                     {
-                        Name="Living Room",Size=25
+                        Name = "Living Room", Size = 25,
+                        Rooms = new()
+                        {
+                            new()
+                            {
+                                Name = "v3", Size = 10
+                            }
+                        }
                     }
                 }
             },
-            new ()
+            new()
             {
-                Name = "Golden",Size=513,
+                Name = "Golden", Size = 513,
                 Rooms = new()
                 {
-                    new ()
+                    new()
                     {
-                        Name="Bathroom",Size=10
+                        Name = "Bathroom", Size = 10
                     }
                 }
-            },  new ()
+            },
+            new()
             {
-                Name = "King",Size=0x12,
+                Name = "King", Size = 0x12,
                 Rooms = new()
                 {
-                    new ()
+                    new()
                     {
-                        Name="Kitchen",Size=15
+                        Name = "Kitchen", Size = 15
                     }
                 }
             },
