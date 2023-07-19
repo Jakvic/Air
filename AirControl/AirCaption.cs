@@ -42,7 +42,7 @@ public class AirCaption : ContentControl
         SystemCommands.MinimizeWindow(_window);
     }
 
-    private void MaximizeWindow(object sender, ExecutedRoutedEventArgs e)
+    private void MaximizeWindow(object? sender, ExecutedRoutedEventArgs? e)
     {
         if (_window is null)
         {
@@ -51,12 +51,14 @@ public class AirCaption : ContentControl
 
         if (_window.WindowState is WindowState.Maximized)
         {
+            _window.BorderThickness = new Thickness(0);
+            _window.WindowStyle = WindowStyle.SingleBorderWindow;
             SystemCommands.RestoreWindow(_window);
         }
         else
         {
             SystemCommands.MaximizeWindow(_window);
-            //_window.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            _window.BorderThickness = new Thickness(8);
         }
     }
 
@@ -75,6 +77,7 @@ public class AirCaption : ContentControl
         base.OnApplyTemplate();
 
         _window = Window.GetWindow(this);
+        _window.SizeChanged += OnSizeChanged;
         PART_Grid = GetTemplateChild("PART_Grid") as Grid;
         if (PART_Grid is null)
         {
@@ -82,6 +85,25 @@ public class AirCaption : ContentControl
         }
 
         PART_Grid.MouseLeftButtonDown += OnMouseLeftButtonDown;
+    }
+
+    private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        if (_window is null)
+        {
+            return;
+        }
+
+        if (_window.WindowState is WindowState.Maximized)
+        {
+            _window.BorderThickness = new Thickness(7.5);
+            _window.WindowStyle = WindowStyle.SingleBorderWindow;
+        }
+        else
+        {
+            _window.BorderThickness = new Thickness(0);
+
+        }
     }
 
     private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -98,16 +120,7 @@ public class AirCaption : ContentControl
 
         if (e.ClickCount == 2)
         {
-            if (_window.WindowState is WindowState.Normal)
-            {
-                _window.WindowState = WindowState.Maximized;
-
-                //_window.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-            }
-            else
-            {
-                _window.WindowState = WindowState.Normal;
-            }
+            MaximizeWindow(null, null);
         }
         else
         {
