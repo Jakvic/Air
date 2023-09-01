@@ -58,7 +58,7 @@
                    PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                 <local:AirBorder x:Name="dropDownBorder" CornerRadius="{TemplateBinding CornerRadius}"
                                  BorderBrush="{StaticResource DefaultBorderBrush}"
-                                 MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                 MinWidth="{Binding  ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
                                  MaxHeight="{Binding MaxDropDownHeight,RelativeSource={RelativeSource TemplatedParent}}"
                                  BorderThickness="0.5" Margin="1">
                     <ScrollViewer x:Name="DropDownScrollViewer">

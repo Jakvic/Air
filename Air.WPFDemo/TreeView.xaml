@@ -6,9 +6,6 @@
       xmlns:local="clr-namespace:Air.WPFDemo"
       mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:TreeView_Model}">
-    <View.DataContext>
-        <local:TreeView_Model />
-    </View.DataContext>
     <Grid>
         <AirPanel Type="Vertical" Space="10" Margin="10">
             <TextBlock Text="Oh Nasty" FontSize="16" FontWeight="Bold"

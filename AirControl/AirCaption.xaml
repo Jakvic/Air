@@ -42,6 +42,7 @@
     </Style>
 
     <Style TargetType="local:AirCaption">
+        <Setter Property="Height" Value="36"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AirCaption">

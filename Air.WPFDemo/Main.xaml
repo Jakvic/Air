@@ -8,8 +8,8 @@
 
     <View.Resources>
         <LinearGradientBrush x:Key="MainLinearGradientBorderBrush" StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#E1E2E3" Offset="0" />
-            <GradientStop Color="#F7F8F9" Offset="1" />
+            <GradientStop Color="#D7D8D9" Offset="0" />
+            <GradientStop Color="#F1F2F3" Offset="1" />
         </LinearGradientBrush>
     </View.Resources>
     <Grid>
@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <AirCaption Background="{StaticResource ResourceKey= MainLinearGradientBorderBrush}">
-                <AirPanel Type="Horizontal" Space="10" Margin="10 5 0 5"
+                <AirPanel Type="Horizontal" Space="10" Margin="10 2 0 2"
                           HorizontalAlignment="Left">
                     <TextBlock Text="{Binding Title}" VerticalAlignment="Center" FontWeight="Bold" />
                     <AirMenu VerticalAlignment="Center">
@@ -41,7 +41,7 @@
 
                     </AirMenu>
                     <AirComboBox ItemsSource="{Binding Names}"
-                                 SelectedIndex="1"
+                                 SelectedIndex="1" 
                                  VerticalAlignment="Center" />
                 </AirPanel>
             </AirCaption>
@@ -88,7 +88,7 @@
                 </AirTabItem>
 
                 <AirTabItem Header="TreeView">
-                    <ViewModelHost ViewModelType="local:TreeView_Model" HorizontalAlignment="Left" Margin="10"/>
+                    <ViewModelHost ViewModelType="local:TreeView_Model" HorizontalAlignment="Left" Margin="10" />
                 </AirTabItem>
 
                 <AirTabItem Header="ComboBox">

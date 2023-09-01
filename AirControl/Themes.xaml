@@ -417,6 +417,7 @@
         </Setter>
     </Style>
 
+    <!--AirMenuItemStyle-->
     <Style x:Key="AirMenuItemStyle" TargetType="MenuItem">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />

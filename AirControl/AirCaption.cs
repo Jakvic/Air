@@ -96,7 +96,7 @@ public class AirCaption : ContentControl
 
         if (_window.WindowState is WindowState.Maximized)
         {
-            _window.BorderThickness = new Thickness(7.5);
+            _window.BorderThickness = new Thickness(7.4);
             _window.WindowStyle = WindowStyle.SingleBorderWindow;
         }
         else

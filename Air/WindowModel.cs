@@ -20,7 +20,6 @@ public abstract class WindowModel<TUserControl> : ViewModel<TUserControl> where 
         }
 
         await UIThread.InvokeAsync(() => _current.Close()).ConfigureAwait(false);
-        ;
     });
 
     protected virtual Window CreateWindowOverride()
