@@ -11,6 +11,7 @@
     <SolidColorBrush x:Key="DefaultBackgroundClicked" Color="#EAEAEA" />
     <SolidColorBrush x:Key="DefaultDisableBorderBrush" Color="#DDDDDD" />
     <SolidColorBrush x:Key="DefaultDisableForeground" Color="#9F9F9F" />
+    <SolidColorBrush x:Key="DefaultDisableForegroundHover" Color="#8E8E8E" />
     <SolidColorBrush x:Key="DefaultForeground" Color="#000000" />
     <SolidColorBrush x:Key="DefaultBorderBrush" Color="#ABADB3" />
 
