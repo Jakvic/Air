@@ -11,141 +11,731 @@
             <GradientStop Color="#D7D8D9" Offset="0" />
             <GradientStop Color="#F1F2F3" Offset="1" />
         </LinearGradientBrush>
+
+        <SolidColorBrush x:Key="AccentColorBrush" Color="#007ACC" />
+
+
+        <Style x:Key="Header20" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Light" />
+        </Style>
+        <Style x:Key="Header30" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Light" />
+        </Style>
+        <Style x:Key="Header40" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="FontSize" Value="40" />
+            <Setter Property="FontWeight" Value="Light" />
+        </Style>
+        <Style x:Key="AccentHeader20" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Light" />
+        </Style>
+        <Style x:Key="AccentHeader30" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Light" />
+        </Style>
+        <Style x:Key="AccentHeader40" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="40" />
+            <Setter Property="FontWeight" Value="Light" />
+        </Style>
     </View.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <AirCaption Background="{StaticResource ResourceKey= MainLinearGradientBorderBrush}">
-                <AirPanel Type="Horizontal" Space="10" Margin="10 2 0 2"
-                          HorizontalAlignment="Left">
-                    <TextBlock Text="{Binding Title}" VerticalAlignment="Center" FontWeight="Bold" />
-                    <AirMenu VerticalAlignment="Center">
-                        <AirMenuItem Header="File" Padding="15 5">
-                            <AirMenuItem Header="New">
-                                <AirMenuItem Header="Folder" />
-                                <AirMenuItem Header="Blank File" />
-                            </AirMenuItem>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-                            <AirMenuItem Header="Open" />
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch" />
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="File">
+                <MenuItem IsCheckable="True" Header="New Item">
+                    <MenuItem Header="Item" />
+                </MenuItem>
+                <MenuItem Header="New Project">
+                    <MenuItem IsCheckable="True" IsEnabled="False" Header="Project" />
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Save" />
+                <MenuItem Header="Save All" IsEnabled="False" />
+                <MenuItem Header="Save Copy of Project" />
+                <Separator />
+                <MenuItem Header="Import">
+                    <MenuItem IsCheckable="True" Header="Import Adobe Illustrator File" />
+                    <MenuItem IsCheckable="True" Header="Import Adobe Photoshop File" />
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Exit" />
+                <Separator />
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem IsCheckable="True" Header="Item">
+                    <MenuItem Header="Item" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem IsCheckable="True" Header="Item">
+                    <MenuItem Header="Item" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Object">
+                <MenuItem Header="Edit Text" IsEnabled="False" />
+                <MenuItem Header="Edit Control" IsEnabled="False" />
+                <Separator />
+                <MenuItem Header="Order">
+                    <MenuItem Header="Bring to Front" />
+                    <MenuItem Header="Bring Forward" />
+                    <MenuItem Header="Send to Back" />
+                </MenuItem>
+                <MenuItem Header="Align">
+                    <MenuItem Header="Left" />
+                    <MenuItem Header="Top" IsChecked="True" />
+                    <MenuItem Header="Right" />
+                    <MenuItem Header="Bottom" />
+                </MenuItem>
+                <MenuItem Header="Reset Layout" />
+                <MenuItem Header="Make Same" />
+                <MenuItem Header="Flip" />
+                <Separator />
+                <MenuItem Header="Group" IsEnabled="False" />
+                <MenuItem Header="Ungroup" IsEnabled="False" />
+                <MenuItem Header="Pin Active Container" IsEnabled="False" />
+            </MenuItem>
+            <MenuItem Header="Help" IsEnabled="True" HorizontalAlignment="Right" />
+        </Menu>
 
-                            <AirMenuItem Header="Setting">
-                                <AirMenuItem Header="Font Size" />
-                                <AirMenuItem Header="Theme" />
+        <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top"
+                   Background="LightGray" Margin="0" />
 
-                            </AirMenuItem>
-                            <AirMenuItem Header="Delete" />
-                        </AirMenuItem>
-
-                    </AirMenu>
-                    <AirComboBox ItemsSource="{Binding Names}"
-                                 SelectedIndex="1" 
-                                 VerticalAlignment="Center" />
-                </AirPanel>
-            </AirCaption>
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Background="{StaticResource AccentColorBrush}"
+              Margin="0 1 0 0">
+            <TextBlock Text="WPF Office Theme" Style="{StaticResource Header20}" Foreground="White" Margin="10 8 0 8" />
         </Grid>
 
-        <Grid Grid.Row="1">
-            <AirTabControl>
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10 0 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <AirButton  Width="60" HorizontalAlignment="Left" Content="Undo" VerticalAlignment="Center" />
+            <AirButton Grid.Column="1" Width="60" HorizontalAlignment="Left" Content="Redo" 
+                       Margin="5 0 0 0" VerticalAlignment="Center"/>
+            <AirButton  Grid.Column="2" Width="60" HorizontalAlignment="Right" Content="Edit" VerticalAlignment="Center"/>
+            <AirButton Grid.Column="3" 
+                       Margin="5 0 0 0"
+                       Width="60" HorizontalAlignment="Right" Content="Save" VerticalAlignment="Center"/>
+        </Grid>
 
-                <AirTabItem Header="Button">
-                    <Grid>
+        <Separator Grid.Row="2" Grid.Column="0" Width="200" VerticalAlignment="Bottom"
+                   Background="LightGray" Margin="0" />
+
+        <AirTabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" TabStripPlacement="Left" Margin="0"
+                    HorizontalContentAlignment="Left" Padding="0">
+            <AirTabItem Header="Controls" Width="200" Padding="10 8">
+                <AirTabItem.Resources>
+                    <Style x:Key="ExampleGroupBoxStyle" TargetType="{x:Type GroupBox}">
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="Margin" Value="0 10 0 10" />
+                        <Setter Property="Background" Value="#F0F0F0"></Setter>
+                    </Style>
+                </AirTabItem.Resources>
+                <AirScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <Grid Margin="10 0 10 10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Style="{StaticResource Header40}" Text="WPF Office Theme" />
+                        <StackPanel Grid.Row="1">
+                            <GroupBox Header="Button" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Default Button" Margin="4 6" Style="{StaticResource Header20}" />
+                                        <Button Width="100" Content="Enabled" HorizontalAlignment="Left" />
+                                        <Button Width="100" Content="Disabled" IsEnabled="False"
+                                                HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Accent Button" Margin="4 6" Style="{StaticResource Header20}" />
+                                        <AirButton Width="100"
+                                                   Content="Enabled" HorizontalAlignment="Left" />
+                                        <AirButton Width="100" Content="Disabled"
+                                                   IsEnabled="False" HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
 
-                        <AirPanel Grid.Row="0" Type="Vertical" Space="10" Margin="10">
-                            <AirPanel Type="Horizontal" Space="10"
-                                      VerticalAlignment="Center">
-                                <AirButton Type="Default"
-                                           Content="{x:Static AirButtonType.Default}" />
+                            <GroupBox Header="Check Box" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Default Check Box" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <CheckBox Content="Enabled" />
+                                        <CheckBox Content="Checked" IsChecked="True" />
+                                        <CheckBox Content="Disabled" IsEnabled="False" />
+                                    </StackPanel>
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Accent Check Box" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <CheckBox Content="Enabled" />
+                                        <CheckBox Content="Checked" IsChecked="True" />
+                                        <CheckBox Content="Disabled" IsEnabled="False" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
 
-                                <AirButton Content="{x:Static AirButtonType.Main}" />
+                            <GroupBox Header="Label" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Default Label" Margin="4 6" Style="{StaticResource Header20}" />
+                                        <Label Content="Enabled" />
+                                        <Label Content="Disabled" IsEnabled="False" />
+                                    </StackPanel>
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Header Label" Margin="4 6" Style="{StaticResource Header20}" />
+                                        <TextBlock Text="Header20" Style="{StaticResource Header20}" />
+                                        <TextBlock Text="Header30" Style="{StaticResource Header30}" />
+                                        <TextBlock Text="Header40" Style="{StaticResource Header40}" />
+                                        <TextBlock Text="Disabled" IsEnabled="False" Style="{StaticResource Header40}" />
+                                    </StackPanel>
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Accent Label" Margin="4 6" Style="{StaticResource Header20}" />
+                                        <TextBlock Text="AccentHeader20" Style="{StaticResource AccentHeader20}" />
+                                        <TextBlock Text="AccentHeader30" Style="{StaticResource AccentHeader30}" />
+                                        <TextBlock Text="AccentHeader40" Style="{StaticResource AccentHeader40}" />
+                                        <TextBlock Text="Disabled" IsEnabled="False"
+                                                   Style="{StaticResource AccentHeader40}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
 
-                                <TextBlock Text="{Binding TimeSpan,StringFormat=g}" />
+                            <GroupBox Header="Toggle Button" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Default Toggle Button" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <ToggleButton Width="100" Content="Enabled" HorizontalAlignment="Left" />
+                                        <ToggleButton Width="100" Content="Checked" IsChecked="True"
+                                                      HorizontalAlignment="Left" />
+                                        <ToggleButton Width="100" Content="Disabled" IsEnabled="False"
+                                                      HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Accent Toggle Button" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <ToggleButton Width="100"
+                                                      Content="Enabled" HorizontalAlignment="Left" />
+                                        <ToggleButton Width="100" Content="Checked"
+                                                      IsChecked="True" HorizontalAlignment="Left" />
+                                        <ToggleButton Width="100" Content="Disabled"
+                                                      IsEnabled="False" HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
 
-                            </AirPanel>
+                            <GroupBox Header="Radio Button" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Default Radio Button" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <RadioButton Content="Enabled" IsChecked="True" Width="80" />
+                                            <RadioButton Content="Enabled" Width="80" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <RadioButton Content="Disabled" IsChecked="True" IsEnabled="False"
+                                                         Width="80" />
+                                            <RadioButton Content="Disabled" IsEnabled="False" Width="80" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Accent Radio Button" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <AirRadioButton Content="Enabled" IsChecked="True" Width="80" />
+                                            <AirRadioButton Content="Enabled" Width="80" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <RadioButton Content="Disabled" IsChecked="True" IsEnabled="False"
+                                                         Width="80" />
+                                            <RadioButton Content="Disabled" IsEnabled="False" Width="80" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
 
-                            <AirPanel Type="Vertical" Space="5">
-                                <AirRadioButton Content="Doing" />
-                                <AirRadioButton Content="Nothing" />
-                                <AirRadioButton Content="Work" />
-                            </AirPanel>
+                            <GroupBox Header="Combo Box" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Default Combo Box" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <AirComboBox Width="150" HorizontalAlignment="Left">
+                                            <ComboBoxItem Padding="2" IsSelected="True" Content="Default" />
+                                            <ComboBoxItem Padding="2" Content="Editable" />
+                                            <ComboBoxItem Padding="2" Content="Disabled" />
+                                        </AirComboBox>
+                                        <ComboBox Width="150" IsEditable="True" HorizontalAlignment="Left">
+                                            <ComboBoxItem Padding="2" Content="Default" />
+                                            <ComboBoxItem Padding="2" IsSelected="True" Content="Editable" />
+                                            <ComboBoxItem Padding="2" Content="Disabled" />
+                                        </ComboBox>
+                                        <ComboBox Width="150" IsEnabled="False" HorizontalAlignment="Left">
+                                            <ComboBoxItem Padding="2" IsSelected="True" Content="Disabled" />
+                                        </ComboBox>
+                                        <ComboBox Width="150" IsEnabled="False" IsEditable="True"
+                                                  HorizontalAlignment="Left">
+                                            <ComboBoxItem Padding="2" IsSelected="True" Content="Disabled" />
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Accent Combo Box" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <AirComboBox Width="150" HorizontalAlignment="Left">
+                                            <ComboBoxItem Padding="2" IsSelected="True" Content="Default" />
+                                            <ComboBoxItem Padding="2" Content="Editable" />
+                                            <ComboBoxItem Padding="2" Content="Disabled" />
+                                        </AirComboBox>
+                                        <AirComboBox Width="150" IsEditable="True" HorizontalAlignment="Left">
+                                            <ComboBoxItem Padding="2" Content="Default" />
+                                            <ComboBoxItem Padding="2" IsSelected="True" Content="Editable" />
+                                            <ComboBoxItem Padding="2" Content="Disabled" />
+                                        </AirComboBox>
+                                        <AirComboBox Width="150" IsEnabled="False" HorizontalAlignment="Left">
+                                            <ComboBoxItem Padding="2" IsSelected="True" Content="Disabled" />
+                                        </AirComboBox>
+                                        <AirComboBox Width="150" IsEnabled="False" IsEditable="True">
+                                            <ComboBoxItem Padding="2" IsSelected="True" Content="Disabled" />
+                                        </AirComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
 
-                        </AirPanel>
+                            <GroupBox Header="Group Box" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Default Group Box" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <GroupBox Width="150" Height="50" Header="Default" HorizontalAlignment="Left"
+                                                  Content="Content" Style="{StaticResource {x:Type GroupBox}}" />
+                                    </StackPanel>
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Gray Group Box" Margin="4 6" Style="{StaticResource Header20}" />
+                                        <GroupBox Width="150" Height="50" Header="Gray Group Box" Content="Content"
+                                                  HorizontalAlignment="Left"  />
+                                    </StackPanel>
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Accent Group Box" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <GroupBox Width="150" Height="50" Header="Accent Group Box" Content="Content"
+                                                  HorizontalAlignment="Left" >
+                                        </GroupBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Text Box" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Default Text Box" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <TextBox Width="150" HorizontalAlignment="Left" Text="Default" Padding="4 2" />
+                                        <TextBox Width="150" HorizontalAlignment="Left" Text="Disabled" Padding="4 2"
+                                                 IsEnabled="False" />
+                                    </StackPanel>
+                                    <StackPanel MinWidth="200">
+                                        <TextBlock Text="Accent Text Box" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <AirTextBox Width="150" HorizontalAlignment="Left"
+                                                 Text="Default" />
+                                        <AirTextBox Width="150" HorizontalAlignment="Left"
+                                                 Text="Disabled" IsEnabled="False" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
 
-                        <AirPanel Grid.Row="1" Type="Vertical" Space="10">
-                            <ViewModelHost ViewModel="{Binding TableModel }" />
-                        </AirPanel>
+                            <GroupBox Header="Expander" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel>
+                                        <TextBlock Text="Default Expander" Margin="4 6"
+                                                   Style="{StaticResource Header20}" />
+                                        <Expander Width="380" Content="Content" Header="Default"
+                                                  HorizontalAlignment="Left" />
+                                        <Expander Width="380" Content="Content" Header="Disabled" IsEnabled="False"
+                                                  HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
 
-                        <TextBlock Grid.Row="2" Text="I'm Good" Margin="10" HorizontalAlignment="Center" />
+                            <GroupBox Header="Scroll Viewer" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="Default Scroll Viewer" Margin="4 6"
+                                               Style="{StaticResource Header20}" />
+                                    <AirScrollViewer Height="215" Width="380" VerticalScrollBarVisibility="Visible"
+                                                  HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left">
+                                        <TextBlock Width="250" Margin="10" TextWrapping="Wrap">
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                        </TextBlock>
+                                    </AirScrollViewer>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="List Box" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="Default List Box" Margin="4 6" Style="{StaticResource Header20}" />
+                                    <ListBox Width="380" Margin="4 6" HorizontalAlignment="Left">
+                                        <ListBoxItem Padding="5">
+                                            <TextBlock Text="Button" />
+                                        </ListBoxItem>
+                                        <ListBoxItem Padding="5">
+                                            <TextBlock Text="CheckBox" />
+                                        </ListBoxItem>
+                                        <ListBoxItem Padding="5">
+                                            <TextBlock Text="ComboBox" />
+                                        </ListBoxItem>
+                                        <ListBoxItem Padding="5">
+                                            <TextBlock Text="Expander" />
+                                        </ListBoxItem>
+                                        <ListBoxItem Padding="5">
+                                            <TextBlock Text="Label" />
+                                        </ListBoxItem>
+                                        <ListBoxItem Padding="5">
+                                            <TextBlock Text="ListView" />
+                                        </ListBoxItem>
+                                        <ListBoxItem Padding="5">
+                                            <TextBlock Text="Menu" />
+                                        </ListBoxItem>
+                                        <ListBoxItem Padding="5">
+                                            <TextBlock Text="RadioButton" />
+                                        </ListBoxItem>
+                                    </ListBox>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="List View" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="Default List View" Margin="4 6" Style="{StaticResource Header20}" />
+                                    <ListView x:Name="ListView" Width="380" Margin="4 6" HorizontalAlignment="Left">
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="Padding" Value="5" />
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock Text="Name: " />
+                                                    <TextBlock
+                                                        Text="{Binding DataContext.Name, RelativeSource={RelativeSource TemplatedParent}}"
+                                                        FontWeight="Bold" />
+                                                    <TextBlock Text=", " />
+                                                    <TextBlock Text="PhoneNumber: " />
+                                                    <TextBlock
+                                                        Text="{Binding DataContext.PhoneNumber, RelativeSource={RelativeSource TemplatedParent}}"
+                                                        FontWeight="Bold" />
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="Menu" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="Default Menu" Margin="4 6" Style="{StaticResource Header20}" />
+                                    <Menu Width="380" Margin="4 6" HorizontalAlignment="Left">
+                                        <Menu.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <DockPanel HorizontalAlignment="Stretch" />
+                                            </ItemsPanelTemplate>
+                                        </Menu.ItemsPanel>
+                                        <MenuItem Header="File">
+                                            <MenuItem IsCheckable="True" Header="New Item">
+                                                <MenuItem Header="Item" />
+                                            </MenuItem>
+                                            <MenuItem Header="New Project">
+                                                <MenuItem IsCheckable="True" IsEnabled="False" Header="Project" />
+                                            </MenuItem>
+                                            <Separator />
+                                            <MenuItem Header="Save" />
+                                            <MenuItem Header="Save All" IsEnabled="False" />
+                                            <MenuItem Header="Save Copy of Project" />
+                                            <Separator />
+                                            <MenuItem Header="Import">
+                                                <MenuItem IsCheckable="True" Header="Import Adobe Illustrator File" />
+                                                <MenuItem IsCheckable="True" Header="Import Adobe Photoshop File" />
+                                            </MenuItem>
+                                            <Separator />
+                                            <MenuItem Header="Exit" />
+                                            <Separator />
+                                        </MenuItem>
+                                        <MenuItem Header="Edit">
+                                            <MenuItem IsCheckable="True" Header="Item">
+                                                <MenuItem Header="Item" />
+                                            </MenuItem>
+                                        </MenuItem>
+                                        <MenuItem Header="View">
+                                            <MenuItem IsCheckable="True" Header="Item">
+                                                <MenuItem Header="Item" />
+                                            </MenuItem>
+                                        </MenuItem>
+                                        <MenuItem Header="Help" IsEnabled="True" HorizontalAlignment="Right" />
+                                    </Menu>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="Tree View" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="Default Tree View" Margin="4 6" Style="{StaticResource Header20}" />
+                                    <AirTreeView Width="380" Margin="4 6" HorizontalAlignment="Left">
+                                        <AirTreeView.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Add..." />
+                                                <MenuItem Header="Rename" />
+                                                <MenuItem Header="Remove" />
+                                                <Separator />
+                                                <MenuItem Header="Copy" />
+                                                <MenuItem Header="Cut" />
+                                                <MenuItem Header="Paste" />
+                                                <MenuItem Header="Move" />
+                                            </ContextMenu>
+                                        </AirTreeView.ContextMenu>
+                                        <TreeViewItem IsExpanded="True" Header="DarkBlendTheme">
+                                            <TreeViewItem IsExpanded="True" Header="References">
+                                                <TreeViewItem Header="CSharp" />
+                                                <TreeViewItem Header="Controls" />
+                                                <TreeViewItem Header="Drawing" />
+                                            </TreeViewItem>
+                                            <TreeViewItem Header="Fonts" />
+                                            <TreeViewItem Header="Properties">
+                                                <TreeViewItem Header="AssemblyInfo.cs" />
+                                                <TreeViewItem Header="DesignTimeResources.cs" />
+                                                <TreeViewItem Header="Resources.resx">
+                                                    <TreeViewItem Header="Resources.Designer.cs" />
+                                                </TreeViewItem>
+                                                <TreeViewItem Header="Settings.xaml">
+                                                    <TreeViewItem Header="Settings.Designer.cs" />
+                                                </TreeViewItem>
+                                            </TreeViewItem>
+                                            <TreeViewItem Header="Themes">
+                                                <TreeViewItem Header="Styles.xaml">
+                                                </TreeViewItem>
+                                            </TreeViewItem>
+                                            <TreeViewItem Header="LightTheme" />
+                                        </TreeViewItem>
+                                    </AirTreeView>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="Data Grid" Style="{StaticResource ExampleGroupBoxStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="Default Data Grid" Margin="4 6" Style="{StaticResource Header20}" />
+                                    <DataGrid x:Name="DataGrid1" Width="380" Margin="4 6" HorizontalAlignment="Left"
+                                              HeadersVisibility="Column" RowHeight="22" />
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
                     </Grid>
+                </AirScrollViewer>
+            </AirTabItem>
 
-                </AirTabItem>
+            <AirTabItem Header="Example" Width="200" Padding="10 8">
+                <AirTabControl Margin="-1 0 -1 -1">
+                    <AirTabItem Header="Settings" Padding="10 4">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                <AirTabItem Header="TreeView">
-                    <ViewModelHost ViewModelType="local:TreeView_Model" HorizontalAlignment="Left" Margin="10" />
-                </AirTabItem>
+                            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left"
+                                  Margin="0 20 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
-                <AirTabItem Header="ComboBox">
+                                <TextBlock Grid.Column="0" Text="Region:" Margin="10 4" HorizontalAlignment="Right"
+                                           VerticalAlignment="Center" />
 
-                    <AirPanel Type="Vertical" Space="10">
-                        <AirComboBox>
-                            <ComboBoxItem Content="2418902461" IsSelected="True" />
-                            <ComboBoxItem Content="SDFSJLKFDH" />
-                            <ComboBoxItem Content="@#$@%#^$#^" />
-                            <ComboBoxItem Content="DF132" />
-                        </AirComboBox>
-                    </AirPanel>
-                </AirTabItem>
+                                <ComboBox Grid.Column="1" Width="200" HorizontalAlignment="Left"
+                                          VerticalAlignment="Center">
+                                    <ComboBoxItem Content="Asia" />
+                                    <ComboBoxItem Content="Europe" IsSelected="True" />
+                                </ComboBox>
 
-                <AirTabItem Header="Panel">
-                    <AirPanel Type="Vertical">
-                        <AirPanel Margin="10" Type="Horizontal" Space="10">
-                            <AirRadioButton Content="Horizontal 1" />
-                            <AirRadioButton Content="Horizontal 2" />
-                            <AirRadioButton Content="Horizontal 3" />
-                            <AirRadioButton Content="Horizontal 4" />
-                        </AirPanel>
+                                <Button Grid.Column="2" HorizontalAlignment="Left" Content="..." Width="22" />
+                            </Grid>
 
-                        <AirPanel Type="HorizontalFull" Space="10">
-                            <AirPanel Margin="10" Type="Vertical" Space="10">
-                                <AirRadioButton Content="Vertical 1" />
-                                <AirRadioButton Content="Vertical 2" />
-                                <AirRadioButton Content="Vertical 3" />
-                                <AirRadioButton Content="Vertical 4" />
-                            </AirPanel>
+                            <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="20" />
 
-                            <AirPanel Margin="10" Type="Vertical" Space="10">
-                                <AirButton Type="Default" Content="AirButton 1" />
-                                <AirButton Content="AirButton 2" />
-                                <AirButton Type="Default" Content="AirButton 3" />
-                                <AirButton Content="AirButton 4" />
-                            </AirPanel>
-                        </AirPanel>
-                    </AirPanel>
-                </AirTabItem>
+                            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                <AirTabItem Header="Progress">
-                    <AirPanel Type="Vertical" Space="10">
-                        <AirProgressBar Width="100" Height="20" Value="30" IsIndeterminate="True" />
-                        <AirProgressBar Width="100" Height="20" Value="50" IsIndeterminate="False" />
-                        <AirProgressBar Width="100" Height="20" Value="60" IsIndeterminate="False" />
-                    </AirPanel>
-                </AirTabItem>
+                                <Grid Grid.Row="0" HorizontalAlignment="Left" Margin="0 0 0 6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                <AirTabItem Header="ScrollViewer">
-                    <AirCaption />
-                </AirTabItem>
-                <AirTabItem Header="TextBox">
-                    <TextBlock Text="{Binding }" />
-                </AirTabItem>
-                <AirTabItem Header="Loading" />
-            </AirTabControl>
-        </Grid>
+                                    <TextBlock Grid.Column="0" Text="First day of week:" Margin="10 4"
+                                               HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                    <ComboBox Grid.Column="1" Width="200" HorizontalAlignment="Left"
+                                              VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Monday" IsSelected="True" />
+                                        <ComboBoxItem Content="Sunday" />
+                                    </ComboBox>
+                                </Grid>
+
+                                <Grid Grid.Row="1" HorizontalAlignment="Left" Margin="0 0 0 20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="Calendar:" Margin="10 4"
+                                               HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                    <ComboBox Grid.Column="1" Width="200" HorizontalAlignment="Left"
+                                              VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Gregorian" IsSelected="True" />
+                                    </ComboBox>
+                                </Grid>
+
+                                <Grid Grid.Row="2" HorizontalAlignment="Left" Margin="0 0 0 6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="Currency:" Margin="10 4"
+                                               HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                    <ComboBox Grid.Column="1" Width="200" HorizontalAlignment="Left"
+                                              VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Euro" IsSelected="True" />
+                                        <ComboBoxItem Content="US Dollar" IsSelected="True" />
+                                    </ComboBox>
+                                </Grid>
+
+                                <Grid Grid.Row="3" HorizontalAlignment="Left" Margin="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="Decimal:" Margin="10 4"
+                                               HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                    <ComboBox Grid.Column="1" Width="100" HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Center">
+                                        <ComboBoxItem Content="." IsSelected="True" />
+                                        <ComboBoxItem Content="," />
+                                    </ComboBox>
+                                </Grid>
+                            </Grid>
+
+                            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="20" />
+
+                            <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Time format:" Margin="10 4"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="True" HorizontalAlignment="Left"
+                                          VerticalAlignment="Center" Content="24-Hour Time"/>
+
+                                <CheckBox Grid.Row="1" Grid.Column="1" Content="Correct Spelling automatically"
+                                          HorizontalAlignment="Left"  />
+                                <CheckBox Grid.Row="2" Grid.Column="1" Content="Backup"
+                                          HorizontalAlignment="Left"  />
+                                <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="20 10 10 10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                        <ComboBox Width="126" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                            <ComboBoxItem Content="Daily Backups" IsSelected="True" />
+                                            <ComboBoxItem Content="Weekly Backups" IsSelected="True" />
+                                        </ComboBox>
+                                        <TextBlock Text="to Folder" Margin="10 4" HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                        <TextBox Width="126" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        <Button Content="..." HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                Width="22" />
+                                    </StackPanel>
+
+                                    <CheckBox Grid.Row="1" Grid.Column="0" Content="Show backup in menu" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </AirTabItem>
+                    <AirTabItem Header="Tab Item 1" Padding="10 4" />
+                    <AirTabItem Header="Tab Item 2" Padding="10 4" />
+                </AirTabControl>
+            </AirTabItem>
+
+            <AirTabItem Header="DataGrid" Width="200" Padding="10 8">
+                <DataGrid x:Name="DataGrid" ItemsSource="{Binding Users}" RowHeight="22"
+                          RowHeaderWidth="20" HeadersVisibility="All" Margin="10" />
+            </AirTabItem>
+
+        </AirTabControl>
+
+        <StatusBar Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+            <StatusBarItem>Ready</StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right" IsEnabled="False">INS</StatusBarItem>
+        </StatusBar>
     </Grid>
+
 </View>

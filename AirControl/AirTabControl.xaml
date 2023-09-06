@@ -10,7 +10,9 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AirTabControl">
@@ -65,7 +67,7 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="TextElement.Foreground" TargetName="templateRoot"
-                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                    Value="{StaticResource DefaultDisableForeground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

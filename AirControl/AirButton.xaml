@@ -7,13 +7,13 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type local:AirButton}">
-        <Setter Property="Padding" Value="8" />
+        <Setter Property="Padding" Value="10 6" />
         <Setter Property="CornerRadius" Value="5" />
 
         <Setter Property="Cursor" Value="Hand" />
-
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
+    
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
 
         <Setter Property="Background" Value="{StaticResource MainBackground}" />
         <Setter Property="Foreground" Value="{StaticResource MainForeground}" />
@@ -26,8 +26,8 @@
                             CornerRadius="{TemplateBinding CornerRadius}"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Focusable="False" />
                     </Border>
                     <ControlTemplate.Triggers>
